@@ -1,0 +1,56 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 92% 8%;
+    align-items: center;
+    width: 40%;
+    height: 60%;
+    margin: 10px;
+}
+
+.search {
+    display: block;
+    overflow: hidden;
+    border: none;
+    border-radius: 0;
+    height: 100%;
+    width: 100%;
+    color: #ffffff;
+    background-color: #75a1ff;
+    padding: 5px;
+}
+
+input[type=search] {
+    border: transparent;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    color: white;
+    font-weight: 400;
+    font-size: 15px;
+    outline: none; /* Added to remove default focus border */
+}
+
+input[type=search]::placeholder {
+    color: white;
+    font-weight: 500;
+}
+
+.fon {
+    width: 100%;
+    height: 100%;
+    background-color: #75a1ff;
+}
+
+.sign {
+    margin: 3px;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    background-color: #4680ff;
+}
+
+.m_glass {
+    font-size: 25px;
+    color: #ffffff;
+}
+
