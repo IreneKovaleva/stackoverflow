@@ -19,10 +19,12 @@ export const fetchQuestionsApiEndpoint = (page: string, order: string, sort: str
                 filteredData = result.items.filter((element:QuestionsApiState)  => element.tags.includes(tags));
             }
 
-            dispatch({
-                type: QuestionsApiActionTypes.FETCH_API_SUCCESS,
-                payload: filteredData
-            });
+            setTimeout(() => {
+                dispatch({
+                    type: QuestionsApiActionTypes.FETCH_API_SUCCESS,
+                    payload: filteredData
+                });
+            },500)
 
         } catch (e) {
             dispatch({

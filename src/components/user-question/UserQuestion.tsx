@@ -1,21 +1,28 @@
 import React, {useEffect} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown, faCaretUp, faCircleDown, faCircleUp} from "@fortawesome/free-solid-svg-icons";
-import parse from 'html-react-parser';
+// import parse from 'html-react-parser';
 import "./UserQuestion.css"
 import {useTypedSelector} from "../../store/hooks/useTypedSelector";
 import {creationDate} from "../../services/date_format";
 import {useActions} from "../../store/hooks/useActions";
-import {QuestionActionScoreAdd, QuestionActionScoreDeduct} from "../../store/action-creators/user_question/user_question_action";
 import Comments from "../../api_components/comments/Comments"
 import Answers from "../../api_components/answers/Answers";
+import {UserQuestionActionCreatorScoreAdd, UserQuestionActionCreatorScoreDeduct} from "../../store/action-creators/user_question/user_question_action";
+import parse from "html-react-parser";
 
 const UserQuestions: React.FC = () => {
-    const {QuestionActionScoreAdd, QuestionActionScoreDeduct,setView,setFontAwesomeIcon} = useActions()
-    const {tags, comments, answers, title, body, score, creation_date, answer_count} = useTypedSelector(state => state.user_question)
+    const {fetchUserQuestionApiEndpoint, setView, setFontAwesomeIcon} = useActions()
+    const {question_id, question_items, tags, title, body, score, creation_date, answer_count, loading, error} = useTypedSelector(state => state.user_question)
     const {value} = useTypedSelector(state => state.view_reducer_user_question)
     const {icon} = useTypedSelector(state => state.font_awesome_icons)
 
+    useEffect(() => {
+        if (question_id) {
+            fetchUserQuestionApiEndpoint(question_id || '');
+        }
+    }, [question_id])
+    console.log('User Question', question_items)
 
     const showComments = () => {
         const newView = value === 'block' ? 'none' : 'block';
@@ -26,17 +33,15 @@ const UserQuestions: React.FC = () => {
     };
 
     const voteUp = (add_score:number) => {
-        QuestionActionScoreAdd(add_score)
+        UserQuestionActionCreatorScoreAdd(add_score)
     }
 
     const voteDown = (deduct_score:number) => {
-        QuestionActionScoreDeduct(deduct_score)
+        UserQuestionActionCreatorScoreDeduct(deduct_score)
     }
 
-    useEffect(() => {}, [score, comments, answers, tags, title, body, creation_date, answer_count])
-
     const tags_elements = (tag:string[] | null) => {
-        if (tag !== null) {
+        if (tag !== null && tag !== undefined) {
             return(
                 <div className='questions_ct_tags'>{tag.map((element, index) =>
                     <div className='question_tags margin' key={index}>
@@ -47,38 +52,28 @@ const UserQuestions: React.FC = () => {
         }
     }
 
-    const comment_elements = (comment: number[] | string[] | null) => {
-        if (comment !== null) {
-            return(
-                <div className='comment_block'>{comment.map((element, index) =>
-                    <div key={index}>
-                        <Comments comment_id={element.toString()}/>
-                    </div>
-                )}</div>
-            )
-        }
+    const item_comment_elements = () => {
+        const endpoint = `/2.3/questions/${question_id}/comments?order=desc&sort=creation&site=stackoverflow&filter=!bEvCQhrKga-zTC`;
+        return(
+            <div className='comment_block'>
+                    <Comments endpoint={endpoint}/>
+            </div>
+        )
     }
 
-    const answer_elements = (answer: number[] | string[] | null) => {
-        if (answer !== null) {
-            return(
-                <div className='answers_block'>{answer.map((element, index) =>
-                    <div key={index}>
-                        <Answers answer_id={element.toString()}/>
-                    </div>
-                )}</div>
-            )
-        }
+    if (loading) {
+        return <h1>Loading...</h1>
     }
-
-
+    if (error) {
+        return <h1>{error}</h1>
+    }
 
     return (
         <div className="first_block_user_question">
             <div className="rows_user_question">
                 <div className='questions_content'>
                     <div className='questions_description'>
-                        <div className='questions_description_title'>{title}</div>
+                        <div className='questions_description_title'>{parse(title)}</div>
                         <div className='questions_description_score'>
                             <div className='score margin'>Score <span className='span_user_question'>{score}</span></div>
                             <div className='date margin'>Date  <span className='span_user_question'>{creationDate(creation_date)}</span></div>
@@ -91,7 +86,7 @@ const UserQuestions: React.FC = () => {
                             <FontAwesomeIcon className='arrowIcon iconDown' icon={faCircleDown} onClick={() => voteDown(1)}></FontAwesomeIcon>
                         </div>
                         <div className='questions_body'>
-                            <div>{body}</div>
+                            <div>{parse(body)}</div>
                         </div>
                     </div>
                     <div>
@@ -105,12 +100,14 @@ const UserQuestions: React.FC = () => {
                             <div className='show-comments_comments_user_question'>Comments</div>
                             <FontAwesomeIcon onClick={showComments} className='show-comments_icon_user_question' icon={icon}></FontAwesomeIcon>
                         </div>
-                        <div>{comment_elements(comments)}</div>
+                        <div className='comment_block'>{item_comment_elements()}</div>
                     </div>
 
                     <div className='answers_user_question'>
                         <h2>Answers</h2>
-                        <div>{answer_elements(answers)}</div>
+                        <div className='answers_block'>
+                                <Answers />
+                        </div>
                     </div>
                 </div>
             </div>

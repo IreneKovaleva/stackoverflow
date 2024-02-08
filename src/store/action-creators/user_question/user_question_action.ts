@@ -1,71 +1,87 @@
-import {UserQuestionAction, QuestionActionTypes} from "../../types/user_question/question_object";
+import {UserQuestionAction, QuestionActionTypes} from "../../types/user_question/user_question_api_endpoint_type";
 import {IconDefinition} from "@fortawesome/fontawesome-common-types";
 import {FontAwesomeIconAction, FontAwesomeIconActionTypes} from "../../types/user_question/font_awesome_icon_type";
 import {ViewAction, ViewActionTypes} from "../../types/user_question/view_type";
+import { Dispatch } from "redux";
+import {QuestionsApiActionTypes} from "../../types/api/questions/questions_type";
 
 
-export const UserQuestionActionCreatorTags = (newValue: any): UserQuestionAction => ({
-    type: QuestionActionTypes.SET_TAGS,
+
+export const fetchUserQuestionApiEndpoint = ( question_id: string)  => {
+    return async (dispatch: Dispatch<UserQuestionAction>) => {
+        try {
+            dispatch({ type: QuestionActionTypes.FETCH_API });
+
+            const apiUrl = `https://api.stackexchange.com/2.3/questions/${question_id}?order=desc&sort=activity&site=stackoverflow&filter=!4)7wd.G6sgmI5NUgv`;
+
+            const response = await fetch(apiUrl);
+            const result = await response.json();
+            const questions = result.items[0]
+            console.log('API Response Questions', questions);
+            setTimeout(() => {
+                dispatch({
+                    type: QuestionActionTypes.FETCH_API_SUCCESS,
+                    payload: questions
+                });
+            },500)
+
+            dispatch({
+                type: QuestionActionTypes.SET_TAGS,
+                payload: questions.tags
+            });
+
+            dispatch({
+                type: QuestionActionTypes.SET_TITLE,
+                payload: questions.title
+            });
+
+            dispatch({
+                type: QuestionActionTypes.SET_BODY,
+                payload: questions.body
+            });
+
+            dispatch({
+                type: QuestionActionTypes.SET_SCORE,
+                payload: questions.score
+            });
+
+            dispatch({
+                type: QuestionActionTypes.SET_CREATION_DATE,
+                payload: questions.creation_date
+            });
+
+            dispatch({
+                type: QuestionActionTypes.SET_ANSWER_COUNT,
+                payload: questions.answer_count
+            });
+
+            dispatch({
+                type: QuestionActionTypes.SET_OWNER,
+                payload: questions.owner
+            });
+
+        } catch (e) {
+            dispatch({
+                type: QuestionActionTypes.FETCH_API_ERROR,
+                payload: `Caused error when downloading comments`,
+            });
+            console.log(e)
+        }
+    };
+};
+
+export const UserQuestionActionCreatorQuestionId = (newValue: string): UserQuestionAction => ({
+    type: QuestionActionTypes.SET_QUESTION_ID,
     payload: newValue,
 });
 
-export const UserQuestionActionCreatorComments = (newValue: any): UserQuestionAction => ({
-    type: QuestionActionTypes.SET_COMMENTS,
+export const UserQuestionActionCreatorScoreAdd= (newValue: any): UserQuestionAction => ({
+    type: QuestionActionTypes.SCORE_ADD,
     payload: newValue,
 });
 
-export const UserQuestionActionCreatorAnswers = (newValue: any): UserQuestionAction => ({
-    type: QuestionActionTypes.SET_ANSWERS,
-    payload: newValue,
-});
-
-export const UserQuestionActionCreatorOwner = (newValue: any): UserQuestionAction => ({
-    type: QuestionActionTypes.SET_OWNER,
-    payload: newValue,
-});
-
-export const UserQuestionActionCreatorDownVoteCount = (newValue: any): UserQuestionAction => ({
-    type: QuestionActionTypes.SET_DOWN_VOTE_COUNT,
-    payload: newValue,
-});
-
-export const UserQuestionActionCreatorUpVoteCount = (newValue: any): UserQuestionAction => ({
-    type: QuestionActionTypes.SET_UP_VOTE_COUNT,
-    payload: newValue,
-});
-
-export const UserQuestionActionCreatorAnswerCount = (newValue: any): UserQuestionAction => ({
-    type: QuestionActionTypes.SET_ANSWER_COUNT,
-    payload: newValue,
-});
-
-export const UserQuestionActionCreatorScore = (newValue: any): UserQuestionAction => ({
-    type: QuestionActionTypes.SET_SCORE,
-    payload: newValue,
-});
-
-export const QuestionActionScoreAdd = (newValue: any): UserQuestionAction => ({
-    type: QuestionActionTypes.ADD_SCORE,
-    payload: newValue,
-});
-
-export const QuestionActionScoreDeduct = (newValue: any): UserQuestionAction => ({
-    type: QuestionActionTypes.ADD_SCORE,
-    payload: newValue,
-});
-
-export const UserQuestionActionCreationDate = (newValue: any): UserQuestionAction => ({
-    type: QuestionActionTypes.SET_CREATION_DATE,
-    payload: newValue,
-});
-
-export const UserQuestionActionCreatorTitle = (newValue: any): UserQuestionAction => ({
-    type: QuestionActionTypes.SET_TITLE,
-    payload: newValue,
-});
-
-export const UserQuestionActionCreatorBody = (newValue: any): UserQuestionAction => ({
-    type: QuestionActionTypes.SET_BODY,
+export const UserQuestionActionCreatorScoreDeduct = (newValue: any): UserQuestionAction => ({
+    type: QuestionActionTypes.SCORE_DEDUCT,
     payload: newValue,
 });
 

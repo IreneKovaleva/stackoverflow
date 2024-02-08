@@ -3,16 +3,10 @@ import {NavigateFunction, useNavigate} from "react-router-dom";
 import {useTypedSelector} from "../../store/hooks/useTypedSelector";
 import {useActions} from "../../store/hooks/useActions";
 import "./Questions.css"
-import {fetchQuestionsApiEndpoint} from "../../store/action-creators/api/questions/questions_action";
 import { faCheck, faXmark} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {creationDate} from "../../services/date_format";
-import {
-    UserQuestionActionCreationDate, UserQuestionActionCreatorAnswerCount,
-    UserQuestionActionCreatorAnswers, UserQuestionActionCreatorBody,
-    UserQuestionActionCreatorComments, UserQuestionActionCreatorScore,
-    UserQuestionActionCreatorTags, UserQuestionActionCreatorTitle
-} from "../../store/action-creators/user_question/user_question_action";
+
 
 
 
@@ -20,7 +14,7 @@ import {
 const Questions: React.FC = () => {
     const navigate:NavigateFunction = useNavigate();
     const {questions, loading, error, page, order, sort, tags} = useTypedSelector(state => state.api_questions)
-    const {fetchQuestionsApiEndpoint, UserQuestionActionCreatorTags,UserQuestionActionCreatorComments,UserQuestionActionCreatorAnswers,UserQuestionActionCreatorTitle,UserQuestionActionCreatorBody} = useActions()
+    const {fetchQuestionsApiEndpoint, UserQuestionActionCreatorQuestionId} = useActions()
 
 
     useEffect(() => {
@@ -45,44 +39,7 @@ const Questions: React.FC = () => {
         return Math.round(reputation / 1000) + 'k'
     };
     const transfer = (question:any) => {
-        if (question.hasOwnProperty('comments')) {
-            let comments: number[] = []
-            question.comments.map((element: {comment_id: number}) => {
-                comments.push(element.comment_id)
-            })
-            comments.sort(function (a, b) {
-                return a - b;
-            })
-            UserQuestionActionCreatorComments(comments)
-        }else {
-            let comments: string[] = ['no comments']
-            UserQuestionActionCreatorComments(comments)
-        }
-        if (question.hasOwnProperty('answers')) {
-            let answers: number[] = []
-            question.answers.map((element: {answer_id: number}) => {
-                answers.push(element.answer_id)
-            })
-            answers.sort(function (a, b) {
-                return a - b;
-            })
-            UserQuestionActionCreatorAnswers(answers)
-        }else {
-            let answers: string[] = ['no answers']
-            UserQuestionActionCreatorAnswers(answers)
-        }
-        UserQuestionActionCreatorTags(question.tags)
-        console.log('question.tags', question.tags)
-        UserQuestionActionCreatorTitle(question.title)
-        console.log('question.title', question.title)
-        UserQuestionActionCreatorBody(question.body)
-        console.log('question.body', question.body)
-        UserQuestionActionCreatorScore(question.score)
-        console.log('question.body', question.score)
-        UserQuestionActionCreationDate(question.creation_date)
-        console.log('question.body', question.creation_date)
-        UserQuestionActionCreatorAnswerCount(question.answer_count)
-        console.log('question.body', question.answer_count)
+        UserQuestionActionCreatorQuestionId((question.question_id).toString())
     };
 
     if (loading) {
