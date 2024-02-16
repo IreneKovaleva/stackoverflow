@@ -7,7 +7,9 @@ import {fontAwesomeIconReducer} from "./user_question/font_awesome_icon_reducer"
 import {fontAwesomeIconReducerAnswers} from "./api/answers/font_awesome_icon_reducer_answers";
 import {viewReducerUserQuestionAnswers} from "./api/answers/view_reducer_answers";
 import {iconReducer} from "./navigation/icon_reducer";
-import {commentsApiEndpointReducer} from "./api/comments/comments_api_endpoint_reducer";
+import {apiUsersReducer} from "./api/users/users_reducer";
+import {apiUserProfileReducer} from "./api/user_profile/user_profile";
+
 
 
 
@@ -16,11 +18,12 @@ export const rootReducer = combineReducers({
     navigation_icon: iconReducer,
     api_questions: apiQuestionsReducer,
     user_question: userQuestionReducer,
-    question_comments_api: commentsApiEndpointReducer,
     view_reducer_user_question: viewReducerUserQuestion,
     font_awesome_icons: fontAwesomeIconReducer,
     font_awesome_icons_answers: fontAwesomeIconReducerAnswers,
-    view_reducer_user_question_answers: viewReducerUserQuestionAnswers
+    view_reducer_user_question_answers: viewReducerUserQuestionAnswers,
+    api_users: apiUsersReducer,
+    api_user_profile: apiUserProfileReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>

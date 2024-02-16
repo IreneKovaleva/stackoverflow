@@ -1,0 +1,62 @@
+.first_block-users {
+    padding: 20px;
+    display: grid;
+    grid-template-rows: 70px 50px auto;
+    margin: 0 auto;
+    min-height: 200em;
+    overflow-y: scroll;
+    width: 90%;
+}
+.header_users {
+    color: #060606;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.link_users {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    border-radius: 2px;
+}
+.house:before {
+    content: "\e87a";
+    color: black;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+.house {
+    font-size: 15px;
+    color: #4680ff;
+    margin-right: 5px;
+}
+.user_buttons {
+    position: relative;
+    width: 800px;
+    height: 40px;
+}
+.user_buttons_buttons {
+    float: right;
+}
+.users_margin {
+    margin: 10px;
+}
+
+.user_button {
+    margin-right: 10px;
+    min-width: 90px;
+    height: 25px;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    align-items: center;
+    border-radius: 2px;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+}
+.user_button:hover {
+    color: white;
+    background-color: #4680ff;
+}

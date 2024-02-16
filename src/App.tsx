@@ -8,6 +8,8 @@ import Navigation from "./components/navigation/Navigation";
 import Search from "./components/search/Search";
 import Main from "./components/main_component/Main";
 import UserQuestion from "./components/user-question/UserQuestion";
+import Users from "./components/users_component/Users";
+import Profile from "./components/user_profile/Profile";
 
 function App() {
   // const navigate = useNavigate();
@@ -38,6 +40,9 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Main />}></Route>
                   <Route path="/user_question" element={<UserQuestion/>}></Route>
+                  <Route path="/users" element={<Users/>}></Route>
+                  <Route path="/profile/*" element={<Profile />}></Route>
+
                 </Routes>
               </div>
               <div className="other">

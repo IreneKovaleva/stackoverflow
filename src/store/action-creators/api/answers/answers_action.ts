@@ -8,7 +8,7 @@ import {ViewActionAnswers, ViewActionTypesAnswers} from "../../../types/api/answ
 
 
 export const setFontAwesomeIconAnswers = (newIcon: IconDefinition): FontAwesomeIconActionAnswers => ({
-    type: FontAwesomeIconActionTypesAnswers.SET_VALUE,
+    type: FontAwesomeIconActionTypesAnswers.SET_VALUE_ICON_ANSWERS,
     payload: newIcon,
 });
 

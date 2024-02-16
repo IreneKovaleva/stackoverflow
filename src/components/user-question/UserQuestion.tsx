@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCaretDown, faCaretUp, faCircleDown, faCircleUp} from "@fortawesome/free-solid-svg-icons";
+import {faCircleDown, faCircleUp} from "@fortawesome/free-solid-svg-icons";
 // import parse from 'html-react-parser';
 import "./UserQuestion.css"
 import {useTypedSelector} from "../../store/hooks/useTypedSelector";
@@ -8,36 +8,30 @@ import {creationDate} from "../../services/date_format";
 import {useActions} from "../../store/hooks/useActions";
 import Comments from "../../api_components/comments/Comments"
 import Answers from "../../api_components/answers/Answers";
-import {UserQuestionActionCreatorScoreAdd, UserQuestionActionCreatorScoreDeduct} from "../../store/action-creators/user_question/user_question_action";
 import parse from "html-react-parser";
 
+
 const UserQuestions: React.FC = () => {
-    const {fetchUserQuestionApiEndpoint, setView, setFontAwesomeIcon} = useActions()
-    const {question_id, question_items, tags, title, body, score, creation_date, answer_count, loading, error} = useTypedSelector(state => state.user_question)
-    const {value} = useTypedSelector(state => state.view_reducer_user_question)
-    const {icon} = useTypedSelector(state => state.font_awesome_icons)
+    const {fetchUserQuestionApiEndpoint, setUserQuestionScore} = useActions()
+    const {question_id, question_items, tags, title, body, creation_date, answer_count, loading, error, score} = useTypedSelector(state => state.user_question)
+
 
     useEffect(() => {
         if (question_id) {
-            fetchUserQuestionApiEndpoint(question_id || '');
+            fetchUserQuestionApiEndpoint(question_id);
         }
+        if (question_items.length > 0) {
+            console.log(question_items)
+        }
+
     }, [question_id])
-    console.log('User Question', question_items)
-
-    const showComments = () => {
-        const newView = value === 'block' ? 'none' : 'block';
-        const newIcon = value === 'block' ? faCaretUp : faCaretDown;
-
-        setView(newView)
-        setFontAwesomeIcon(newIcon)
-    };
 
     const voteUp = (add_score:number) => {
-        UserQuestionActionCreatorScoreAdd(add_score)
+        setUserQuestionScore(score + add_score)
     }
 
     const voteDown = (deduct_score:number) => {
-        UserQuestionActionCreatorScoreDeduct(deduct_score)
+        setUserQuestionScore(score - deduct_score)
     }
 
     const tags_elements = (tag:string[] | null) => {
@@ -96,10 +90,6 @@ const UserQuestions: React.FC = () => {
                         </div>
                     </div>
                     <div className='comments_user_question'>
-                        <div className='show_user_question general_user_question'>
-                            <div className='show-comments_comments_user_question'>Comments</div>
-                            <FontAwesomeIcon onClick={showComments} className='show-comments_icon_user_question' icon={icon}></FontAwesomeIcon>
-                        </div>
                         <div className='comment_block'>{item_comment_elements()}</div>
                     </div>
 

@@ -16,7 +16,7 @@ const Answers: React.FC = () =>{
     const [score, setScore] = useState<number>(0);
 
     const {value} = useTypedSelector(state => state.view_reducer_user_question_answers)
-    const {icon} = useTypedSelector(state => state.font_awesome_icons_answers)
+    const {font_awesome_icon_answers} = useTypedSelector(state => state.font_awesome_icons_answers)
     const {question_id} = useTypedSelector(state => state.user_question)
     const {setViewAnswers, setFontAwesomeIconAnswers} = useActions()
 
@@ -41,7 +41,7 @@ const Answers: React.FC = () =>{
                         }
                     )
         }
-    }, [question_id])
+    }, [question_id, value, font_awesome_icon_answers])
 
 
     const showComments = () => {
@@ -58,7 +58,7 @@ const Answers: React.FC = () =>{
     }
 
     const voteDown = (deduct_score:number) => {
-        let new_score = score + deduct_score
+        let new_score = score - deduct_score
         setScore(new_score)
     }
 
@@ -75,7 +75,7 @@ const Answers: React.FC = () =>{
     const item_comment_elements = (answer_id: number) => {
         const id = answer_id.toString()
         let endpoint = `/2.3/answers/${id}/comments?order=desc&sort=creation&site=stackoverflow&filter=!bCTzllGnBZgG5C`
-        console.log('endpoint',endpoint)
+        // console.log('endpoint',endpoint)
         return(
             <div className='answers_comment_block'>
                 <Comments endpoint={endpoint}/>
@@ -130,7 +130,7 @@ const Answers: React.FC = () =>{
                     <div className='comments_answers_user_page'>
                         <div className='show_comments_answers general_comments_answers'>
                             <div className='show-comments_comments_answers'>Comments</div>
-                            <FontAwesomeIcon onClick={showComments} className='show-comments_icon_answers' icon={icon}></FontAwesomeIcon>
+                            <FontAwesomeIcon onClick={showComments} className='show-comments_icon_answers' icon={font_awesome_icon_answers}></FontAwesomeIcon>
                         </div>
                         <div>{item_comment_elements(element.answer_id)}</div>
                     </div>

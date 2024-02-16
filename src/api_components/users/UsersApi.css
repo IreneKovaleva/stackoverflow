@@ -1,0 +1,101 @@
+.users_api {
+    width: 100%;
+    min-height: 120px;
+}
+.user_location {
+    margin: 5px;
+}
+.users_description {
+    display: flex;
+    margin-top: 20px;
+    border: 1px solid lightgrey;
+    background-color: #ffffff;
+    padding: 5px;
+    height: 200px;
+}
+.portfolio {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    width: 130px;
+    border-right: 2px solid #f4f5fa;
+}
+.portfolio_image {
+    height: 120px;
+    width: 120px;
+}
+.portfolio_default_img {
+    height: 120px;
+    width: 120px;
+    background-color: #4680ff;
+    color: white;
+}
+.portfolio_reputation_icon {
+    width: 20px;
+    height: 20px;
+    color: #4680ff;
+}
+.portfolio_reputation {
+    font-size: 15px;
+}
+.bold {
+    font-weight: bold;
+    color: #4680ff;
+}
+.user_content {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    width: 540px;
+}
+.user_content_name {
+    margin: 10px 0 10px 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #4680ff;
+}
+.user_content_href {
+    text-decoration: none;
+    height: 20%;
+}
+.user_content_tags {
+    height: 50%;
+}
+.user_content_tags:hover {
+    color: #4680ff;
+}
+.user_badges {
+    display: flex;
+    flex-direction: row;
+    text-align: right;
+    margin-left: 50%;
+}
+.user_badges_element {
+    float: left;
+    width: 33%;
+}
+.user_badges_element_medal {
+    width: 30px;
+    height: 30px;
+}
+.bronze {
+    color: #967444;
+}
+.silver {
+    color: #c0c0c0 ;
+}
+.gold {
+    color: #ffd700;
+}
+.user_location {
+    font-size: 15px;
+    width: 130px;
+    text-wrap: normal;
+    font-weight: bold;
+    color: #4680ff;
+    text-align: center;
+    border-left: 2px solid #f4f5fa;
+}
+.tu {
+    font-size: 14px;
+}

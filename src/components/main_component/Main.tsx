@@ -7,7 +7,7 @@ import Questions from "../../api_components/questions/Questions";
 
 
 const Main = () => {
-    const { setOrder, setSorting} = useActions();
+    const {setOrder, setSorting} = useActions();
 
     const new_order = (event: React.MouseEvent<HTMLElement>) => {
         setOrder((event.target as Element).id);
