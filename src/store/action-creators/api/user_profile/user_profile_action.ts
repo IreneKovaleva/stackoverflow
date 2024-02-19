@@ -11,7 +11,7 @@ export const fetchUserProfileApiEndpoint = (user_id: string)  => {
 
             const response = await fetch(apiUrl);
             const result = await response.json();
-            console.log('API Response User Profile:', result);
+            // console.log('API Response User Profile:', result);
 
             let user_items = result.items;
 

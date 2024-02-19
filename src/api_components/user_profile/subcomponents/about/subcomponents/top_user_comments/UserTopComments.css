@@ -1,0 +1,34 @@
+.top_user_comments_block {
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    border-left: 1.5px solid lightgrey;
+    border-right: 1.5px solid lightgrey;
+    border-radius: 15px;
+    margin-right: 20px;
+    margin-top: 15px;
+    box-shadow: rgba(33, 35, 38, 0.1) 0 13px 21px -3px;
+}
+.top_user_comments_elements_top {
+    display: grid;
+    grid-template-columns: 40px 400px auto;
+    padding: 10px;
+    align-items: center;
+    border-bottom: 0.5px solid lightgrey;
+    border-top: 0.5px solid lightgrey;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.rows_comments {
+    grid-auto-rows: 70px;
+}
+.top_user_comments_elements_score {
+    margin-right: 10px;
+    text-align: center;
+    min-width: 30px;
+    min-height: 30px;
+    color: white;
+    background: rgba(47, 49, 56, 0.9);
+}
+.user_comments_size_text{
+    font-size: 13px;
+}

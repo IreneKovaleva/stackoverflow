@@ -8,9 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {creationDate} from "../../services/date_format";
 
 
-
-
-
 const Questions: React.FC = () => {
     const navigate:NavigateFunction = useNavigate();
     const {questions, loading, error, page, order, sort, tags} = useTypedSelector(state => state.api_questions)

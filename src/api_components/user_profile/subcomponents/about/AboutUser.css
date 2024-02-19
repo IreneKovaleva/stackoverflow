@@ -1,0 +1,80 @@
+.profile_about {
+    display: flex;
+    flex-flow: row;
+}
+.profile_about_left {
+    width: 300px;
+}
+.profile_about_right {
+    display: grid;
+}
+.profile_user_head {
+    font-weight: bold;
+    font-size: 25px;
+    color: lightgrey;
+}
+.head_width {
+    width: 83%;
+}
+.profile_about_right_text {
+    margin-top: 15px;
+}
+.profile_empty {
+    margin-top: 20px;
+}
+.profile_head {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+.profile_user_all {
+    font-size: 13px;
+    float: right;
+}
+.profile_top_elements {
+    display: grid;
+    grid-template-columns: 320px auto;
+    grid-auto-rows: 40px;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 5px;
+    align-items: center;
+}
+.profile_top_elements_view {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    grid-row-end: 2;
+    margin-top: 20px;
+    font-size: 15px;
+}
+.profile_top_elements_buttons {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    grid-row-end: 2;
+}
+.profile_top_elements_elements {
+    text-align: center;
+}
+.elements_button {
+    height: 20px;
+    font-size: 13px;
+    width: 70px;
+    border: none;
+    margin: 2px;
+    color: white;
+    background: #5a8de1;
+}
+.elements_button:hover {
+    height: 22px;
+    width: 72px;
+}
+.active_about_user {
+    background: lightgrey;
+}
+.inactive_about_user {
+    background: #5a8de1;
+}
+.filter_margin {
+    text-align: right;
+    margin-right: 15px;
+}

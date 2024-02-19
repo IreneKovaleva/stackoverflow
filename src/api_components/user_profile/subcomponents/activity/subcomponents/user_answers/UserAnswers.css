@@ -1,0 +1,70 @@
+.answers_empty {
+    font-size: 20px;
+    color: lightgrey;
+}
+.head_box {
+    display: flex;
+    flex-flow: row;
+    margin: 20px 0 20px 0;
+}
+.total {
+    font-size: 20px;
+    font-weight: bold;
+    width: 435px;
+}
+.filters {
+    width: 200px;
+    display: flex;
+    flex-flow: row;
+}
+
+.text_position {
+    text-align: center;
+}
+.user_answers_block {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    border-top: 0.5px solid lightgrey;
+    border-right: 1px solid lightgrey;
+    border-left: 1px solid lightgrey;
+    border-bottom: 0.5px solid lightgrey;
+    padding: 10px;
+}
+.block-1 {
+    display: flex;
+    flex-flow: row;
+    margin: 5px 0 5px 0 ;
+}
+.block-3 {
+    margin: 5px 0 0 0 ;
+    display: flex;
+    flex-flow: row;
+    width: 75%;
+}
+.answers_tags_position {
+    padding: 2px;
+    margin: 2px;
+    display: inline-block;
+    min-width: 20px;
+    background-color: rgba(70,128,255, 0.4);
+    color: white;
+}
+.answers_tag {
+    font-size: 12px;
+}
+.filters {
+    display: flex;
+    flex-flow: row;
+}
+.low-block {
+    display: flex;
+    flex-flow: row;
+}
+.user_answer_date {
+    position: relative;
+    float: right;
+    font-size: 15px;
+    margin: 12px 0 0 0 ;
+}
+
