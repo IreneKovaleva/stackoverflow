@@ -1,4 +1,4 @@
-.answers_empty {
+.items_empty {
     font-size: 20px;
     color: lightgrey;
 }
@@ -21,7 +21,7 @@
 .text_position {
     text-align: center;
 }
-.user_answers_block {
+.user_items_block {
     width: 100%;
     display: flex;
     flex-flow: column;
@@ -42,7 +42,7 @@
     flex-flow: row;
     width: 75%;
 }
-.answers_tags_position {
+.items_tags_position {
     padding: 2px;
     margin: 2px;
     display: inline-block;
@@ -50,7 +50,7 @@
     background-color: rgba(70,128,255, 0.4);
     color: white;
 }
-.answers_tag {
+.items_tag {
     font-size: 12px;
 }
 .filters {
@@ -61,10 +61,31 @@
     display: flex;
     flex-flow: row;
 }
-.user_answer_date {
+.user_items_date {
     position: relative;
     float: right;
     font-size: 15px;
     margin: 12px 0 0 0 ;
 }
-
+.accepted {
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    text-align: center;
+    background: green;
+    padding: 1px;
+    color: white;
+    min-width: 70px;
+    font-size: 12px;
+}
+.no_accepted {
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 1px;
+    color: green;
+    min-width: 70px;
+    font-size: 12px;
+    border: 1px solid green;
+}

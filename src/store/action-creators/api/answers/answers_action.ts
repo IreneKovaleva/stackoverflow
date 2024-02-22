@@ -3,7 +3,7 @@ import {
     FontAwesomeIconActionAnswers,
     FontAwesomeIconActionTypesAnswers
 } from "../../../types/api/answers/font_awesome_icon_answers";
-import {ViewActionAnswers, ViewActionTypesAnswers} from "../../../types/api/answers/view_style_answers";
+import {ActionQuestionAnswers, ViewActionTypesAnswers} from "../../../types/api/answers/view_style_answers";
 
 
 
@@ -12,7 +12,12 @@ export const setFontAwesomeIconAnswers = (newIcon: IconDefinition): FontAwesomeI
     payload: newIcon,
 });
 
-export const setViewAnswers = (newValue: string): ViewActionAnswers => ({
+export const setViewAnswers = (newValue: string): ActionQuestionAnswers => ({
     type: ViewActionTypesAnswers.SET_VALUE,
+    payload: newValue,
+});
+
+export const setAnswerPostId = (newValue: string): ActionQuestionAnswers => ({
+    type: ViewActionTypesAnswers.SET_POST_ID,
     payload: newValue,
 });

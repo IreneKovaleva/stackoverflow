@@ -1,57 +1,44 @@
-import React from "react";
+import React, {useState} from "react";
 import './Activity.css';
 import {Route, Routes} from "react-router-dom";
-import UserAnswers from "./subcomponents/user_answers/UserAnswers";
+import UserActivityItems from "./user_activity_items/UserActivityItems";
+
 
 const UserActivity = () => {
+    const [settings, setSettings] = useState<{type: string; filter: string, name: string, sort_parameters: string[]}>({type: 'answers', filter: 'filter=!3uW-Cfyr2M5A*vzE6', name: 'Answers', sort_parameters: []});
 
-    // const question_id = (val) => {
-    //     props.q_id(val);
-    // }
-    // const post_id = (el) => {
-    //     props.post(el)
-    // }
+    const activities:any[] = [
+        {name: 'Answers', type: 'answers', path: '/profile/activity/user_activities/', filter: 'filter=!3uW-Cfyr2M5A*vzE6', sort_parameters: ['activity', 'creation', 'votes']},
+        {name: 'Questions', type: 'questions', path: '/profile/activity/user_activities/questions', filter: 'filter=!nNPvSNVZJS', sort_parameters: ['activity', 'creation', 'votes']},
+        {name: 'Comments', type: 'comments', path: '/profile/activity/user_activities/comments', filter: 'filter=!6WPIompiwYr4d', sort_parameters: ['creation', 'votes']},
+        {name: 'Privileges', type: 'privileges', path: '/profile/activity/user_activities/privileges', filter: 'filter=!nOedRLhSc)', sort_parameters: ['']},
+        {name: 'Badges', type: 'badges', path: '/profile/activity/user_activities/badges', filter: 'filter=!3ykawH(Z8iKDPwSL7', sort_parameters: ['rank', 'name', 'type', 'awarded']},
+        {name: 'Tags', type: 'tags', path: '/profile/activity/user_activities/tags', filter: 'filter=!nOedRLhSc)', sort_parameters: ['']},
+        {name: 'Posts', type: 'posts', path: '/profile/activity/user_activities/posts', filter: 'filter=!3x.9_KPY3LYFSEAQG', sort_parameters: ['activity', 'creation', 'votes']},
+        {name: 'Reputation', type: 'reputation', path: '/profile/activity/user_activities/reputation', filter: 'filter=!nOedRLhSVU', sort_parameters: ['']},
+    ]
+
+    const activityElement = (type:string, filter:string, name:string, sort_parameters: string[]) => {
+        setSettings({
+            type: type,
+            filter: filter,
+            name: name,
+            sort_parameters: sort_parameters
+        })
+    }
 
     return (
         <div className='activity_page'>
             <div className='activity_page_elements'>
-                <ul className='list_of_elements'>
-                    <a href="/profile/activity/" className='element_list'>
-                        <li>Answers</li>
+                <ul className='list_of_elements'>{activities.map((activity, index) => (
+                    <a key={index} href={activity.path} className='element_list' onClick={() => activityElement(activity.type, activity.filter, activity.name, activity.sort_parameters)}>
+                        <li>{activity.name}</li>
                     </a>
-                    <a href="/profile/activity/questions" className='element_list'>
-                        <li>Questions</li>
-                    </a>
-                    <a href="/profile/activity/comments" className='element_list'>
-                        <li>Comments</li>
-                    </a>
-                    <a href="/profile/activity/privileges" className='element_list'>
-                        <li>Privileges</li>
-                    </a>
-                    <a href="/profile/activity/badges" className='element_list'>
-                        <li>Badges</li>
-                    </a>
-                    <a href="/profile/activity/tags" className='element_list'>
-                        <li>Tags</li>
-                    </a>
-                    <a href="/profile/activity/posts" className='element_list'>
-                        <li>Posts</li>
-                    </a>
-                    <a href="/profile/activity/reputation" className='element_list'>
-                        <li>Reputation</li>
-                    </a>
-                </ul>
+                ))}</ul>
             </div>
             <div className='sub_elements'>
                 <Routes>
-                    <Route path="/" element={<UserAnswers />}></Route>
-                    {/*<Route path="/questions" element={<Questions id={props.id}/>}></Route>*/}
-                    {/*<Route path="/comments" element={<Comment id={props.id}/>}></Route>*/}
-                    {/*<Route path="/posts" element={<Posts id={props.id} q_id={question_id} post={post_id}/>}></Route>*/}
-                    {/*<Route path="/privileges" element={<Privileges id={props.id}/>}></Route>*/}
-                    {/*<Route path="/badges" element={<Badges id={props.id}/>}></Route>*/}
-                    {/*<Route path="/tags" element={<User_tags id={props.id}/>}></Route>*/}
-                    {/*<Route path="/reputation" element={<Reputation id={props.id}/>}></Route>*/}
+                    <Route path="/user_activities/*" element={<UserActivityItems  {...settings}/>}></Route>
                 </Routes>
             </div>
         </div>

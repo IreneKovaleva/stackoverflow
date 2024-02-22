@@ -15,7 +15,7 @@ const Answers: React.FC = () =>{
     const [answers, setAnswers] = useState<any[]>([]);
     const [score, setScore] = useState<number>(0);
 
-    const {value} = useTypedSelector(state => state.view_reducer_user_question_answers)
+    const {value, post_id} = useTypedSelector(state => state.view_reducer_user_question_answers)
     const {font_awesome_icon_answers} = useTypedSelector(state => state.font_awesome_icons_answers)
     const {question_id} = useTypedSelector(state => state.user_question)
     const {setViewAnswers, setFontAwesomeIconAnswers} = useActions()
@@ -100,10 +100,11 @@ const Answers: React.FC = () =>{
     if (error) {
         return <h1>{error}</h1>
     }
+// do not forget to describe class in css for highlighting the answer
     return (
         <div className='answers_content'>
             <div className='answers_details'>{answers.map((element,index) =>
-                <div className='answers_details' key={index}>
+                <div className={post_id === element.answer_id ? 'answers_details answer_highlight' : 'answers_details'} key={index}>
                     <div className='answers_top_description'>
                         <img className='answers_profile_image' alt='Profile image' src={element.owner.profile_image}/>
                         <div>
