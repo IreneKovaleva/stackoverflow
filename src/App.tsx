@@ -1,20 +1,17 @@
 import React from 'react';
 import './App.css';
-import {Routes, Route, useNavigate} from "react-router-dom";
-import {useTypedSelector} from "./store/hooks/useTypedSelector";
+import {Routes, Route} from "react-router-dom";
 import { faUserLarge} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Navigation from "./components/navigation/Navigation";
 import Search from "./components/search/Search";
-import Main from "./components/main_component/Main";
+import Main from "./components/menu_components/main_component/Main";
 import UserQuestion from "./components/user-question/UserQuestion";
-import Users from "./components/users_component/Users";
+import Users from "./components/menu_components/users_component/Users";
 import Profile from "./components/user_profile/Profile";
+import Tags from "./components/menu_components/tags/Tags";
 
 function App() {
-  // const navigate = useNavigate();
-
-
   return (
       <div>
         <div className='opened'>
@@ -41,8 +38,8 @@ function App() {
                   <Route path="/" element={<Main />}></Route>
                   <Route path="/user_question" element={<UserQuestion/>}></Route>
                   <Route path="/users" element={<Users/>}></Route>
+                  <Route path="/tags" element={<Tags />}></Route>
                   <Route path="/profile/*" element={<Profile />}></Route>
-
                 </Routes>
               </div>
               <div className="other">

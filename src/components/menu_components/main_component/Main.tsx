@@ -1,9 +1,9 @@
 import React from 'react';
-import "./Main.css"
+import "../MenuComponents.css"
 import {faHouse} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {useActions} from "../../store/hooks/useActions";
-import Questions from "../../api_components/questions/Questions";
+import {useActions} from "../../../store/hooks/useActions";
+import Questions from "../../../api_components/questions/Questions";
 
 
 const Main = () => {

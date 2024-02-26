@@ -53,10 +53,7 @@
 .items_tag {
     font-size: 12px;
 }
-.filters {
-    display: flex;
-    flex-flow: row;
-}
+
 .low-block {
     display: flex;
     flex-flow: row;
@@ -88,4 +85,165 @@
     min-width: 70px;
     font-size: 12px;
     border: 1px solid green;
+}
+.grid_badges {
+    display: grid;
+    grid-template-columns: 170px 170px 170px 170px;
+    grid-template-rows: repeat(20, 30px);
+    row-gap: 10px;
+    column-gap: 10px;
+}
+.badges_width {
+    max-width: 200px;
+}
+.items_box {
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    border-top: 0.5px solid lightgrey;
+    border-right: 1px solid lightgrey;
+    border-left: 1px solid lightgrey;
+    border-bottom: 0.5px solid lightgrey;
+    padding: 10px;
+}
+.item_date {
+    position: relative;
+    float: right;
+    font-size: 15px;
+    margin: 12px 0 0 0 ;
+}
+.show-user-comments_icon {
+    position: relative;
+    float: right;
+}
+.opened {
+    display: block;
+}
+.closed {
+    display: none;
+}
+.privileges {
+    display: flex;
+    flex-direction: column;
+}
+.privileges_block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.privileges_reputation {
+    color: green;
+    font-size: 23px;
+}
+.privileges_description {
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 17px;
+}
+.accepted {
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    text-align: center;
+    background: green;
+    padding: 1px;
+    color: white;
+    min-width: 70px;
+    font-size: 12px;
+}
+.not_accepted {
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 1px;
+    color: green;
+    min-width: 70px;
+    font-size: 12px;
+    border: 1px solid green;
+}
+.tags_block {
+    padding: 2px;
+    margin: 2px;
+    display: inline-block;
+    min-width: 20px;
+    background-color: rgba(70,128,255, 0.4);
+    color: white;
+}
+.reputation_row {
+    display: flex;
+    flex-direction: row;
+}
+.reputation_head {
+    width: 300px;
+    margin-left: 20px;
+}
+.reputation_row_element {
+    margin: 5px;
+}
+.value {
+    color: green;
+}
+.reputation_row_grid {
+    display: grid;
+    grid-template-columns: 90px 40px auto 60px;
+    padding-right: 20px;
+}
+.reputation_back {
+    border: 0.5px solid lightgrey;
+}
+.reputation_txt {
+    font-size: 13px;
+}
+.reputation_width {
+    width: 100px;
+}
+.reputation_title {
+    color: #5a8de1;
+}
+.profile_block {
+    border-top: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
+    border-left: 1.5px solid lightgrey;
+    border-right: 1.5px solid lightgrey;
+    border-radius: 15px;
+    margin-right: 20px;
+    margin-top: 15px;
+    box-shadow: rgba(33, 35, 38, 0.1) 0 13px 21px -3px;
+}
+.profile_elements {
+    padding: 15px;
+    margin: 0 auto;
+    width: 98%;
+    height: 50px;
+    align-items: center;
+    display: flex;
+    flex-flow: row;
+    border-bottom: 0.5px solid lightgrey;
+    border-top: 0.5px solid lightgrey;
+}
+.profile_tags {
+    width: 60%;
+}
+.profile_top_tags_name {
+    padding: 2px;
+    margin-right: 40%;
+    display: inline-block;
+    min-width: 20px;
+    background-color: rgba(70,128,255, 0.4);
+    color: white;
+}
+.profile_top_tags_score {
+    width: 50%;
+    display: flex;
+    flex-flow: row;
+}
+.profile_top_tag {
+    width: 150px;
+    margin-left: 5px;
+    font-size: 12px;
+    color: rgba(35, 37, 43, 0.9);
+}
+.text_tag {
+    font-size: 15px;
 }

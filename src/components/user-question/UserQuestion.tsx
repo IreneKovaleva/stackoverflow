@@ -13,17 +13,13 @@ import parse from "html-react-parser";
 
 const UserQuestions: React.FC = () => {
     const {fetchUserQuestionApiEndpoint, setUserQuestionScore} = useActions()
-    const {question_id, question_items, tags, title, body, creation_date, answer_count, loading, error, score} = useTypedSelector(state => state.user_question)
+    const {question_id, tags, title, body, creation_date, answer_count, loading, error, score} = useTypedSelector(state => state.user_question)
 
 
     useEffect(() => {
         if (question_id) {
             fetchUserQuestionApiEndpoint(question_id);
         }
-        if (question_items.length > 0) {
-            console.log(question_items)
-        }
-
     }, [question_id])
 
     const voteUp = (add_score:number) => {

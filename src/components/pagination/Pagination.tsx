@@ -1,6 +1,5 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "./pagination.css"
 import {pages_range} from "../../services/pages_range";
 import {useTypedSelector} from "../../store/hooks/useTypedSelector";
 import {useActions} from "../../store/hooks/useActions";

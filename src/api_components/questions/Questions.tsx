@@ -18,11 +18,7 @@ const Questions: React.FC = () => {
         if (page && sort && order) {
             fetchQuestionsApiEndpoint(page, order, sort, tags || '');
         }
-        // console.log('sort', sort)
-        // console.log('order', order)
-
     }, [page, sort, order, tags])
-    // console.log('After Fetch:', questions)
 
     const isAnswered = (answered: boolean | undefined) => {
         return answered ? faCheck : faXmark;

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import './elements.css';
+import "../../UserActivityItems.css";
 import PostTitle from "./post_title/PostTitle";
 import {
     ItemsType
@@ -78,23 +78,23 @@ const UserReputation:React.FC<Structure> = ({items}) => {
 
     if (items.length === 0) {
         return (
-            <div className='answers_empty'>NO REPUTATION DATA</div>
+            <div className='items_empty'>NO REPUTATION DATA</div>
         )
     }
     return (
         <div>
             <div>{Object.keys(reputationItems).map((element, index) =>
-                <div key={index + 'reputation'} className='box'>
-                    <div className='reputation_row rep_head'>
-                        <div className='reputation_row_el value'>+{sum(reputationItems[element])}</div>
-                        <div className='reputation_row_el'>{element}</div>
+                <div key={index + 'reputation'} className='items_box'>
+                    <div className='reputation_row reputation_head'>
+                        <div className='reputation_row_element value'>+{sum(reputationItems[element])}</div>
+                        <div className='reputation_row_element'>{element}</div>
                     </div>
                     <div>{reputationItems[element].slice(0, -1).map((item: ItemsType) => (
-                        <div className='reputation_row_grid rep_back' key={`${item.post_id}-rep`}>
-                            <div className='reputation_row_el rep_txt'>{type(item.reputation_history_type)}</div>
-                            <div className='reputation_row_el rep_txt' onClick={() => check(item.reputation_change)}>{check(item.reputation_change)}</div>
+                        <div className='reputation_row_grid reputation_back' key={`${item.post_id}-rep`}>
+                            <div className='reputation_row_element reputation_txt'>{type(item.reputation_history_type)}</div>
+                            <div className='reputation_row_element reputation_txt' onClick={() => check(item.reputation_change)}>{check(item.reputation_change)}</div>
                             <PostTitle post_id={item.post_id}/>
-                            <div className='reputation_row_el rep_width rep_txt'>{element}</div>
+                            <div className='reputation_row_element reputation_width reputation_txt'>{element}</div>
                         </div>
                     ))}
                     </div>

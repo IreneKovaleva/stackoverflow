@@ -34,19 +34,6 @@
     font-size: 30px;
     margin: 5px;
 }
-.badges_name {
-    display: flex;
-    flex-flow: row;
-    align-items: center;
-    padding: 5px;
-    border: 1px solid lightgrey;
-    background: #f2f2f3;
-    max-width: 120px;
-    min-height: 20px;
-    border-radius: 10px;
-    font-size: 12px;
-    margin: 5px;
-}
 .circle {
     width: 5px;
     height: 5px;

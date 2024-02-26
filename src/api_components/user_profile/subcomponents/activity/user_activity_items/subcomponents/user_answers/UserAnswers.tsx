@@ -15,7 +15,7 @@ const UserAnswers:React.FC<Structure> = ({items}) => {
 
     if (items.length === 0) {
         return (
-            <div className='answers_empty'>NO ANSWERS</div>
+            <div className='items_empty'>NO ANSWERS</div>
         )
     }
 

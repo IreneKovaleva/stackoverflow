@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from "react";
-import "./UserAnswers.css"
 import Pagination from "../../../../../components/pagination/Pagination";
 import {useActions} from "../../../../../store/hooks/useActions";
 import {useTypedSelector} from "../../../../../store/hooks/useTypedSelector";
 import {numberFormat} from "../../../../../services/number_format";
 import {userActivityType} from "../../../../../services/user_activity_type";
+import "../../../../../App.css"
 
 interface settings {
     type: string;

@@ -11,6 +11,7 @@ import {apiUsersReducer} from "./api/users/users_reducer";
 import {apiUserProfileReducer} from "./api/user_profile/user_profile";
 import {userAboutReducer} from "./api/user_profile/about/user_about_activities";
 import {pagesReducer} from "./pages/pages_reducer";
+import {apiTagsReducer} from "./api/tags/tags_reducer";
 
 
 
@@ -27,7 +28,8 @@ export const rootReducer = combineReducers({
     api_users: apiUsersReducer,
     api_user_profile: apiUserProfileReducer,
     user_about: userAboutReducer,
-    pages: pagesReducer
+    pages: pagesReducer,
+    api_tags: apiTagsReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>

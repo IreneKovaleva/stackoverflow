@@ -47,3 +47,7 @@ export function setSorting(sort: string): QuestionsApiAction {
 export function setPage(page: string): QuestionsApiAction {
     return {type: QuestionsApiActionTypes.SET_API_PAGE, payload: page}
 }
+
+export function setQuestionsTag(tag: string): QuestionsApiAction {
+    return {type: QuestionsApiActionTypes.SET_API_TAGS, payload: tag}
+}

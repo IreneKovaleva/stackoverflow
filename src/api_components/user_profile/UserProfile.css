@@ -1,0 +1,60 @@
+.profile_user {
+    width: 100%;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    color: rgba(35, 37, 43, 0.9);
+    font-family: Mada,sans-serif;
+}
+.profile_user_details {
+    margin: 15px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+}
+.profile_user_img {
+    width: 150px;
+    height: 150px;
+    background: #5a8de1;
+    text-align: center;
+}
+.profile_user_name {
+    margin: 40px 0 0 10px;
+    width: 80%;
+    position: relative;
+    float: right;
+}
+.profile_user_name_name {
+    font-size: 25px;
+    font-weight: bold;
+}
+.profile_user_date {
+    margin: 15px 0 0 0;
+    display: flex;
+    flex-flow: row;
+}
+.profile_user_date_margin {
+    margin-left: 5px;
+}
+.profile_user_location_block {
+    display: flex;
+    flex-flow: row;
+    width: 40%;
+}
+.profile_user_location {
+    float: right;
+    margin-left: 10px;
+}
+.badges_name {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    padding: 5px;
+    border: 1px solid lightgrey;
+    background: #f2f2f3;
+    max-width: 120px;
+    min-height: 20px;
+    border-radius: 10px;
+    font-size: 12px;
+    margin: 5px;
+}

@@ -34,25 +34,6 @@ li {
     border-radius: 2px;
 }
 
-.button {
-    margin-right: 10px;
-    min-width: 90px;
-    height: 25px;
-    background-color: #e9ecef;
-    border: 1px solid #ced4da;
-    align-items: center;
-    border-radius: 2px;
-    font-size: .875rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #495057;
-}
-
-.button:hover {
-    color: white;
-    background-color: #4680ff;
-}
-
 .margin {
     margin: 10px;
 }
@@ -78,4 +59,16 @@ li {
 
 .rows::-webkit-scrollbar {
     width: 0;
+}
+.house:before {
+    content: "\e87a";
+    color: black;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+.house {
+    font-size: 15px;
+    color: #4680ff;
+    margin-right: 5px;
 }

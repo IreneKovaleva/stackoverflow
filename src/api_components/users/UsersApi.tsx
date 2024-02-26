@@ -7,7 +7,7 @@ import {useTypedSelector} from "../../store/hooks/useTypedSelector";
 import {numberFormat} from "../../services/number_format";
 import {NavigateFunction, useNavigate} from "react-router-dom";
 
-const Users_api = () => {
+const UsersApi = () => {
     const navigate:NavigateFunction = useNavigate();
     const { fetchUsersApiEndpoint, setUserId } = useActions()
     const { users, loading, error, page, order, sort} = useTypedSelector(state => state.api_users)
@@ -98,5 +98,5 @@ const Users_api = () => {
     );
 }
 
-export default Users_api
+export default UsersApi
 

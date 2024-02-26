@@ -1,5 +1,5 @@
 import React from "react";
-import './elements.css';
+import "../../UserActivityItems.css";
 import {numberFormat} from "../../../../../../../services/number_format";
 import {Structure} from "../../../../../../../store/types/api/user_profile/subcomponents/activity/activity_items";
 

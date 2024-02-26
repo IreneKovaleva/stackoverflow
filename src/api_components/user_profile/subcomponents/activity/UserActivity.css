@@ -1,0 +1,21 @@
+.activity_page {
+    display: flex;
+    flex-flow: row;
+}
+.activity_page_elements {
+    width: 200px;
+}
+.sub_elements {
+    width: calc(100% - 200px);
+}
+.list_of_elements {
+    margin: 25px 0 20px 0;
+}
+.element_list {
+    text-decoration: none;
+    margin-top: 10px;
+    font-size: 17px;
+}
+.tags {
+    font-size: 12px;
+}

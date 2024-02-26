@@ -89,3 +89,20 @@ body {
   width: 100%;
   background: lightgrey;
 }
+.button {
+  margin-right: 10px;
+  min-width: 90px;
+  height: 25px;
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+  align-items: center;
+  border-radius: 2px;
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+}
+.button:hover {
+  color: white;
+  background-color: #4680ff;
+}

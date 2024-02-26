@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import './elements.css';
+import "../../UserActivityItems.css"
 import parse from 'html-react-parser';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown, faCaretUp} from "@fortawesome/free-solid-svg-icons";
@@ -26,18 +26,18 @@ const UserPosts:React.FC<Structure> = ({items}) => {
 
     if (items.length === 0) {
         return (
-            <div className='answers_empty'>NO POSTS</div>
+            <div className='items_empty'>NO POSTS</div>
         )
     }
 
     return (
         <div>
             <div>{items.map((element, index) =>
-                <div key={index} className='box'>
+                <div key={index} className='items_box'>
                     <div>
                         <div>{element.post_type}</div>
                         <div>
-                            <FontAwesomeIcon  onClick={body_display} className='show-comments_icon' icon={faCaretUp}></FontAwesomeIcon>
+                            <FontAwesomeIcon  onClick={body_display} className='show-user-comments_icon' icon={faCaretUp}></FontAwesomeIcon>
                         </div>
                         <div onClick={post_id} id={(element.post_id).toString()}>{element.title}</div>
                     </div>

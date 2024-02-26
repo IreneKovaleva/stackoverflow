@@ -22,7 +22,7 @@ const PostTitle:React.FC<id_type> = ({post_id}) => {
 
     return (
         <div>
-            <div className='reputation_row_el rep_title rep_txt'>{title}</div>
+            <div className='reputation_row_element reputation_title reputation_txt'>{title}</div>
         </div>
     )
 }

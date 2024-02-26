@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import './Activity.css';
+import "./UserActivity.css"
 import {Route, Routes} from "react-router-dom";
 import UserActivityItems from "./user_activity_items/UserActivityItems";
 
