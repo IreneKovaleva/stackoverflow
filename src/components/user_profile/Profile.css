@@ -21,16 +21,12 @@
     text-align: center;
     height: 25px;
     margin: 15px;
-    background: #4680ff;
     color: #ffffff;
 }
-.profile_sections_not_active {
-    text-decoration: none;
-    width: 80px;
-    padding: 2px;
-    text-align: center;
-    height: 25px;
-    margin: 15px;
+.active {
+    background: #4680ff;
+}
+
+.not_active {
     background: lightgrey;
-    color: #ffffff;
 }

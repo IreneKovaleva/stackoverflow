@@ -11,9 +11,10 @@ interface settings {
     filter: string;
     name: string;
     sort_parameters: string[];
+    sort_state: string
 }
 
-const UserActivityItems:React.FC<settings> = ({type,filter, name, sort_parameters}) => {
+const UserActivityItems:React.FC<settings> = ({type,filter, name, sort_parameters, sort_state}) => {
     const {user_id} = useTypedSelector(state => state.api_user_profile);
     const {setTotalPages, setPageInLine} = useActions()
     const {page} = useTypedSelector(state => state.pages)
@@ -22,14 +23,16 @@ const UserActivityItems:React.FC<settings> = ({type,filter, name, sort_parameter
     const [error, setError] = useState<string | null>(null);
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [items, setItems] = useState<any[]>([]);
-    const [sort, setSorting] = useState<string>('creation');
+    const [sort, setSorting] = useState<string>('');
     const [totalItems, setTotalItems] = useState<number>(0)
     const stackExchangeApiUrl = "https://api.stackexchange.com";
 
 
     useEffect( () => {
-        if (!user_id || !page) return;
-        let endpoint = `${stackExchangeApiUrl}/2.3/users/${user_id}/${type}}?page=${page}&order=desc&sort=${sort}&site=stackoverflow&${filter}}`;
+        if (!user_id || !page || !sort_state) return;
+        let sort_parameter = sort_state !== "" ? `&sort=${sort_state}` : '';
+        let endpoint = `${stackExchangeApiUrl}/2.3/users/${user_id}/${type}?page=${page}&order=desc${sort_parameter}&site=stackoverflow&${filter}`;
+        console.log('endpoint', endpoint)
         fetch(endpoint)
             .then(res => res.json())
             .then(
@@ -47,7 +50,7 @@ const UserActivityItems:React.FC<settings> = ({type,filter, name, sort_parameter
                     setIsLoaded(true);
                     setError(error.message);
                 })
-    }, [user_id, page]);
+    }, [user_id, page, type,filter, filter, sort_state]);
 
     const structure = {
         items: items

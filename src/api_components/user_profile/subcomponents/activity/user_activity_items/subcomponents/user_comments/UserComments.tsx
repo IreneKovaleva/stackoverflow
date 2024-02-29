@@ -19,7 +19,7 @@ const UserComments: React.FC<Structure> = ({items}) => {
                     <div className='block-1'>
                         <div>{element.score} <span>votes</span></div>
                     </div>
-                    <div className='block-2'>{parse(element.body)}</div>
+                    <div className='block-2'>{parse("" + element.body)}</div>
                     <div className='low-box'>
                         <div className='block-3'></div>
                         <div className='item_date'>{creationDate(element.creation_date)}</div>

@@ -116,7 +116,7 @@
     position: relative;
     float: right;
 }
-.opened {
+.opened_user_activity {
     display: block;
 }
 .closed {

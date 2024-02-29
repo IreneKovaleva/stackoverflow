@@ -41,7 +41,7 @@ const UserPosts:React.FC<Structure> = ({items}) => {
                         </div>
                         <div onClick={post_id} id={(element.post_id).toString()}>{element.title}</div>
                     </div>
-                    <div className={icon === faCaretUp ? 'closed' : 'opened'}>{parse(element.body)}</div>
+                    <div className={icon === faCaretUp ? 'closed' : 'opened'}>{parse("" + element.body)}</div>
                 </div>
             )}</div>
         </div>

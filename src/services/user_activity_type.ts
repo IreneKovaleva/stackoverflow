@@ -12,7 +12,7 @@ import UserPosts from "../api_components/user_profile/subcomponents/activity/use
 import UserReputation
     from "../api_components/user_profile/subcomponents/activity/user_activity_items/subcomponents/user_reputation/UserReputation";
 
-export const userActivityType = (type: string): React.FC<any> | null=> {
+export const userActivityType = (type: string): React.FC<any> | null => {
     switch (type) {
         case 'answers':
             return UserAnswers;
