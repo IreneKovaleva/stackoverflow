@@ -44,6 +44,9 @@
     display: flex;
     flex-flow: row;
 }
+.comment_highlight {
+    background-color: silver;
+}
 .comment_user_img {
     background-color: #4680ff;
     width: 40px;

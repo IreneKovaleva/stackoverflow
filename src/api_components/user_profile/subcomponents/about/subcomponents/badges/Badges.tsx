@@ -14,13 +14,11 @@ const Badges = () => {
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [badgesType, setTypes] = useState<{gold: number; silver: number; bronze: number;}>({gold: 0, silver: 0, bronze: 0});
     const [userBadges, setUserBadges] = useState<BudgedObj>({bronze: [], silver: [], gold: []});
-
     const stackExchangeApiUrl = `https://api.stackexchange.com`;
-    let endpoint = `${stackExchangeApiUrl}/2.3/users/${user_id}/badges?order=desc&sort=awarded&site=stackoverflow&filter=!)qCoq7Jla4CyV3(bezUB`;
 
 
     useEffect( () => {
-        // let endpoint = `${stackExchangeApiUrl}/2.3/users/22656/badges?order=desc&sort=awarded&site=stackoverflow&filter=!)qCoq7Jla4CyV3(bezUB`;
+        let endpoint = `${stackExchangeApiUrl}/2.3/users/${user_id}/badges?order=desc&sort=awarded&site=stackoverflow&filter=!)qCoq7Jla4CyV3(bezUB`;
         fetch(endpoint)
             .then(res => res.json())
             .then(
@@ -45,6 +43,7 @@ const Badges = () => {
                             }
                         })
                         setUserBadges(badges)
+
                     }
                 },
                 (error) => {
@@ -56,24 +55,20 @@ const Badges = () => {
 
 
     const badgesBlock = () => {
-        (Object.keys(userBadges) as (keyof typeof userBadges)[]).forEach(key => {
-            let badges = userBadges[key]
-            return badges.map((element, index) => {
-                return (
-                    <div key={index}>
-                        <div className="badges_block_awards">
-                            <FontAwesomeIcon icon={faAward} className={`${key}_award`}></FontAwesomeIcon>
-                            <div className='counts_award'>{badgesType[key]}</div>
-                        </div>
-                        <div className='badges_name'>
-                            <div className={`circle color_${key}`}></div>
-                            <div>{element}</div>
-                        </div>
+        return (Object.keys(userBadges) as (keyof typeof userBadges)[]).flatMap(key => {
+            return userBadges[key].map((element, index) => (
+                <div key={index}>
+                    <div className="badges_block_awards">
+                        <FontAwesomeIcon icon={faAward} className={`${key}_award`} />
+                        <div className='counts_award'>{badgesType[key]}</div>
                     </div>
-                );
-            });
+                    <div className='badges_name'>
+                        <div className={`circle color_${key}`}></div>
+                        <div>{element}</div>
+                    </div>
+                </div>
+            ));
         });
-        return null
     };
 
     if (error) {
@@ -85,9 +80,7 @@ const Badges = () => {
 
     return (
         <div className="badges">
-            <div className="badges_block">
-                <div>{badgesBlock()}</div>
-            </div>
+            <div className="badges_block ">{badgesBlock()}</div>
         </div>
     )}
 

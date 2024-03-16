@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import parse from 'html-react-parser';
 import {creationDate} from "../../services/date_format";
 import {useTypedSelector} from "../../store/hooks/useTypedSelector";
@@ -11,15 +11,17 @@ import Comments from "../comments/Comments";
 
 const Answers: React.FC = () =>{
     const [error, setError] = useState<string | null>(null);
-    const [loading, setIsLoaded] = useState<boolean>(false);
+    const [loading, setIsLoaded] = useState<boolean>(true);
     const [answers, setAnswers] = useState<any[]>([]);
     const [score, setScore] = useState<number>(0);
 
     const {value, post_id} = useTypedSelector(state => state.view_reducer_user_question_answers)
     const {font_awesome_icon_answers} = useTypedSelector(state => state.font_awesome_icons_answers)
     const {question_id} = useTypedSelector(state => state.user_question)
-    const {setViewAnswers, setFontAwesomeIconAnswers} = useActions()
 
+
+    const {setViewAnswers, setFontAwesomeIconAnswers} = useActions()
+    const elementToScroll = useRef<HTMLInputElement | null>(null);
 
 
     useEffect(() => {
@@ -41,9 +43,14 @@ const Answers: React.FC = () =>{
                         }
                     )
         }
-    }, [question_id, value, font_awesome_icon_answers])
+        if (elementToScroll.current) {
+            elementToScroll.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [question_id, value, font_awesome_icon_answers, elementToScroll.current])
 
-
+    // const scrollWithUseRef = () => {
+    //
+    // };
     const showComments = () => {
         const newView = value === 'block' ? 'none' : 'block';
         const newIcon = value === 'block' ? faCaretUp : faCaretDown;
@@ -75,7 +82,6 @@ const Answers: React.FC = () =>{
     const item_comment_elements = (answer_id: number) => {
         const id = answer_id.toString()
         let endpoint = `/2.3/answers/${id}/comments?order=desc&sort=creation&site=stackoverflow&filter=!bCTzllGnBZgG5C`
-        // console.log('endpoint',endpoint)
         return(
             <div className='answers_comment_block'>
                 <Comments endpoint={endpoint}/>
@@ -94,6 +100,12 @@ const Answers: React.FC = () =>{
         )
     }
 
+    const view = (el: any) => {
+        console.log("post_idpost_idpost_id", post_id)
+        console.log("element.answer_id", el )
+        return null
+    }
+
     if (loading) {
         return <h1>Loading...</h1>
     }
@@ -104,7 +116,8 @@ const Answers: React.FC = () =>{
     return (
         <div className='answers_content'>
             <div className='answers_details'>{answers.map((element,index) =>
-                <div className={post_id === element.answer_id ? 'answers_details answer_highlight' : 'answers_details'} key={index}>
+                <div className={post_id === element.answer_id ? 'answers_details answer_highlight' : 'answers_details'} ref={post_id === element.answer_id ? elementToScroll : null} key={index}>
+                    <div>{view(element)}</div>
                     <div className='answers_top_description'>
                         <img className='answers_profile_image' alt='Profile image' src={element.owner.profile_image}/>
                         <div>

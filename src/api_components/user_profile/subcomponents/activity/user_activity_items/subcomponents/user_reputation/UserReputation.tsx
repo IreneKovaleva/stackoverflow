@@ -5,10 +5,12 @@ import {
     ItemsType
 } from "../../../../../../../store/types/api/user_profile/subcomponents/activity/subcomponents/user_reputation/reputation_types";
 import {Structure} from "../../../../../../../store/types/api/user_profile/subcomponents/activity/activity_items";
+import {round} from "lodash";
 
 
 const UserReputation:React.FC<Structure> = ({items}) => {
     const [reputationItems, setReputationItems] = useState<any>([]);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const getToday = (date: Date): string => {
         const yyyy: number = date.getFullYear();
@@ -28,7 +30,7 @@ const UserReputation:React.FC<Structure> = ({items}) => {
 
         items.forEach((item) => {
             const date = new Date(parseInt(item.creation_date) * 1000);
-            let dayKey = getToday(date); // 2023-07-01
+            let dayKey = getToday(date);
             let yesterday = new Date(today.getTime() - 86400000);
             let afterYesterday = new Date(today.getTime() - (86400000 * 2));
 
@@ -57,21 +59,26 @@ const UserReputation:React.FC<Structure> = ({items}) => {
             });
         });
         setReputationItems(groupedData);
+        setIsLoaded(true);
+
     }, [items])
 
 
     const type = (el:string) => {
-        return el.replace(/^post_|^answer_|^user_/g, '');
+        if (el) {
+            return el.replace(/^post_|^answer_|^user_/g, '');
+        }
+        return '';
     }
 
     const sum = (element: ItemsType[]) => {
-        return element.map((item) => {
-            if (item.hasOwnProperty('total_sum')) {
-                return item.total_sum
-            }
-            return 0
-        })
+        let newElement = element[element.length - 1];
+        if (newElement.hasOwnProperty('total_sum')) {
+            return newElement['total_sum'];
+        }
+        return 0;
     }
+
     const check = (el: number): string => {
         return el > 0 ? `+${el}` : `${el}`;
     };
@@ -81,6 +88,9 @@ const UserReputation:React.FC<Structure> = ({items}) => {
             <div className='items_empty'>NO REPUTATION DATA</div>
         )
     }
+    if (!isLoaded) {
+        return <div>loading...</div>;
+    }
     return (
         <div>
             <div>{Object.keys(reputationItems).map((element, index) =>
@@ -89,11 +99,11 @@ const UserReputation:React.FC<Structure> = ({items}) => {
                         <div className='reputation_row_element value'>+{sum(reputationItems[element])}</div>
                         <div className='reputation_row_element'>{element}</div>
                     </div>
-                    <div>{reputationItems[element].slice(0, -1).map((item: ItemsType) => (
-                        <div className='reputation_row_grid reputation_back' key={`${item.post_id}-rep`}>
+                    <div>{reputationItems[element].filter((item: ItemsType) => !item.hasOwnProperty('total_sum')).map((item: ItemsType, index:number) => (
+                        <div className='reputation_row_grid reputation_back' key={`${item.post_id}${index}`}>
                             <div className='reputation_row_element reputation_txt'>{type(item.reputation_history_type)}</div>
                             <div className='reputation_row_element reputation_txt' onClick={() => check(item.reputation_change)}>{check(item.reputation_change)}</div>
-                            <PostTitle post_id={item.post_id}/>
+                            {item.post_id && <PostTitle post_id={item.post_id}/>}
                             <div className='reputation_row_element reputation_width reputation_txt'>{element}</div>
                         </div>
                     ))}

@@ -3,6 +3,7 @@ import parse from 'html-react-parser';
 import "./UserTopComments.css"
 import {useTypedSelector} from "../../../../../../store/hooks/useTypedSelector";
 import {creationDate} from "../../../../../../services/date_format";
+import {useRedirectComments} from "../../../../../../custom_hooks/useRedirectComments";
 
 
 const UserTopComments = () => {
@@ -11,11 +12,12 @@ const UserTopComments = () => {
     const [topItems, setItems] = useState<any[]>([]);
     const { user_id } = useTypedSelector(state => state.api_user_profile);
     const {comments_order} = useTypedSelector(state => state.user_about)
+    const redirect = useRedirectComments();
 
     const stackExchangeApiUrl = "https://api.stackexchange.com";
 
     useEffect( () => {
-        let comments =`${stackExchangeApiUrl}/2.3/users/${user_id}/comments?order=${comments_order}&sort=creation&site=stackoverflow&filter=!nOedRLmSmS`;
+        let comments =`${stackExchangeApiUrl}/2.3/users/${user_id}/comments?order=${comments_order}&sort=creation&site=stackoverflow&filter=!6WPIompAT2Hvd`;
         fetch(comments)
             .then(res => res.json())
             .then(
@@ -40,7 +42,7 @@ const UserTopComments = () => {
     }
     return (
         <div className='top_user_comments_block'>{topItems.map((element, index) =>
-            <div key={index} className='top_user_comments_elements_top rows_comments'>
+            <div key={index} className='top_user_comments_elements_top rows_comments' onClick={() => redirect(element.post_id, element.post_type, element.comment_id)}>
                 <div className='top_user_comments_elements_score user_comments_size_text'>
                     <div className='txt'>{element.score}</div>
                 </div>

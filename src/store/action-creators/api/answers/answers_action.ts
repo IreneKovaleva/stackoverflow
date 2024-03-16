@@ -17,7 +17,7 @@ export const setViewAnswers = (newValue: string): ActionQuestionAnswers => ({
     payload: newValue,
 });
 
-export const setAnswerPostId = (newValue: string): ActionQuestionAnswers => ({
+export const setAnswerPostId = (newValue: number): ActionQuestionAnswers => ({
     type: ViewActionTypesAnswers.SET_POST_ID,
     payload: newValue,
 });

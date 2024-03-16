@@ -6,6 +6,7 @@ import * as UserProfileApiActionCreator from "./api/user_profile/user_profile_ac
 import * as UserAboutActivitiesActionCreator from "./api/user_profile/about/user_about_activities_action";
 import * as PagesActionCreator from "./pages/pages_action_creator";
 import * as TagsActionCreator from "./api/tags/tags_action";
+import * as CommentActionCreator from "./api/comment/comment_action";
 
 
 export default {
@@ -16,5 +17,6 @@ export default {
     ...UserProfileApiActionCreator,
     ...UserAboutActivitiesActionCreator,
     ...PagesActionCreator,
-    ...TagsActionCreator
+    ...TagsActionCreator,
+    ...CommentActionCreator
 }

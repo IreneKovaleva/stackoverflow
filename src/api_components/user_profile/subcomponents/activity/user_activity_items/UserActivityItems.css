@@ -18,6 +18,11 @@
     flex-flow: row;
 }
 
+.filters_none {
+    display: none;
+}
+
+
 .text_position {
     text-align: center;
 }

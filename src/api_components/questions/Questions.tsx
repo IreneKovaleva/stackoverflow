@@ -6,19 +6,34 @@ import "./Questions.css"
 import { faCheck, faXmark} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {creationDate} from "../../services/date_format";
+import Pagination from "../../components/pagination/Pagination";
+
 
 
 const Questions: React.FC = () => {
     const navigate:NavigateFunction = useNavigate();
-    const {questions, loading, error, page, order, sort, tags} = useTypedSelector(state => state.api_questions)
-    const {fetchQuestionsApiEndpoint, UserQuestionActionCreatorQuestionId} = useActions()
-
+    const {questions, loading, error, order, sort, tags, total, page_size} = useTypedSelector(state => state.api_questions)
+    const {page, total_pages} = useTypedSelector(state => state.pages)
+    const {fetchQuestionsApiEndpoint, UserQuestionActionCreatorQuestionId, setTagApi, setTotalPages} = useActions()
 
     useEffect(() => {
         if (page && sort && order) {
             fetchQuestionsApiEndpoint(page, order, sort, tags || '');
         }
-    }, [page, sort, order, tags])
+        if (questions.length > 0) {
+            const totalPageNumber = Math.ceil(Number(total) / Number(page_size));
+            if (totalPageNumber < 25) {
+                setTotalPages(totalPageNumber);
+            } else {
+                setTotalPages(totalPageNumber);
+            }
+        }
+    }, [page, sort, order, tags, total, page_size, total_pages])
+
+    const redirect = async (tag: string) => {
+        await setTagApi(tag)
+        navigate('/tags')
+    }
 
     const isAnswered = (answered: boolean | undefined) => {
         return answered ? faCheck : faXmark;
@@ -43,46 +58,47 @@ const Questions: React.FC = () => {
     }
 
     return (
-        <div className='questions_sections'>{questions.map((element, index) =>
-            <div className='questions_block' key={index}>
-                <div className='questions_content'>
-                    <div className='block_a'>
-                        <div className='answered'>
-                            <FontAwesomeIcon icon={isAnswered(element.is_answered)}/>
-                        </div>
-                        <div className='rates'>
-                            <div className='rate'><span className='bold'>Votes: </span> {element.score}
+        <div>
+            <div className='questions_sections'>{questions.map((element, index) =>
+                <div className='questions_block' key={index}>
+                    <div className='questions_content'>
+                        <div className='block_a'>
+                            <div className='answered'>
+                                <FontAwesomeIcon icon={isAnswered(element.is_answered)}/>
                             </div>
-                            <div className='rate'><span className='bold'>Views:</span> {element.view_count}
+                            <div className='rates'>
+                                <div className='rate'><span className='bold'>Votes: </span> {element.score}
+                                </div>
+                                <div className='rate'><span className='bold'>Views:</span> {element.view_count}
+                                </div>
+                                <div className='rate'><span
+                                    className='bold'>Answers:</span>{element.answer_count}</div>
                             </div>
-                            <div className='rate'><span
-                                className='bold'>Answers:</span>{element.answer_count}</div>
+                            <div className='titles margins' onClick={() => {transfer(element); navigate('/user_question');} }>{decode(element.title)}</div>
+                            <div className='margins'>{(element.tags as string[]).map((element, index) =>
+                                <div className='tags' key={index}>
+                                    <div onClick={() => redirect(element)}>{element}</div>
+                                </div>
+                            )}</div>
                         </div>
-                        <div className='titles margins' onClick={() => {transfer(element); navigate('/user_question');} }>{decode(element.title)}</div>
-                        <div className='margins'>{(element.tags as string[]).map((element, index) =>
-                            <div className='tags' key={index}>
-                                <a>{element}</a>
+                        <div className='block_b'>
+                            <div className='owner'>
+                                <div className='owner_element'>{rounding(element.owner.reputation)}</div>
+                                <div className='owner_element'>{element.owner.display_name}</div>
+                                <img alt='Profile image' src={element.owner.profile_image} className='image'></img>
                             </div>
-                        )}</div>
-                    </div>
-                    <div className='block_b'>
-                        <div className='owner'>
-                            <div className='owner_element'>{rounding(element.owner.reputation)}</div>
-                            <div className='owner_element'>{element.owner.display_name}</div>
-                            <img alt='Profile image' src={element.owner.profile_image} className='image'></img>
-                        </div>
 
-                        <div className='dates'>
-                            <div className='owner_element'>{creationDate(element.creation_date)}</div>
+                            <div className='dates'>
+                                <div className='owner_element'>{creationDate(element.creation_date)}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            )}
             </div>
-        )}
+            <div>{total && total > 1 && <Pagination />}</div>
         </div>
     )
-
-
 }
 
 export default Questions;

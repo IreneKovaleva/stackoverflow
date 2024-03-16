@@ -6,16 +6,29 @@ import {useActions} from "../../store/hooks/useActions";
 import {useTypedSelector} from "../../store/hooks/useTypedSelector";
 import {numberFormat} from "../../services/number_format";
 import {NavigateFunction, useNavigate} from "react-router-dom";
+import Pagination from "../../components/pagination/Pagination";
 
 const UsersApi = () => {
     const navigate:NavigateFunction = useNavigate();
-    const { fetchUsersApiEndpoint, setUserId } = useActions()
-    const { users, loading, error, page, order, sort} = useTypedSelector(state => state.api_users)
+    const { fetchUsersApiEndpoint, setUserId, setTotalPages } = useActions()
+    const {users, loading, error, order, sort, total, page_size} = useTypedSelector(state => state.api_users)
+    const {page, total_pages} = useTypedSelector(state => state.pages)
 
 
     useEffect(() => {
-        fetchUsersApiEndpoint( page, order, sort )
-    }, [order, sort, page])
+        if (page && sort && order) {
+            fetchUsersApiEndpoint( page, order, sort )
+        }
+
+        if (users.length > 0) {
+            const totalPageNumber = Math.ceil(Number(total) / Number(page_size));
+            if (totalPageNumber < 25) {
+                setTotalPages(totalPageNumber);
+            } else {
+                setTotalPages(totalPageNumber);
+            }
+        }
+    }, [order, sort, page, total, page_size, total_pages])
 
     const user_tags = (element: {"collectives": any[]}) => {
 
@@ -24,7 +37,6 @@ const UsersApi = () => {
         if (element.hasOwnProperty('collectives')) {
             element.collectives.forEach(collective => {
                 if (collective.collective.hasOwnProperty('tags')) {
-                    console.log('collective.collective',collective.collective.tags.slice(0,5))
                     allTags = collective.collective.tags.slice(0, 5)
                 }
             });
@@ -94,6 +106,7 @@ const UsersApi = () => {
                 </div>
             )}
             </div>
+            <div>{total && total > 1 && <Pagination />}</div>
         </div>
     );
 }

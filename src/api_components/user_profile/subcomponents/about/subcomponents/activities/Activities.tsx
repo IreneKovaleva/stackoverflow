@@ -38,8 +38,6 @@ const Activities:React.FC  = () => {
             )
     }, [user_id, content, order, sort]);
 
-
-
     if (error) {
         return <div>Error: {error}</div>;
     }
@@ -55,7 +53,6 @@ const Activities:React.FC  = () => {
                 </div>
                 <div className='profile_elements_title size_text'>{parse(element.title)}</div>
                 <div className='profile_elements_date size_text'>{creationDate(element.creation_date)}</div>
-
             </div>
         )}</div>
     )

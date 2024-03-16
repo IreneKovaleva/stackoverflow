@@ -106,3 +106,10 @@ body {
   color: white;
   background-color: #4680ff;
 }
+.active {
+  background: #4680ff;
+}
+
+.not_active {
+  background: lightgrey;
+}

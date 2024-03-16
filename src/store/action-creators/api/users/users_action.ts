@@ -2,22 +2,31 @@ import { Dispatch } from "redux";
 import { UsersApiActionTypes, UsersApiAction } from "../../../types/api/users/users_types";
 
 
-export const fetchUsersApiEndpoint = (page: string, order: string, sort: string)  => {
+export const fetchUsersApiEndpoint = (page: number, order: string, sort: string)  => {
     return async (dispatch: Dispatch<UsersApiAction>) => {
         try {
             dispatch({ type: UsersApiActionTypes.FETCH_API_USERS });
 
-            const apiUrl = `https://api.stackexchange.com/2.3/users?order=${order}&sort=${sort}&site=stackoverflow`;
+            const apiUrl = `https://api.stackexchange.com/2.3/users?page=${page}&order=${order}&sort=${sort}&site=stackoverflow&filter=!nNPvSNVZFk`;
 
             const response = await fetch(apiUrl);
             const result = await response.json();
-            console.log('API Response:', result);
 
             let users = result.items;
+
+            console.log(users)
 
             dispatch({
                 type: UsersApiActionTypes.FETCH_API_USERS_SUCCESS,
                 payload: users
+            });
+            dispatch({
+                type: UsersApiActionTypes.SET_API_USERS_TOTAL_ITEMS,
+                payload: users.total
+            });
+            dispatch({
+                type: UsersApiActionTypes.SET_API_USERS_PAGE_SIZE,
+                payload: users.page_size
             });
 
 
@@ -37,8 +46,4 @@ export function setUsersOrder(order: string): UsersApiAction {
 
 export function setUsersSorting(sort: string): UsersApiAction {
     return {type: UsersApiActionTypes.SET_API_USERS_SORT, payload: sort}
-}
-
-export function setUsersPage(page: string): UsersApiAction {
-    return {type: UsersApiActionTypes.SET_API_USERS_PAGE, payload: page}
 }

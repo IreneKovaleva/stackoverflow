@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "../MenuComponents.css"
 import {faHouse} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,13 +8,17 @@ import Questions from "../../../api_components/questions/Questions";
 
 const Main = () => {
     const {setOrder, setSorting} = useActions();
+    const [activeSort, setActiveSort] = useState('votes');
+    const [activeOrder, setActiveOrder] = useState('desc');
 
     const new_order = (event: React.MouseEvent<HTMLElement>) => {
         setOrder((event.target as Element).id);
+        setActiveOrder((event.target as Element).id);
     }
 
     const new_sorting = (event: React.MouseEvent<HTMLElement>) => {
-        setSorting((event.target as Element).id)
+        setSorting((event.target as Element).id);
+        setActiveSort((event.target as Element).id);
     }
 
     return (
@@ -35,13 +39,13 @@ const Main = () => {
             </div>
             <div className="buttons_block">
                 <div id='general' className='buttons margin'>
-                    <button className='button' id="creation" onClick={new_sorting}>CREATION</button>
-                    <button className='button' id="activity" onClick={new_sorting}>ACTIVITY</button>
-                    <button className='button' id="votes" onClick={new_sorting}>VOTES</button>
+                    <button className={activeSort === 'creation' ? 'button active' : 'button not_active'} id="creation" onClick={new_sorting}>CREATION</button>
+                    <button className={activeSort === 'activity' ? 'button active' : 'button not_active'} id="activity" onClick={new_sorting}>ACTIVITY</button>
+                    <button className={activeSort === 'votes' ? 'button active' : 'button not_active'} id="votes" onClick={new_sorting}>VOTES</button>
                 </div>
                 <div id= 'order' className='order margin'>
-                    <button className='button' id="desc" onClick={new_order}>DESC</button>
-                    <button className='button' id="asc" onClick={new_order}>ASC</button>
+                    <button className={activeOrder === 'desc' ? 'button active' : 'button not_active'} id="desc" onClick={new_order}>DESC</button>
+                    <button className={activeOrder === 'asc' ? 'button active' : 'button not_active'} id="asc" onClick={new_order}>ASC</button>
                 </div>
             </div>
             <div className="rows">

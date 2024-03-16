@@ -24,11 +24,11 @@ export const userActivityType = (type: string): React.FC<any> | null => {
             return UserPrivileges;
         case 'badges':
             return UserBadges;
-        case 'tags':
+        case 'top-tags':
             return UserTags;
         case 'posts':
             return UserPosts;
-        case 'reputation':
+        case 'reputation-history':
             return UserReputation;
         default:
             return null;

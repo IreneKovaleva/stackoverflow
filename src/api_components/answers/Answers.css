@@ -17,6 +17,11 @@
     flex-direction: column;
     display: flex;
 }
+.answer_highlight {
+    background-color: #c0c0c0;
+
+
+}
 .answers_body_owner {
     float: left;
     display: flex;

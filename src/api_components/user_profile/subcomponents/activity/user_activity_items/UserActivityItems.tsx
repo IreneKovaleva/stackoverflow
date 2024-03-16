@@ -11,10 +11,11 @@ interface settings {
     filter: string;
     name: string;
     sort_parameters: string[];
-    sort_state: string
+    sort_state: string;
+    order: string
 }
 
-const UserActivityItems:React.FC<settings> = ({type,filter, name, sort_parameters, sort_state}) => {
+const UserActivityItems:React.FC<settings> = ({type,filter, name, sort_parameters, sort_state, order}) => {
     const {user_id} = useTypedSelector(state => state.api_user_profile);
     const {setTotalPages, setPageInLine} = useActions()
     const {page} = useTypedSelector(state => state.pages)
@@ -23,16 +24,16 @@ const UserActivityItems:React.FC<settings> = ({type,filter, name, sort_parameter
     const [error, setError] = useState<string | null>(null);
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [items, setItems] = useState<any[]>([]);
-    const [sort, setSorting] = useState<string>('');
+    const [sort, setSorting] = useState<string>();
     const [totalItems, setTotalItems] = useState<number>(0)
     const stackExchangeApiUrl = "https://api.stackexchange.com";
 
 
     useEffect( () => {
         if (!user_id || !page || !sort_state) return;
-        let sort_parameter = sort_state !== "" ? `&sort=${sort_state}` : '';
-        let endpoint = `${stackExchangeApiUrl}/2.3/users/${user_id}/${type}?page=${page}&order=desc${sort_parameter}&site=stackoverflow&${filter}`;
-        console.log('endpoint', endpoint)
+        setSorting(sort_state !== "" ? `&sort=${sort_state}` : '')
+        let order_parameter = order !== "" ? `&order=${order}` : '';
+        let endpoint = `${stackExchangeApiUrl}/2.3/users/${user_id}/${type}?page=${page}${order_parameter}${sort}&site=stackoverflow&${filter}`;
         fetch(endpoint)
             .then(res => res.json())
             .then(
@@ -43,21 +44,21 @@ const UserActivityItems:React.FC<settings> = ({type,filter, name, sort_parameter
                         setTotalItems(result.total)
                         let totalPageNumber = Math.round((Number(result.total)/Number(result.page_size)- 1));
                         if (totalPageNumber < 25) { setTotalPages(totalPageNumber) }
-                        if (totalPageNumber < 7) { setPageInLine(totalPageNumber) }
                     }
                 },
                 (error) => {
                     setIsLoaded(true);
                     setError(error.message);
                 })
-    }, [user_id, page, type,filter, filter, sort_state]);
+    }, [user_id, page, type,filter, filter, sort]);
 
     const structure = {
         items: items
     }
 
-    const sorting = (event: React.MouseEvent<HTMLElement>) => {
-        setSorting((event.target as Element).id);
+    const sorting = (parameter: string) => {
+        let newParameter = `&sort=${parameter}`;
+        setSorting(newParameter);
     };
 
     if (error) {
@@ -71,8 +72,8 @@ const UserActivityItems:React.FC<settings> = ({type,filter, name, sort_parameter
         <div>
             <div className='head_box'>
                 <div className='total'>{numberFormat(totalItems)} {name}</div>
-                <div className='filters'>{sort_parameters.map(parameter =>
-                    <div id='parameter' onClick={sorting} className='button text_position'>{parameter.toUpperCase()}</div>
+                <div className={sort_parameters.length > 0 ? "filters" : "filters_none"}>{sort_parameters.map(parameter =>
+                    <div onClick={() => sorting(parameter)} className='button text_position'>{parameter.toUpperCase()}</div>
                 )}
                 </div>
             </div>

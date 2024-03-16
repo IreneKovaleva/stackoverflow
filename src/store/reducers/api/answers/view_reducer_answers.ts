@@ -2,7 +2,7 @@ import {ViewStateAnswers, ActionQuestionAnswers, ViewActionTypesAnswers} from ".
 
 const initialState: ViewStateAnswers = {
     value: 'block',
-    post_id: ''
+    post_id: 0
 }
 
 export const viewReducerUserQuestionAnswers = (state: ViewStateAnswers = initialState, action: ActionQuestionAnswers): ViewStateAnswers => {

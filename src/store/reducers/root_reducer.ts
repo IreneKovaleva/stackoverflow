@@ -12,9 +12,11 @@ import {apiUserProfileReducer} from "./api/user_profile/user_profile";
 import {userAboutReducer} from "./api/user_profile/about/user_about_activities";
 import {pagesReducer} from "./pages/pages_reducer";
 import {apiTagsReducer} from "./api/tags/tags_reducer";
+import {commentPostIdReducer} from "./api/comments/comment_reducer";
 
 
-
+//valueReducer
+//icon reducer
 
 export const rootReducer = combineReducers({
     navigation_value: valueReducer,
@@ -29,7 +31,8 @@ export const rootReducer = combineReducers({
     api_user_profile: apiUserProfileReducer,
     user_about: userAboutReducer,
     pages: pagesReducer,
-    api_tags: apiTagsReducer
+    api_tags: apiTagsReducer,
+    comment_post_id: commentPostIdReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>

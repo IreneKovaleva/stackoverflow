@@ -41,12 +41,6 @@ const AboutUser = () => {
     return (
         <div className='profile_about'>
             <div className='profile_about_left'>
-            </div>
-            <div className='profile_about_right'>
-                <div>
-                    <div className='profile_user_head head_width'>About</div>
-                    <div className='profile_about_right_text'>{parse(''+ about_user)}</div>
-                </div>
                 <div className='profile_empty'>
                     <div className='profile_head'>
                         <div className='profile_user_head head_width'>Badges</div>
@@ -54,6 +48,13 @@ const AboutUser = () => {
                     </div>
                     <Badges/>
                 </div>
+            </div>
+            <div className='profile_about_right'>
+                <div>
+                    <div className='profile_user_head head_width'>About</div>
+                    <div className='profile_about_right_text'>{parse(''+ about_user)}</div>
+                </div>
+
                 <div className='profile_empty'>
                     <div className='profile_head'>
                         <div className='profile_user_head head_width'>Top Tags</div>

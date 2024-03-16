@@ -3,8 +3,11 @@ import "../../UserActivityItems.css"
 import {creationDate} from "../../../../../../../services/date_format";
 import parse from "html-react-parser";
 import {Structure} from "../../../../../../../store/types/api/user_profile/subcomponents/activity/activity_items";
+import {useActions} from "../../../../../../../store/hooks/useActions";
+import {useRedirectComments} from "../../../../../../../custom_hooks/useRedirectComments";
 
 const UserComments: React.FC<Structure> = ({items}) => {
+    const redirect = useRedirectComments();
 
     if (items.length === 0) {
         return (
@@ -15,7 +18,7 @@ const UserComments: React.FC<Structure> = ({items}) => {
     return (
         <div>
             <div>{items.map((element, index) =>
-                <div key={index} className='items_box'>
+                <div key={index} className='items_box' onClick={() => redirect(element.post_id, element.post_type, element.comment_id)}>
                     <div className='block-1'>
                         <div>{element.score} <span>votes</span></div>
                     </div>

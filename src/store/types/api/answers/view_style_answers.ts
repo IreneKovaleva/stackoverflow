@@ -1,6 +1,6 @@
 export interface ViewStateAnswers {
     value: string,
-    post_id: string
+    post_id: number
 }
 
 export enum ViewActionTypesAnswers {
@@ -15,7 +15,7 @@ interface ViewActionAnswers {
 
 interface PostIdAnswersAction {
     type: ViewActionTypesAnswers.SET_POST_ID;
-    payload: string;
+    payload: number;
 };
 
 export type ActionQuestionAnswers = ViewActionAnswers | PostIdAnswersAction

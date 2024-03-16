@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import './Comments.css';
 import parse from 'html-react-parser';
 import { creationDate } from '../../services/date_format';
@@ -16,9 +16,12 @@ const Comments: React.FC<apiEndpointLink> = ({endpoint}) => {
     const [error, setError] = useState<string | null>(null);
     const [loading, setIsLoaded] = useState<boolean>(false);
     const [comments, setComments] = useState<any[] | null>(null);
+    const elementToScroll = useRef<HTMLInputElement | null>(null);
 
     const { value } = useTypedSelector(state => state.view_reducer_user_question);
-    const { font_awesome_icon } = useTypedSelector(state => state.font_awesome_icons)
+    const { font_awesome_icon } = useTypedSelector(state => state.font_awesome_icons);
+    const { post_id } = useTypedSelector(state => state.comment_post_id)
+
 
     useEffect(() => {
         const stackExchangeApiUrl = "https://api.stackexchange.com";
@@ -38,7 +41,10 @@ const Comments: React.FC<apiEndpointLink> = ({endpoint}) => {
                         }
                     )
         }
-    }, [endpoint, value, font_awesome_icon])
+        if (elementToScroll.current) {
+            elementToScroll.current.scrollIntoView({ behavior: "smooth" });
+        }
+    }, [endpoint, value, font_awesome_icon, elementToScroll.current])
 
     const reply = (comment: { reply_to_user?: { display_name: string } }) => {
         if (comment.reply_to_user) {
@@ -94,7 +100,7 @@ const Comments: React.FC<apiEndpointLink> = ({endpoint}) => {
                 <div>
                     {comments.map((element, index) => (
                         <div key={index}>
-                            <div className="comment_content_block">
+                            <div className={post_id === element.comment_id ? 'comment_content_block comment_highlight' : 'comment_content_block'} ref={post_id === element.comment_id ? elementToScroll : null}>
                                 <div className="comment_user">
                                     <img src={element.owner.profile_image} alt="User photo" className="comment_user_img" />
                                     <div className="comment_user_name">{element.owner.display_name}</div>

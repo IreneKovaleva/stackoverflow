@@ -2,16 +2,14 @@ import { Dispatch } from "redux";
 import { QuestionsApiAction, QuestionsApiActionTypes, QuestionsApiState } from "../../../types/api/questions/questions_type";
 
 
-export const fetchQuestionsApiEndpoint = (page: string, order: string, sort: string, tags: string)  => {
+export const fetchQuestionsApiEndpoint = (page: number, order: string, sort: string, tags: string)  => {
     return async (dispatch: Dispatch<QuestionsApiAction>) => {
         try {
             dispatch({ type: QuestionsApiActionTypes.FETCH_API });
 
-            const apiUrl = `https://api.stackexchange.com/2.3/questions?page=${page}&order=${order}&sort=${sort}&site=stackoverflow`;
-
+            const apiUrl = `https://api.stackexchange.com/2.3/questions?page=${page}&order=${order}&sort=${sort}&site=stackoverflow&filter=!nNPvSNVZFk`;
             const response = await fetch(apiUrl);
             const result = await response.json();
-            console.log('API Response:', result);
 
             let filteredData = result.items;
 
@@ -31,7 +29,6 @@ export const fetchQuestionsApiEndpoint = (page: string, order: string, sort: str
                 type: QuestionsApiActionTypes.FETCH_API_ERROR,
                 payload: `Caused error when downloading questions`,
             });
-            console.log(e)
         }
     };
 };
@@ -44,10 +41,6 @@ export function setSorting(sort: string): QuestionsApiAction {
     return {type: QuestionsApiActionTypes.SET_API_SORT, payload: sort}
 }
 
-export function setPage(page: string): QuestionsApiAction {
-    return {type: QuestionsApiActionTypes.SET_API_PAGE, payload: page}
-}
-
-export function setQuestionsTag(tag: string): QuestionsApiAction {
-    return {type: QuestionsApiActionTypes.SET_API_TAGS, payload: tag}
+export function setQuestionsTag(tags: string): QuestionsApiAction {
+    return {type: QuestionsApiActionTypes.SET_API_TAGS, payload: tags}
 }
