@@ -13,6 +13,7 @@ import {userAboutReducer} from "./api/user_profile/about/user_about_activities";
 import {pagesReducer} from "./pages/pages_reducer";
 import {apiTagsReducer} from "./api/tags/tags_reducer";
 import {commentPostIdReducer} from "./api/comments/comment_reducer";
+import {apiSearchReducer} from "./api/search/searchReducer";
 
 
 //valueReducer
@@ -32,7 +33,8 @@ export const rootReducer = combineReducers({
     user_about: userAboutReducer,
     pages: pagesReducer,
     api_tags: apiTagsReducer,
-    comment_post_id: commentPostIdReducer
+    comment_post_id: commentPostIdReducer,
+    search_reducer: apiSearchReducer
 })
 
 export type RootState = ReturnType<typeof rootReducer>

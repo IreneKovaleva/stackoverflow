@@ -6,13 +6,14 @@ import {useTypedSelector} from "../../store/hooks/useTypedSelector";
 import {useActions} from "../../store/hooks/useActions";
 import TagsWiki from "./subcomponents/TagsWiki";
 import Pagination from "../../components/pagination/Pagination";
+import {NavigateFunction, useNavigate} from "react-router-dom";
 
 
 const TagsApi = () => {
+    const navigate:NavigateFunction = useNavigate();
     const {fetchTagsApiEndpoint, setQuestionsTag, setTotalPages} = useActions();
     const {tags, loading, error, sort, order, tag, total, page_size} = useTypedSelector(state => state.api_tags)
     const {page, total_pages} = useTypedSelector(state => state.pages)
-
 
     useEffect(() => {
         if (page && sort && order) {
@@ -25,8 +26,9 @@ const TagsApi = () => {
 
     }, [page, order, sort, total, page_size, total_pages])
 
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        setQuestionsTag((event.target as Element).id)
+    const handleClick = async (tag: string) => {
+        await setQuestionsTag(tag);
+        navigate('/')
     };
 
     if (loading) {
@@ -38,12 +40,12 @@ const TagsApi = () => {
 
     return (
         <div>
-            <div className='tags_content'>{tags.map((element,index) =>
-                <div className='tags_content_tags' key={index}>
+            <div className='tags_content'>{tags.map(element =>
+                <div className='tags_content_tags' key={element.count} onClick={() => handleClick(element.name)} >
                     <div className='tags'>
                         <div className='tags_tag margin'>
                             <div className='tags_tag_content'>
-                                <div className='tags_tag_element'  onClick={handleClick} id={element.name}>{element.name}</div>
+                                <div className='tags_tag_element'>{element.name}</div>
                             </div>
                         </div>
                         <div className='tags_views'>
@@ -57,7 +59,7 @@ const TagsApi = () => {
                 </div>
             )}
             </div>
-            <div>{total_pages > 1 && <Pagination />}</div>
+            <div>{total && total > 1 && <Pagination />}</div>
         </div>
     )
 }

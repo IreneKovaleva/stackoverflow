@@ -1,0 +1,42 @@
+.search_result_block {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 20% 25% 50%;
+    height: 150px;
+    width: 800px;
+    border: 1px solid #ece9e9;
+    padding: 10px;
+    margin-bottom: 10px;
+
+}
+.search_result_flex_block{
+    display: flex;
+    flex-flow: row;
+}
+.search_result_date {
+    font-weight: bold;
+    font-size: 17px;
+}
+.search_result_tags_block {
+    background-color: rgba(70,128,255, 0.4);
+    align-items: center;
+    text-align: center;
+    height: 25px;
+    min-width: 15px;
+    padding: 2px;
+    margin: 3px;
+}
+.search_result_tags {
+    text-align: center;
+    color: white;
+    font-size: 15px;
+}
+
+.search_result_title {
+    margin-top: 10px;
+    font-size: 17px;
+}
+.search_result_title:hover {
+    color: #5a8de1;
+    font-size: 18px;
+}

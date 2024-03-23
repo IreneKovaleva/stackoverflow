@@ -8,18 +8,19 @@ export const fetchTagsApiEndpoint = (page: number, order: string, sort: string, 
         try {
             dispatch({ type: TagsApiActionTypes.FETCH_API });
 
-            const apiUrl = `https://api.stackexchange.com/2.3/tags?page=${page}&order=${order}&sort=${sort}&site=stackoverflow&filter=!nNPvSNVZFk`;
+            const apiUrlAllTags =  `https://api.stackexchange.com/2.3/tags?page=${page}&order=${order}&sort=${sort}&site=stackoverflow&filter=!nNPvSNVZFk`;
+            const apiUrlOneTag = `https://api.stackexchange.com/2.3/tags/${tag}/info?page=${page}&order=${order}&sort=${sort}&site=stackoverflow`;
+
+            const apiUrl = tag !== '' ? apiUrlOneTag : apiUrlAllTags;
 
             const response = await fetch(apiUrl);
             const result = await response.json();
-            console.log('API Response TAGS:', result);
 
             let tagElements = result.items;
-            let tagTotalPages = result.items.total
-            let tagPageSize = result.items.page_size;
+            let tagTotalPages = result.total
+            let tagPageSize = result.page_size;
 
             if (tag !== '') {
-                tagElements = result.items.filter((element:{name: string})  => element.name === tag);
                 tagTotalPages = 1;
                 tagPageSize = 1
             }
@@ -42,7 +43,6 @@ export const fetchTagsApiEndpoint = (page: number, order: string, sort: string, 
                 type: TagsApiActionTypes.FETCH_API_ERROR,
                 payload: `Caused error when downloading tags`,
             });
-            console.log(e)
         }
     };
 };

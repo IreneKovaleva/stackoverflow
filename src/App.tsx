@@ -4,14 +4,25 @@ import {Routes, Route} from "react-router-dom";
 import { faUserLarge} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Navigation from "./components/navigation/Navigation";
-import Search from "./components/search/Search";
+import Search from "./api_components/search/Search";
 import Main from "./components/menu_components/main_component/Main";
 import UserQuestion from "./components/user-question/UserQuestion";
 import Users from "./components/menu_components/users_component/Users";
 import Profile from "./components/user_profile/Profile";
 import Tags from "./components/menu_components/tags/Tags";
+import AdvancedSearch from "./api_components/search/advancedSearch/AdvancedSearch";
+import {useTypedSelector} from "./store/hooks/useTypedSelector";
+import {useActions} from "./store/hooks/useActions";
+import SearchResultsPage from "./components/SearchResultsPage/SearchResultsPage";
 
 function App() {
+  const {setSearchIsModal} = useActions()
+  const {is_modal} = useTypedSelector(state => state.search_reducer);
+
+  const ModalWindow = () => {
+    setSearchIsModal(true)
+  }
+
   return (
       <div>
         <div className='opened'>
@@ -23,14 +34,9 @@ function App() {
           </div>
           <div className="content_block">
             <div className="panel">
-              <div className='panel_search'>
-                <Search />
-              </div>
-              <div className='panel_portfolio'>
-                <a href="/profile">
-                  <FontAwesomeIcon className='panel_portfolio_user' icon={faUserLarge}></FontAwesomeIcon>
-                </a>
-              </div>
+              <Search />
+              <button className="" onClick={ModalWindow}>SHOW</button>
+              <div>{is_modal && <AdvancedSearch/>}</div>
             </div>
             <div className="content">
               <div className="routes">
@@ -40,6 +46,7 @@ function App() {
                   <Route path="/users" element={<Users/>}></Route>
                   <Route path="/tags" element={<Tags />}></Route>
                   <Route path="/profile/*" element={<Profile />}></Route>
+                  <Route path="/search-results" element={<SearchResultsPage />}></Route>
                 </Routes>
               </div>
               <div className="other">

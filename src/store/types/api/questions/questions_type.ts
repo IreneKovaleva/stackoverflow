@@ -5,7 +5,7 @@ export interface QuestionsApiState {
     error: null | string;
     order: string;
     sort: string;
-    tags: string;
+    tag: string;
     total: number;
     page_size: number;
 }
@@ -16,7 +16,7 @@ export enum QuestionsApiActionTypes {
     FETCH_API_ERROR = 'FETCH_API_ERROR',
     SET_API_ORDER = 'SET_API_ORDER',
     SET_API_SORT = 'SET_API_SORT',
-    SET_API_TAGS = 'SET_API_TAGS',
+    SET_API_TAG = 'SET_API_TAG',
     SET_API_QUESTIONS_TOTAL = 'SET_API_QUESTIONS_TOTAL',
     SET_API_QUESTIONS_PAGE_SIZE = 'SET_API_QUESTIONS_PAGE_SIZE'
 }
@@ -40,8 +40,8 @@ interface QuestionsSetApiSort{
     type: QuestionsApiActionTypes.SET_API_SORT;
     payload: string;
 }
-interface QuestionsSetApiTags{
-    type: QuestionsApiActionTypes.SET_API_TAGS;
+interface QuestionsSetApiTag{
+    type: QuestionsApiActionTypes.SET_API_TAG;
     payload: string;
 }
 interface QuestionsSetApiQuestionsTotal{
@@ -53,4 +53,4 @@ interface QuestionsSetApiQuestionsPageSize{
     payload: number;
 }
 export type QuestionsApiAction = QuestionsFetchApiAction | QuestionsFetchApiSuccessAction | QuestionsFetchApiErrorAction
-    | QuestionsSetApiOrder | QuestionsSetApiSort | QuestionsSetApiTags | QuestionsSetApiQuestionsTotal | QuestionsSetApiQuestionsPageSize
+    | QuestionsSetApiOrder | QuestionsSetApiSort | QuestionsSetApiTag | QuestionsSetApiQuestionsTotal | QuestionsSetApiQuestionsPageSize

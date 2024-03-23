@@ -14,19 +14,17 @@ export const fetchUsersApiEndpoint = (page: number, order: string, sort: string)
 
             let users = result.items;
 
-            console.log(users)
-
             dispatch({
                 type: UsersApiActionTypes.FETCH_API_USERS_SUCCESS,
                 payload: users
             });
             dispatch({
                 type: UsersApiActionTypes.SET_API_USERS_TOTAL_ITEMS,
-                payload: users.total
+                payload: result.total
             });
             dispatch({
                 type: UsersApiActionTypes.SET_API_USERS_PAGE_SIZE,
-                payload: users.page_size
+                payload: result.page_size
             });
 
 

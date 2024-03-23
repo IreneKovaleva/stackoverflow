@@ -6,7 +6,7 @@ const initialState: QuestionsApiState = {
     error: null,
     order: "desc",
     sort: "votes",
-    tags: "",
+    tag: "",
     total: 0,
     page_size: 0
 }
@@ -23,8 +23,8 @@ export const apiQuestionsReducer = (state = initialState, action: QuestionsApiAc
             return {...state, order: action.payload}
         case QuestionsApiActionTypes.SET_API_SORT:
             return {...state, sort: action.payload}
-        case QuestionsApiActionTypes.SET_API_TAGS:
-            return {...state, tags: action.payload}
+        case QuestionsApiActionTypes.SET_API_TAG:
+            return {...state, tag: action.payload}
         case QuestionsApiActionTypes.SET_API_QUESTIONS_TOTAL:
             return {...state, total: action.payload}
         case QuestionsApiActionTypes.SET_API_QUESTIONS_PAGE_SIZE:

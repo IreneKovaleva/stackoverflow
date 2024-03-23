@@ -9,26 +9,23 @@ import {creationDate} from "../../services/date_format";
 import Pagination from "../../components/pagination/Pagination";
 
 
-
 const Questions: React.FC = () => {
     const navigate:NavigateFunction = useNavigate();
-    const {questions, loading, error, order, sort, tags, total, page_size} = useTypedSelector(state => state.api_questions)
+    const {questions, loading, error, order, sort, tag, total, page_size} = useTypedSelector(state => state.api_questions)
     const {page, total_pages} = useTypedSelector(state => state.pages)
     const {fetchQuestionsApiEndpoint, UserQuestionActionCreatorQuestionId, setTagApi, setTotalPages} = useActions()
 
     useEffect(() => {
         if (page && sort && order) {
-            fetchQuestionsApiEndpoint(page, order, sort, tags || '');
+            fetchQuestionsApiEndpoint(page, order, sort, tag);
         }
         if (questions.length > 0) {
             const totalPageNumber = Math.ceil(Number(total) / Number(page_size));
             if (totalPageNumber < 25) {
                 setTotalPages(totalPageNumber);
-            } else {
-                setTotalPages(totalPageNumber);
             }
         }
-    }, [page, sort, order, tags, total, page_size, total_pages])
+    }, [page, sort, order, tag, total, page_size, total_pages])
 
     const redirect = async (tag: string) => {
         await setTagApi(tag)
@@ -75,7 +72,7 @@ const Questions: React.FC = () => {
                                     className='bold'>Answers:</span>{element.answer_count}</div>
                             </div>
                             <div className='titles margins' onClick={() => {transfer(element); navigate('/user_question');} }>{decode(element.title)}</div>
-                            <div className='margins'>{(element.tags as string[]).map((element, index) =>
+                            <div className='margins'>{(element.tags).map((element: string, index: number) =>
                                 <div className='tags' key={index}>
                                     <div onClick={() => redirect(element)}>{element}</div>
                                 </div>

@@ -1,8 +1,7 @@
 import { Dispatch } from "redux";
-import { QuestionsApiAction, QuestionsApiActionTypes, QuestionsApiState } from "../../../types/api/questions/questions_type";
+import { QuestionsApiAction, QuestionsApiActionTypes } from "../../../types/api/questions/questions_type";
 
-
-export const fetchQuestionsApiEndpoint = (page: number, order: string, sort: string, tags: string)  => {
+export const fetchQuestionsApiEndpoint = (page: number, order: string, sort: string, tag: string)  => {
     return async (dispatch: Dispatch<QuestionsApiAction>) => {
         try {
             dispatch({ type: QuestionsApiActionTypes.FETCH_API });
@@ -12,17 +11,30 @@ export const fetchQuestionsApiEndpoint = (page: number, order: string, sort: str
             const result = await response.json();
 
             let filteredData = result.items;
+            let questionTotalPages = result.total
 
-            if (tags !== '') {
-                filteredData = result.items.filter((element:QuestionsApiState)  => element.tags.includes(tags));
+            console.log("Data", filteredData)
+
+            if (tag !== '') {
+                filteredData = result.items.filter((element: { tags: string[] })  => element.tags.includes(tag));
+                questionTotalPages = filteredData.length;
+                console.log("filteredData", filteredData)
             }
 
-            setTimeout(() => {
-                dispatch({
-                    type: QuestionsApiActionTypes.FETCH_API_SUCCESS,
-                    payload: filteredData
-                });
-            },500)
+            dispatch({
+                type: QuestionsApiActionTypes.FETCH_API_SUCCESS,
+                payload: filteredData
+            });
+
+            dispatch({
+                type: QuestionsApiActionTypes.SET_API_QUESTIONS_TOTAL,
+                payload: questionTotalPages
+            });
+            dispatch({
+                type: QuestionsApiActionTypes.SET_API_QUESTIONS_PAGE_SIZE,
+                payload: result.page_size
+            });
+
 
         } catch (e) {
             dispatch({
@@ -41,6 +53,6 @@ export function setSorting(sort: string): QuestionsApiAction {
     return {type: QuestionsApiActionTypes.SET_API_SORT, payload: sort}
 }
 
-export function setQuestionsTag(tags: string): QuestionsApiAction {
-    return {type: QuestionsApiActionTypes.SET_API_TAGS, payload: tags}
+export function setQuestionsTag(tag: string): QuestionsApiAction {
+    return {type: QuestionsApiActionTypes.SET_API_TAG, payload: tag}
 }

@@ -19,12 +19,9 @@ const UsersApi = () => {
         if (page && sort && order) {
             fetchUsersApiEndpoint( page, order, sort )
         }
-
         if (users.length > 0) {
             const totalPageNumber = Math.ceil(Number(total) / Number(page_size));
             if (totalPageNumber < 25) {
-                setTotalPages(totalPageNumber);
-            } else {
                 setTotalPages(totalPageNumber);
             }
         }

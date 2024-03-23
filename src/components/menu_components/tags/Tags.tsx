@@ -4,12 +4,10 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTags} from "@fortawesome/free-solid-svg-icons";
 import {useActions} from "../../../store/hooks/useActions";
 import TagsApi from "../../../api_components/tags/TagsApi";
-import Pagination from "../../pagination/Pagination";
-
 
 const Tags = () => {
     const {setTagsOrder, setTagsSorting} = useActions();
-    const [activeSort, setActiveSort] = useState('popularity');
+    const [activeSort, setActiveSort] = useState('popular');
     const [activeOrder, setActiveOrder] = useState('desc');
 
     const newTagsOrder = (event: React.MouseEvent<HTMLElement>) => {
@@ -28,19 +26,19 @@ const Tags = () => {
                 <div className="header">Tags</div>
                 <ul className="link">
                     <li className='breadcrumb-item'>
-                        <a href='/Tags'>
+                        <a href='/tags'>
                             <FontAwesomeIcon icon={faTags} className='house'/>
                         </a>
                     </li>
                     <li>
-                        <a href='/Tags' className='text'>/  Tags</a>
+                        <a href='/tags' className='text'>/  Tags</a>
                     </li>
                 </ul>
             </div>
             <div className="btns">
                 <div id='general' className='buttons margin'>
                     <button className={activeSort === 'activity' ? 'button active' : 'button not_active'} id="activity" onClick={newTagsSorting}>ACTIVITY</button>
-                    <button className={activeSort === 'popularity' ? 'button active' : 'button not_active'} id="popularity" onClick={newTagsSorting}>POPULARITY</button>
+                    <button className={activeSort === 'popular' ? 'button active' : 'button not_active'} id="popular" onClick={newTagsSorting}>POPULARITY</button>
                     <button className={activeSort === 'name' ? 'button active' : 'button not_active'} id="name" onClick={newTagsSorting}>NAME</button>
                 </div>
                 <div id= 'order' className='order margin'>

@@ -7,12 +7,6 @@ import {useActions} from "../../store/hooks/useActions";
 const Pagination = () => {
     const {setPageNumber} = useActions()
     const {total_pages, page, limit, siblings, page_in_line} = useTypedSelector(state => state.pages)
-
-    console.log('total_pages',total_pages)
-    console.log('limit',limit)
-    console.log('siblings',siblings)
-    console.log('page_in_line',page_in_line)
-
     let array = pages_range(total_pages, page, limit, siblings, page_in_line);
 
     const pageNumber = (el: string | number) => {
