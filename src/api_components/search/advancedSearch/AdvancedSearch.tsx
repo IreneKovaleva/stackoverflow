@@ -1,78 +1,76 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './AdvancedSearch.css';
 import {useActions} from "../../../store/hooks/useActions";
-import {SearchApiAction, SearchApiActionTypes, SearchApiState} from "../../../store/types/api/search/searchTypes";
 import {useTypedSelector} from "../../../store/hooks/useTypedSelector";
+import {NavigateFunction, useNavigate} from "react-router-dom";
 
 
 const AdvancedSearch = () => {
-    const {setSearchApiOrder, setSearchApiSort, setSearchApiAcceptation, setSearchApiBody,
-        setSearchApiTagged, setSearchApiTitle, setSearchApiViews, setSearchIsModal} = useActions();
+    const navigate:NavigateFunction = useNavigate();
+    const {accepted, title, tagged, body, views, value} = useTypedSelector(state => state.search_reducer);
+    const {setSearchApiAcceptation, setSearchApiBody,
+        setSearchApiTagged, setSearchApiTitle, setSearchApiViews, setSearchIsModal, setSearchItemsRender} = useActions();
 
-    const {is_modal} = useTypedSelector(state => state.search_reducer);
-
-    const ModalWindow = () => {
+    const modalWindow = () => {
         setSearchIsModal(false)
     }
 
-    const orderOnClick = (e: React.MouseEvent<HTMLSelectElement>) => {
-        const newValue = e.currentTarget.value;
-        console.log(newValue)
+    const acceptedValue = (e: React.SyntheticEvent<HTMLSelectElement>) => {
+        const newValue = e.currentTarget.value === "true" ? true : e.currentTarget.value === "false" ? false : null;
+        setSearchApiAcceptation(newValue)
     }
 
+    const inputValues = async () => {
+        const bodyInput = document.getElementById("body") as HTMLInputElement | null;
+        const taggedInput = document.getElementById("tagged") as HTMLInputElement | null;
+        const titleInput = document.getElementById("title") as HTMLInputElement | null;
+        const viewsInput = document.getElementById("views") as HTMLInputElement | null;
+        if (bodyInput !== null && taggedInput !== null && titleInput !== null && viewsInput !== null) {
+            let body = bodyInput.value;
+            let tagged = taggedInput.value;
+            let title = titleInput.value;
+            let views = Number(viewsInput.value);
+            await setSearchApiBody(body);
+            await setSearchApiTagged(tagged);
+            await setSearchApiTitle(title);
+            await setSearchApiViews(views);
+            await setSearchItemsRender(true)
+            if (window.location.href !== "/search-results") {
+                navigate('/search-results')
+            }
+        }
+    }
 
     return (
         <div className="advanced_search_block">
             <div>
                 <h2>Options</h2>
-                <table>
-                    <tbody>
-                    <tr>
-                        <td className="option_name">Order</td>
-                        <select className="advanced_search_element">
+                    <div className="option-search-block">
+                        <label className="option_name">Accepted</label>
+                        <select className="advanced_search_element" onChange={(e) => acceptedValue(e)}>
                             <option value="">--choose an option--</option>
-                            <option id="desc" value="desc">desc</option>
-                            <option value="asc">asc</option>
+                            <option value="true" selected={accepted === true}>true</option>
+                            <option value="false" selected={accepted === false}>false</option>
                         </select>
-                    </tr>
-                    <tr>
-                        <td className="option_name">Sort</td>
-                        <select className="advanced_search_element">
-                            <option value="">--choose an option--</option>
-                            <option value="activity">activity</option>
-                            <option value="votes">votes</option>
-                            <option value="creation">creation</option>
-                            <option value="relevance">relevance</option>
-                        </select>
-                    </tr>
-                    <tr>
-                        <td className="option_name">Accepted</td>
-                        <select className="advanced_search_element">
-                            <option value="">--choose an option--</option>
-                            <option value="True">true</option>
-                            <option value="False">false</option>
-                        </select>
-                    </tr>
-                    <tr>
-                        <td className="option_name">Body</td>
-                        <input id="order" placeholder='--type a body--' className="advanced_search_element"></input>
-                    </tr>
-                    <tr>
-                        <td className="option_name">Tagged</td>
-                        <input id="tagged" placeholder='--type tags with ;--' type="text" className="advanced_search_element"></input>
-                    </tr>
-                    <tr>
-                        <td className="option_name">Title</td>
-                        <input id="title" placeholder='--type a title--' type="text" className="advanced_search_element"></input>
-                    </tr>
-                    <tr>
-                        <td className="option_name">Views</td>
-                        <input id="views" placeholder='--type a number of views--' type="number" className="advanced_search_element"></input>
-                    </tr>
-                    </tbody>
-                </table>
+                    </div>
+                    <div className="option-search-block">
+                        <label className="option_name">Body</label>
+                        <input id="body" placeholder='--type a body--' value={body} className="advanced_search_element" onChange={(e) => setSearchApiBody(e.currentTarget.value)}></input>
+                    </div>
+                    <div className="option-search-block">
+                        <label className="option_name">Tagged</label>
+                        <input id="tagged" placeholder='--type tags with ;--' value={tagged} type="text" className="advanced_search_element" onChange={(e) => setSearchApiTagged(e.currentTarget.value)}></input>
+                    </div>
+                    <div className="option-search-block">
+                        <label className="option_name">Title</label>
+                        <input id="title" placeholder='--type a title--' value={title} type="text" className="advanced_search_element" onChange={(e) => setSearchApiTitle(e.currentTarget.value)}></input>
+                    </div>
+                    <div className="option-search-block">
+                        <label className="option_name">Views</label>
+                        <input id="views" placeholder='--type a number of views--' value={String(views)} type="number" className="advanced_search_element" onChange={(e) => setSearchApiViews(Number(e.currentTarget.value))}></input>
+                    </div>
             </div>
-            <button className="advanced_search_button" onClick={ModalWindow}>HIDE</button>
+            <button className="advanced_search_button" onClick={() =>{modalWindow(); inputValues()}}>Accept</button>
         </div>
 
     );

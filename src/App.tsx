@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
 import {Routes, Route} from "react-router-dom";
-import { faUserLarge} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Navigation from "./components/navigation/Navigation";
 import Search from "./api_components/search/Search";
 import Main from "./components/menu_components/main_component/Main";
@@ -16,10 +14,11 @@ import {useActions} from "./store/hooks/useActions";
 import SearchResultsPage from "./components/SearchResultsPage/SearchResultsPage";
 
 function App() {
-  const {setSearchIsModal} = useActions()
+  const {setSearchIsModal, setSearchItemsRender} = useActions()
   const {is_modal} = useTypedSelector(state => state.search_reducer);
 
   const ModalWindow = () => {
+    setSearchItemsRender(false)
     setSearchIsModal(true)
   }
 

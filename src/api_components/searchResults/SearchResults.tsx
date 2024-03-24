@@ -21,16 +21,16 @@ const SearchResults = () => {
     }
 
     useEffect(() => {
-        fetchSearchResultsApiEndpoint(page, order, sort, value, accepted, body, tagged, title, views);
+        if (render) {
+            fetchSearchResultsApiEndpoint(page, order, sort, value, accepted, body, tagged, title, views)
+        }
         if (search_items.length > 0) {
             const totalPageNumber = Math.ceil(Number(total) / Number(page_size));
             if (totalPageNumber < 25) {
                 setTotalPages(totalPageNumber);
             }
         }
-    }, [order, sort, accepted, title, tagged, body, views, page]);
-
-    console.log("search_items", search_items)
+    }, [page, order, sort, value, accepted, body, tagged, title, views, render]);
 
     if (search_items.length === 0) {
         return (
@@ -46,12 +46,12 @@ const SearchResults = () => {
     }
     return(
         <div>
-            <div>{render && search_items.map((element, index) =>
+            <div>{search_items.map((element, index) =>
                 <div key={element.creation_date + "search"} className="search_result_block">
                         <div className="search_result_date">{creationDate(element.creation_date)}</div>
                         <div className="search_result_flex_block">{element.tags.map((tag: string) =>
                             <div className="search_result_tags_block">
-                                <div className="search_result_tags">{tag}</div>
+                                <div className="search_result_tags">{" #" + tag}</div>
                             </div>
                         )}</div>
                     <div className="search_result_title" onClick={() => redirect(element.question_id)}>{parse(element.title)}</div>

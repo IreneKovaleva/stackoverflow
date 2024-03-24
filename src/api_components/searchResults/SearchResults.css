@@ -4,9 +4,11 @@
     grid-template-rows: 20% 25% 50%;
     height: 150px;
     width: 800px;
-    border: 1px solid #ece9e9;
+    border-bottom: 1px solid #ece9e9;
+    border-top: 1px solid #ece9e9;
     padding: 10px;
     margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
 }
 .search_result_flex_block{
@@ -18,19 +20,28 @@
     font-size: 17px;
 }
 .search_result_tags_block {
-    background-color: rgba(70,128,255, 0.4);
-    align-items: center;
-    text-align: center;
+    /*background-color: rgba(70,128,255, 0.4);*/
+    /*text-align: center;*/
     height: 25px;
-    min-width: 15px;
+    min-width: 20px;
+    border-radius: 5px;
     padding: 2px;
     margin: 3px;
 }
 .search_result_tags {
+    font-weight: bold;
     text-align: center;
-    color: white;
+    color: #5a8de1;
     font-size: 15px;
 }
+
+.search_result_tags_block:hover {
+    border: 1px solid #5a8de1;
+}
+
+/*.search_result_tags:hover {*/
+/*    font-size: 17px;*/
+/*}*/
 
 .search_result_title {
     margin-top: 10px;

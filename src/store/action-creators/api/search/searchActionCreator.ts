@@ -57,7 +57,7 @@ export function setSearchApiTagged(tags: string): SearchApiAction {
     return {type: SearchApiActionTypes.SET_API_TAGS, payload: tags}
 }
 export function setSearchApiTitle(title: string): SearchApiAction {
-    return {type: SearchApiActionTypes.SET_API_TAGS, payload: title}
+    return {type: SearchApiActionTypes.SET_API_TITLE, payload: title}
 }
 export function setSearchApiViews(views: number | null): SearchApiAction {
     return {type: SearchApiActionTypes.SET_API_VIEWS, payload: views}
