@@ -35,7 +35,7 @@ const Tags = () => {
                     </li>
                 </ul>
             </div>
-            <div className="btns">
+            <div className="buttons_block">
                 <div id='general' className='buttons margin'>
                     <button className={activeSort === 'activity' ? 'button active' : 'button not_active'} id="activity" onClick={newTagsSorting}>ACTIVITY</button>
                     <button className={activeSort === 'popular' ? 'button active' : 'button not_active'} id="popular" onClick={newTagsSorting}>POPULARITY</button>

@@ -1,10 +1,9 @@
 .first_block {
-    padding: 20px;
+    padding: 20px 10px 10px 10px;
     display: grid;
     grid-template-rows: 70px 50px auto;
     margin: 0 auto;
     min-height: 200em;
-    overflow-y: scroll;
     width: 90%;
 }
 
@@ -32,6 +31,7 @@ li {
     flex-wrap: wrap;
     list-style: none;
     border-radius: 2px;
+    margin-top: 7px;
 }
 
 .margin {
@@ -40,7 +40,8 @@ li {
 
 .buttons_block {
     position: relative;
-    width: 800px;
+    width: 100%;
+    padding: 5px;
     height: 40px;
 }
 
@@ -52,14 +53,14 @@ li {
     float: left;
 }
 
-.rows {
-    margin-top: 20px;
-    display: flex;
-}
+/*.rows {*/
+/*    margin-top: 20px;*/
+/*    display: flex;*/
+/*}*/
 
-.rows::-webkit-scrollbar {
-    width: 0;
-}
+/*.rows::-webkit-scrollbar {*/
+/*    width: 0;*/
+/*}*/
 .house:before {
     content: "\e87a";
     color: black;
@@ -71,4 +72,17 @@ li {
     font-size: 15px;
     color: #4680ff;
     margin-right: 5px;
+}
+.tags {
+    padding: 2px;
+    margin: 2px;
+    display: inline-block;
+    min-width: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #5a8de1;
+    font-size: 15px;
+}
+.tags:hover {
+    font-size: 17px;
 }

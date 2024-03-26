@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./Badges.css"
+import "../../../../../users/UsersApi.css"
 import "../../../../UserProfile.css"
 import {faAward} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

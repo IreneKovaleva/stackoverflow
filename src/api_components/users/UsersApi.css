@@ -1,17 +1,13 @@
-.users_api {
-    width: 100%;
-    min-height: 120px;
-}
-.user_location {
-    margin: 5px;
-}
 .users_description {
     display: flex;
     margin-top: 20px;
-    border: 1px solid lightgrey;
-    background-color: #ffffff;
-    padding: 5px;
     height: 200px;
+    border-bottom: 1px solid #ece9e9;
+    border-top: 1px solid #ece9e9;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    padding: 20px;
 }
 .portfolio {
     display: flex;
@@ -29,6 +25,7 @@
     width: 120px;
     background-color: #4680ff;
     color: white;
+    margin-bottom: 10px;
 }
 .portfolio_reputation_icon {
     width: 20px;
@@ -43,40 +40,35 @@
     color: #4680ff;
 }
 .user_content {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 500px;
+    grid-template-rows: 20% 50% 30%;
     margin: 5px;
-    width: 540px;
 }
 .user_content_name {
-    margin: 10px 0 10px 0;
-    font-size: 20px;
+    color: rgba(35, 37, 43, 0.8);
     font-weight: bold;
-    color: #4680ff;
+    font-size: 17px;
 }
 .user_content_href {
     text-decoration: none;
     height: 20%;
 }
-.user_content_tags {
-    height: 50%;
-}
-.user_content_tags:hover {
-    color: #4680ff;
-}
+/*.user_content_tags {*/
+/*    height: 50%;*/
+/*}*/
+/*.user_content_tags:hover {*/
+/*    color: #4680ff;*/
+/*}*/
+
 .user_badges {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 55% 15% 15% 15%;
     text-align: right;
-    margin-left: 50%;
-}
-.user_badges_element {
-    float: left;
-    width: 33%;
 }
 .user_badges_element_medal {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
 }
 .bronze {
     color: #967444;
@@ -92,10 +84,43 @@
     width: 130px;
     text-wrap: normal;
     font-weight: bold;
-    color: #4680ff;
     text-align: center;
     border-left: 2px solid #f4f5fa;
 }
+.specified {
+    color: #4680ff;
+}
+.not_specified {
+    color: #c0c0c0;
+}
 .tu {
     font-size: 14px;
+}
+.gold_award {
+    color: gold;
+    font-size: 35px;
+    margin: 5px;
+}
+.silver_award {
+    color: silver;
+    font-size: 35px;
+    margin: 5px;
+}
+.bronze_award {
+    color: #967444;
+    font-size: 35px;
+    margin: 5px;
+}
+.user_badges_count {
+    font-size: 12px;
+}
+.user_content_about {
+    display: block;
+    font-size: 13px;
+    overflow: scroll;
+}
+.portfolio_likes {
+    margin: 0 auto;
+    align-items: center;
+
 }

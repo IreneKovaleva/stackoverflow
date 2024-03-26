@@ -44,7 +44,10 @@ const AdvancedSearch = () => {
     return (
         <div className="advanced_search_block">
             <div>
-                <h2>Options</h2>
+                <div className="advanced_search_header">
+                    <h2 className="advanced_search_header_options">Options</h2>
+                    <div className="advanced_search_header_x" onClick={modalWindow}>X</div>
+                </div>
                     <div className="option-search-block">
                         <label className="option_name">Accepted</label>
                         <select className="advanced_search_element" onChange={(e) => acceptedValue(e)}>

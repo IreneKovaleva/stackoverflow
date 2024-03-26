@@ -14,21 +14,6 @@
     display: flex;
     flex-flow: row;
 }
-.gold_award {
-    color: gold;
-    font-size: 35px;
-    margin: 5px;
-}
-.silver_award {
-    color: silver;
-    font-size: 35px;
-    margin: 5px;
-}
-.bronze_award {
-    color: #967444;
-    font-size: 35px;
-    margin: 5px;
-}
 .counts_award {
     font-weight: bold;
     font-size: 30px;

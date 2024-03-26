@@ -46,7 +46,7 @@ const SearchResults = () => {
     }
     return(
         <div>
-            <div>{search_items.map((element, index) =>
+            <div>{search_items.map((element) =>
                 <div key={element.creation_date + "search"} className="search_result_block">
                         <div className="search_result_date">{creationDate(element.creation_date)}</div>
                         <div className="search_result_flex_block">{element.tags.map((tag: string) =>

@@ -99,20 +99,35 @@ body {
   line-height: 1.5;
 }
 
-.active {
+.active.button {
   background: #4680ff;
   border: 1px solid #4680ff;
 }
-.active:hover {
+.active.button:hover {
   border: 1px solid #ffffff;
   box-shadow: 0 0 0 1px white, 0 0 0 2px #4680ff;
 }
 
-.not_active {
+.not_active.button {
   background: #d7d3d3;
   border: 1px solid lightgrey;
 }
-.not_active:hover {
+.not_active.button:hover {
   border: 1px solid #ffffff;
   box-shadow: 0 0 0 1px white, 0 0 0 2px #d7d3d3;
 }
+
+.button_advanced_search{
+  width: 150px;
+  height: 45px;
+  border-radius: 10px;
+  border: 1px solid #ffffff;
+  background: transparent;
+  color: white;
+}
+
+.button_advanced_search:hover {
+  border: 1px solid #ffffff;
+  box-shadow: 0 0 0 1px white, 0 0 0 2px #4680ff;
+}
+

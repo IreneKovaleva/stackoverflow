@@ -7,16 +7,14 @@ export const fetchUsersApiEndpoint = (page: number, order: string, sort: string)
         try {
             dispatch({ type: UsersApiActionTypes.FETCH_API_USERS });
 
-            const apiUrl = `https://api.stackexchange.com/2.3/users?page=${page}&order=${order}&sort=${sort}&site=stackoverflow&filter=!nNPvSNVZFk`;
+            const apiUrl = `https://api.stackexchange.com/2.3/users?page=${page}&order=${order}&sort=${sort}&site=stackoverflow&filter=!azbR8(-zjydku7`;
 
             const response = await fetch(apiUrl);
             const result = await response.json();
 
-            let users = result.items;
-
             dispatch({
                 type: UsersApiActionTypes.FETCH_API_USERS_SUCCESS,
-                payload: users
+                payload: result.items
             });
             dispatch({
                 type: UsersApiActionTypes.SET_API_USERS_TOTAL_ITEMS,

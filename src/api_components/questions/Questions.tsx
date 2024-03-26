@@ -56,9 +56,9 @@ const Questions: React.FC = () => {
 
     return (
         <div>
-            <div className='questions_sections'>{questions.map((element, index) =>
-                <div className='questions_block' key={index}>
-                    <div className='questions_content'>
+            <div>{questions.map((element, index) =>
+                <div key={index}>
+                    <div className='question_content'>
                         <div className='block_a'>
                             <div className='answered'>
                                 <FontAwesomeIcon icon={isAnswered(element.is_answered)}/>
@@ -74,7 +74,7 @@ const Questions: React.FC = () => {
                             <div className='titles margins' onClick={() => {transfer(element); navigate('/user_question');} }>{decode(element.title)}</div>
                             <div className='margins'>{(element.tags).map((element: string, index: number) =>
                                 <div className='tags' key={index}>
-                                    <div onClick={() => redirect(element)}>{element}</div>
+                                    <div onClick={() => redirect(element)}>{" #" + element}</div>
                                 </div>
                             )}</div>
                         </div>

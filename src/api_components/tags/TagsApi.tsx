@@ -7,6 +7,7 @@ import {useActions} from "../../store/hooks/useActions";
 import TagsWiki from "./subcomponents/TagsWiki";
 import Pagination from "../../components/pagination/Pagination";
 import {NavigateFunction, useNavigate} from "react-router-dom";
+import {numberFormat} from "../../services/number_format";
 
 
 const TagsApi = () => {
@@ -42,15 +43,15 @@ const TagsApi = () => {
         <div>
             <div className='tags_content'>{tags.map(element =>
                 <div className='tags_content_tags' key={element.count} onClick={() => handleClick(element.name)} >
-                    <div className='tags'>
-                        <div className='tags_tag margin'>
-                            <div className='tags_tag_content'>
-                                <div className='tags_tag_element'>{element.name}</div>
+                    <div className='tags_content_tag'>
+                        <div className='tags_tag'>
+                            <div className='tags_tag_name_block'>
+                                <div className='tags_tag_name'>{"#" + element.name}</div>
                             </div>
                         </div>
-                        <div className='tags_views'>
+                        <div className='tags_views margin'>
                             <FontAwesomeIcon className='tags_icon_eye margin' icon={faEye}></FontAwesomeIcon>
-                            <div className='margin'>{element.count}</div>
+                            <div className='margin'>{numberFormat(element.count)}</div>
                         </div>
                     </div>
                     <div className='tags_wiki'>

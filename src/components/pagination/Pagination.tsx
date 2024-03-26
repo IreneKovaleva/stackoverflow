@@ -1,5 +1,6 @@
 import React from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import "./Pagination.css"
 import {pages_range} from "../../services/pages_range";
 import {useTypedSelector} from "../../store/hooks/useTypedSelector";
 import {useActions} from "../../store/hooks/useActions";
@@ -28,24 +29,23 @@ const Pagination = () => {
     }
 
     return (
-        <div>
-            <ul className='pagination pagination-md justify-content-end margin_page'>
-                <li className="page-item"><span className='page-link' onClick={() => pageNumber('&laquo;')}>&laquo;</span></li>
-                <li className="page-item"><span className='page-link' onClick={() => pageNumber('&lsaquo;')}>&lsaquo;</span></li>
+        <div className="pagination_block">
+            <div className='pagination'>
+                <div className="pagination_element first_element" onClick={() => pageNumber('&laquo;')}>&laquo;</div>
+                <div className="pagination_element" onClick={() => pageNumber('&lsaquo;')}>&lsaquo;</div>
                 {array.map((value: string | number, index: number) => {
                     if (value === page) {
                         return (
-                            <li key={index} className="page-item active" onClick={() => pageNumber(value)}><span className='page-link'>{value}</span></li>
+                            <div className="pagination_element active_page_pagination" onClick={() => pageNumber(value)}>{value}</div>
                         )
                     } else {
                         return (
-                            <li key={index} className="page-item" onClick={() => pageNumber(value)}><span className='page-link'>{value}</span></li>
+                           <div className="pagination_element not_active_page_pagination" onClick={() => pageNumber(value)}>{value}</div>
                         )}
                 })}
-                <li className="page-item"><span className='page-link' onClick={() => pageNumber('&rsaquo;')}>&rsaquo;</span></li>
-                <li className="page-item"><span className='page-link' onClick={() => pageNumber('&raquo;')}>&raquo;</span></li>
-            </ul>
-
+                <div className="pagination_element" onClick={() => pageNumber('&rsaquo;')}>&rsaquo;</div>
+                <div className="pagination_element last_element" onClick={() => pageNumber('&raquo;')}>&raquo;</div>
+            </div>
         </div>
     )
 }

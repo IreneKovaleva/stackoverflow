@@ -20,8 +20,6 @@
     font-size: 17px;
 }
 .search_result_tags_block {
-    /*background-color: rgba(70,128,255, 0.4);*/
-    /*text-align: center;*/
     height: 25px;
     min-width: 20px;
     border-radius: 5px;
@@ -34,14 +32,9 @@
     color: #5a8de1;
     font-size: 15px;
 }
-
-.search_result_tags_block:hover {
-    border: 1px solid #5a8de1;
+.search_result_tags:hover {
+    font-size: 17px;
 }
-
-/*.search_result_tags:hover {*/
-/*    font-size: 17px;*/
-/*}*/
 
 .search_result_title {
     margin-top: 10px;

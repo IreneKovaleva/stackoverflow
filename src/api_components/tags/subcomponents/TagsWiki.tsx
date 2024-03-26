@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Description} from "../../../store/types/api/tags/subcomponents/tagsDescription";
+import parse from "html-react-parser";
 
 const TagsWiki:React.FC<Description> = ({name}) => {
     const [error, setError] = useState<string | null>(null);
@@ -32,7 +33,7 @@ const TagsWiki:React.FC<Description> = ({name}) => {
         <div>
             <div>{description.map((element,index) =>
                 <div key={index}>
-                    <div>{element.excerpt}</div>
+                    <div>{parse(element.excerpt)}</div>
                 </div>
             )}
             </div>

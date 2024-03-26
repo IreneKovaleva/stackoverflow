@@ -37,11 +37,10 @@ const Users = () => {
 
                 </ul>
             </div>
-            <div className="buttons">
+            <div className="buttons_block">
                 <div id='general' className='buttons margin'>
                     <button className={activeSort === 'reputation' ? 'button active' : 'button not_active'} id="reputation" onClick={new_sorting}>REPUTATION</button>
                     <button className={activeSort === 'creation' ? 'button active' : 'button not_active'} id="creation" onClick={new_sorting}>CREATION</button>
-                    <button className={activeSort === 'name' ? 'button active' : 'button not_active'} id="name" onClick={new_sorting}>NAMES</button>
                 </div>
                 <div id='order' className='order margin'>
                     <button className={activeOrder === 'desc' ? 'button active' : 'button not_active'} id="desc" onClick={new_order}>DESC</button>
