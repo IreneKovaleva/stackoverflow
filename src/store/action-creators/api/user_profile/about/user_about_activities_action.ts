@@ -7,14 +7,14 @@ export function setUserAboutFilter(filter: string): UserAboutAction {
     return {type: UserAboutApiActionTypes.SET_API_FILTER, payload: filter}
 }
 export function setUserAboutOrder(order: string): UserAboutAction {
-    const newOrder = order === 'desc' ? 'asc' : 'desc';
+    const newOrder = order === 'Desc' ? 'Asc' : 'Desc';
     return {type: UserAboutApiActionTypes.SET_API_ORDER, payload: newOrder}
 }
 export function setUserAboutSorting(sort: string): UserAboutAction {
     return {type: UserAboutApiActionTypes.SET_API_SORT, payload: sort}
 }
 export function setUserAboutCommentsOrder(comments_order: string): UserAboutAction {
-    const newOrder = comments_order === 'desc' ? 'asc' : 'desc';
+    const newOrder = comments_order === 'Desc' ? 'Asc' : 'Desc';
     return {type: UserAboutApiActionTypes.SET_API_COMMENTS_ORDER, payload: newOrder}
 }
 

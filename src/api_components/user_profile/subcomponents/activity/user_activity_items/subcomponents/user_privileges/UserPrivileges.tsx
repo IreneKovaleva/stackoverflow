@@ -12,7 +12,7 @@ const UserPrivileges:React.FC<Structure> = ({items}) => {
     return (
         <div>
             <div>{items.map((element, index) =>
-                <div key={index} className='items_box'>
+                <div key={index} className='user_items_block'>
                     <div className='privileges'>
                         <div className='privileges_block'>
                             <div className='privileges_reputation'>+{element.reputation}</div>

@@ -5,7 +5,7 @@ import {
     ItemsType
 } from "../../../../../../../store/types/api/user_profile/subcomponents/activity/subcomponents/user_reputation/reputation_types";
 import {Structure} from "../../../../../../../store/types/api/user_profile/subcomponents/activity/activity_items";
-import {round} from "lodash";
+import parse from "html-react-parser";
 
 
 const UserReputation:React.FC<Structure> = ({items}) => {
@@ -94,10 +94,10 @@ const UserReputation:React.FC<Structure> = ({items}) => {
     return (
         <div>
             <div>{Object.keys(reputationItems).map((element, index) =>
-                <div key={index + 'reputation'} className='items_box'>
+                <div key={index + 'reputation'} className='user_items_block'>
                     <div className='reputation_row reputation_head'>
                         <div className='reputation_row_element value'>+{sum(reputationItems[element])}</div>
-                        <div className='reputation_row_element'>{element}</div>
+                        <div className='reputation_row_element'>{parse("" + element)}</div>
                     </div>
                     <div>{reputationItems[element].filter((item: ItemsType) => !item.hasOwnProperty('total_sum')).map((item: ItemsType, index:number) => (
                         <div className='reputation_row_grid reputation_back' key={`${item.post_id}${index}`}>

@@ -5,7 +5,8 @@ const initialState: UserApiState = {
     user_id: '',
     loading: false,
     error: '',
-    about_user: 'string'
+    about_user: 'string',
+    update: true
 }
 
 export const apiUserProfileReducer = (state:UserApiState = initialState, action: UserItemsApiAction): UserApiState => {
@@ -20,6 +21,8 @@ export const apiUserProfileReducer = (state:UserApiState = initialState, action:
             return {...state, user_id: action.payload}
         case UserApiActionTypes.SET_API_ABOUT_USER:
             return {...state, about_user: action.payload}
+        case UserApiActionTypes.SET_API_SORT_UPDATE:
+            return {...state, update: action.payload}
         default:
             return state
     }

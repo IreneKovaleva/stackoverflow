@@ -1,11 +1,16 @@
 .profile_about {
-    display: flex;
-    flex-flow: row;
+    display: grid;
+    grid-template-columns: 30% 70%;
 }
 .profile_about_left {
-    width: 300px;
+    width: 100%;
+    display: grid;
+    padding: 0 15px 0 15px;
 }
 .profile_about_right {
+    width: 100%;
+    overflow: hidden;
+    padding: 0 15px 0 15px;
     display: grid;
 }
 .profile_user_head {
@@ -16,29 +21,54 @@
 .head_width {
     width: 83%;
 }
+.badges_head_width {
+    width: 49%;
+}
 .profile_about_right_text {
     margin-top: 15px;
-}
-.profile_empty {
-    margin-top: 20px;
 }
 .profile_head {
     display: flex;
     flex-flow: row;
     align-items: center;
+    width: 100%;
 }
 .profile_user_all {
-    font-size: 13px;
+    font-size: 15px;
     float: right;
+}
+.profile_user_badges {
+    font-size: 15px;
+}
+.profile_user_badges:hover {
+    color: #4680ff;
+}
+.profile_user_all:hover {
+    color: #4680ff;
 }
 .profile_top_elements {
     display: grid;
     grid-template-columns: 320px auto;
     grid-auto-rows: 40px;
-    margin-top: 20px;
-    margin-right: 10px;
-    margin-left: 5px;
+    margin: 30px 10px 30px 5px;
     align-items: center;
+}
+.profile_top_elements_comments {
+    display: grid;
+    grid-template-columns: 85% 15%;
+    margin: 30px 10px 10px 5px;
+}
+.comments_low_block {
+    display: grid;
+    grid-template-columns: 85% 5%;
+    align-items: center;
+}
+.comments_low_block_view {
+    font-size: 15px;
+    width: 320px;
+}
+.comments_low_block_view:hover {
+    color: #5a8de1;
 }
 .profile_top_elements_view {
     grid-column-start: 1;
@@ -47,10 +77,16 @@
     margin-top: 20px;
     font-size: 15px;
 }
+.links:hover {
+    color: #5a8de1;
+}
 .profile_top_elements_buttons {
-    grid-column-start: 2;
-    grid-row-start: 2;
-    grid-row-end: 2;
+    padding: 20px;
+    display: grid;
+    width: 240px;
+    align-items: center;
+    grid-template-columns: 80px 80px 80px;
+    grid-template-rows: 35px 35px;
 }
 .profile_top_elements_elements {
     text-align: center;
@@ -61,18 +97,39 @@
     width: 70px;
     border: none;
     margin: 2px;
+    padding: 3px;
+    text-align: center;
+}
+
+.about_user_button {
+    margin-right: 10px;
+    min-width: 50px;
+    height: 30px;
+    background: #4680ff;
+    border-radius: 10px;
+    align-items: center;
     color: white;
-    background: #5a8de1;
+    transition: .2s linear;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
 }
-.elements_button:hover {
-    height: 22px;
-    width: 72px;
+.active.about_user_button {
+    background: #4680ff;
+    border: 1px solid #4680ff;
 }
-.active_about_user {
-    background: lightgrey;
+.active.about_user_button:hover {
+    border: 1px solid #ffffff;
+    box-shadow: 0 0 0 1px white, 0 0 0 2px #4680ff;
 }
-.inactive_about_user {
-    background: #5a8de1;
+
+.not_active.about_user_button {
+    background: #d7d3d3;
+    border: 1px solid lightgrey;
+}
+.not_active.about_user_button:hover {
+    border: 1px solid #ffffff;
+    box-shadow: 0 0 0 1px white, 0 0 0 2px #d7d3d3;
 }
 .filter_margin {
     text-align: right;

@@ -1,20 +1,28 @@
 .activity_page {
-    display: flex;
-    flex-flow: row;
+    display: grid;
+    grid-template-columns: 15% 85%;
 }
 .activity_page_elements {
-    width: 200px;
+    width: 100%;
+    padding:  30% 0 0 5%;
 }
 .sub_elements {
-    width: calc(100% - 200px);
+    width: 100%;
 }
 .list_of_elements {
     margin: 25px 0 20px 0;
 }
-.element_list {
+.nav_element {
     text-decoration: none;
-    margin-top: 10px;
-    font-size: 17px;
+}
+.element_list {
+    height: 30px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #393b40;
+}
+.element_list:hover {
+    color: #5a8de1;
 }
 .tags_user_activity {
     font-size: 12px;

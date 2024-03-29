@@ -1,8 +1,8 @@
 import {UserAboutApiState, UserAboutApiActionTypes, UserAboutAction} from "../../../../types/api/user_profile/subcomponents/about/user_about_activities"
 
 const initialState: UserAboutApiState = {
-    content: '',
-    filter: 'filter=!nOedRLaMkU',
+    content: 'answers',
+    filter: 'filter=!3uW-Cfyr2M5A*vzE6',
     order: 'desc',
     sort: 'activity',
     comments_order: 'asc'

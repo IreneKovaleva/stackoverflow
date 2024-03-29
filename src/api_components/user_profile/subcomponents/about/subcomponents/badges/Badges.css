@@ -1,23 +1,27 @@
-.badges {
+
+.badges_block {
     margin-top: 15px;
     display: flex;
+    align-items: center;
     flex-flow: row;
-}
-.badges_block {
     border: 1px solid lightgrey;
     padding: 5px;
-    margin: 10px 10px 10px 0;
     border-radius: 10px;
-    min-width: 200px;
+    width: 230px;
+    height: 100px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.badges {
+    margin: 0 auto;
 }
 .badges_block_awards {
-    display: flex;
-    flex-flow: row;
+    display: grid;
+    grid-template-rows: 50px;
 }
 .counts_award {
     font-weight: bold;
-    font-size: 30px;
-    margin: 5px;
+    font-size: 20px;
+    color: #3c3f48;
 }
 .circle {
     width: 5px;
@@ -25,12 +29,12 @@
     border-radius: 50%;
     margin-right: 5px;
 }
-.color_gold {
-    background: gold;
-}
-.color_silver {
-    background: silver;
-}
-.color_bronze {
-    background: #967444;
-}
+/*.color_gold {*/
+/*    background: gold;*/
+/*}*/
+/*.color_silver {*/
+/*    background: silver;*/
+/*}*/
+/*.color_bronze {*/
+/*    background: #967444;*/
+/*}*/

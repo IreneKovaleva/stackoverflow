@@ -39,7 +39,6 @@ body {
 }
 
 .panel {
-
   display: grid;
   grid-template-columns: 40% 10%;
   grid-template-rows: 100%;

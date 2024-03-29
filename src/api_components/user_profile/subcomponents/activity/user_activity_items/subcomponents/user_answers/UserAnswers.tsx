@@ -40,7 +40,7 @@ const UserAnswers:React.FC<Structure> = ({items}) => {
                     <div className='low-block'>
                         <div className='block-3'>{element.tags.map((el:string,index:number) =>
                             <div key={index + "user_tags"}>
-                                <div className='items_tags_position items_tag'>{el}</div>
+                                <div className='tags'>{"#" + el}</div>
                             </div>
                         )}
                         </div>

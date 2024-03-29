@@ -2,9 +2,11 @@ import React, {useState} from "react";
 import "./UserActivity.css"
 import {Route, Routes, NavLink} from "react-router-dom";
 import UserActivityItems from "./user_activity_items/UserActivityItems";
+import {useActions} from "../../../../store/hooks/useActions";
 
 
 const UserActivity = () => {
+    const{setUpdateStatus} = useActions();
     const [settings, setSettings] = useState<{type: string; filter: string, name: string, sort_parameters: string[], sort_state: string, order: string}>({type: 'answers', filter: 'filter=!3uW-Cfyr2M5A*vzE6', name: 'Answers', sort_parameters: ['activity', 'creation', 'votes'], sort_state: 'activity', order:'desc'});
 
     const activities:any[] = [
@@ -19,6 +21,7 @@ const UserActivity = () => {
     ]
 
     const activityElement = (type:string, filter:string, name:string, sort_parameters: string[], sort_state: string, order: string) => {
+        setUpdateStatus(true)
         setSettings({
             type: type,
             filter: filter,
@@ -32,17 +35,18 @@ const UserActivity = () => {
     return (
         <div className='activity_page'>
             <div className='activity_page_elements'>
-                <ul className='list_of_elements'>{activities.map((activity, index) => (
-                    <NavLink key={index} to={activity.path} className='element_list' onClick={() => activityElement(activity.type, activity.filter, activity.name, activity.sort_parameters, activity.sort_state, activity.order)}>
-                        <li>{activity.name}</li>
+                <div className='list_of_elements'>{activities.map((activity, index) => (
+                    <NavLink key={index} to={activity.path} className='nav_element' onClick={() => activityElement(activity.type, activity.filter, activity.name, activity.sort_parameters, activity.sort_state, activity.order)}>
+                        <div className='element_list'>{activity.name}</div>
                     </NavLink>
-                ))}</ul>
+                ))}</div>
             </div>
             <div className='sub_elements'>
                 <Routes>
                     <Route path={settings.type !== "answers" ? `/${(settings.name).toLowerCase()}`: "/"} element={<UserActivityItems  {...settings}/>}></Route>
                 </Routes>
             </div>
+
         </div>
     )
 }

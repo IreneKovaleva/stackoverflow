@@ -44,7 +44,7 @@ const TopTags = () => {
         <div className='user_top_tags_block'>{topItems.map((element, index) =>
             <div key={index} className='user_top_tags_elements' onClick={() => redirect(element.tag_name)}>
                 <div className='user_top_tags'>
-                    <div className='user_top_tags_name'>{element.tag_name}</div>
+                    <div className='tags'>{" #"+element.tag_name}</div>
                 </div>
                 <div className='user_top_tags_score'>
                     <div className='user_top_tag'><span className='text_of_tag'>{numberFormat(element.answer_score)}</span> score</div>

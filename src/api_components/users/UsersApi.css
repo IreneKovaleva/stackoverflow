@@ -1,7 +1,7 @@
 .users_description {
     display: flex;
     margin-top: 20px;
-    height: 200px;
+    height: 250px;
     border-bottom: 1px solid #ece9e9;
     border-top: 1px solid #ece9e9;
     margin-bottom: 10px;
@@ -117,7 +117,7 @@
 .user_content_about {
     display: block;
     font-size: 13px;
-    overflow: scroll;
+
 }
 .portfolio_likes {
     margin: 0 auto;

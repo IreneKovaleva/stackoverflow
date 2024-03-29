@@ -16,11 +16,31 @@
 }
 .profile_sections_active {
     text-decoration: none;
-    width: 80px;
-    padding: 2px;
+    width: 100px;
+    padding: 5px;
     text-align: center;
-    height: 25px;
+    height: 30px;
     margin: 15px;
     color: #ffffff;
+    border-radius: 10px;
+}
+.profile_sections_active.active {
+    background: #4680ff;
+    border: 1px solid #4680ff;
+}
+
+.profile_sections_active.active:hover {
+    border: 1px solid #ffffff;
+    box-shadow: 0 0 0 1px white, 0 0 0 2px #4680ff;
+}
+
+.profile_sections_active.not_active {
+    background: #d7d3d3;
+    border: 1px solid lightgrey;
+}
+
+.profile_sections_active.not_active:hover {
+    border: 1px solid #ffffff;
+    box-shadow: 0 0 0 1px white, 0 0 0 2px #d7d3d3;
 }
 

@@ -39,4 +39,7 @@ export const fetchUserProfileApiEndpoint = (user_id: string)  => {
 export function setUserId(user_id: string): UserItemsApiAction {
     return {type: UserApiActionTypes.SET_API_USER_ID, payload: user_id}
 }
+export function setUpdateStatus(update: boolean): UserItemsApiAction {
+    return {type: UserApiActionTypes.SET_API_SORT_UPDATE, payload: update}
+}
 

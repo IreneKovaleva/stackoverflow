@@ -18,7 +18,7 @@ const UserComments: React.FC<Structure> = ({items}) => {
     return (
         <div>
             <div>{items.map((element, index) =>
-                <div key={index} className='items_box' onClick={() => redirect(element.post_id, element.post_type, element.comment_id)}>
+                <div key={index} className='user_items_block' onClick={() => redirect(element.post_id, element.post_type, element.comment_id)}>
                     <div className='block-1'>
                         <div>{element.score} <span>votes</span></div>
                     </div>

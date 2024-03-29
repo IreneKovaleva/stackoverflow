@@ -5,41 +5,50 @@
 .head_box {
     display: flex;
     flex-flow: row;
+    width: 95%;
+    margin: 20px 20px 20px 20px;
+    height: 30%;
+}
+.head_box_comments {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    width: 100%;
     margin: 20px 0 20px 0;
+    height: 30%;
 }
 .total {
     font-size: 20px;
     font-weight: bold;
     width: 435px;
+    margin: auto 0;
 }
 .filters {
-    width: 200px;
+    /*width: 100%;*/
     display: flex;
     flex-flow: row;
+    align-items: flex-end;
 }
 
 .filters_none {
     display: none;
 }
 
-
 .text_position {
     text-align: center;
+    padding: 5px;
 }
 .user_items_block {
     width: 100%;
     display: flex;
     flex-flow: column;
-    border-top: 0.5px solid lightgrey;
-    border-right: 1px solid lightgrey;
-    border-left: 1px solid lightgrey;
-    border-bottom: 0.5px solid lightgrey;
     padding: 10px;
+    margin: 15px 15px 0 0 ;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .block-1 {
     display: flex;
     flex-flow: row;
-    margin: 5px 0 5px 0 ;
+    margin: 10px 0 10px 0;
 }
 .block-3 {
     margin: 5px 0 0 0 ;
@@ -60,8 +69,9 @@
 }
 
 .low-block {
-    display: flex;
-    flex-flow: row;
+    display: grid;
+    grid-template-columns: 80% 20%;
+    margin: 10px 0 10px 0;
 }
 .user_items_date {
     position: relative;
@@ -93,10 +103,11 @@
 }
 .grid_badges {
     display: grid;
-    grid-template-columns: 170px 170px 170px 170px;
+    grid-template-columns: 180px 180px 180px 180px;
     grid-template-rows: repeat(20, 30px);
     row-gap: 10px;
     column-gap: 10px;
+    margin-left: 20px;
 }
 .badges_width {
     max-width: 200px;
@@ -124,9 +135,13 @@
 .opened_user_activity {
     display: block;
 }
-.closed {
+.closed_post {
     display: none;
 }
+.opened_post {
+    display: block;
+}
+
 .privileges {
     display: flex;
     flex-direction: column;
@@ -135,6 +150,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin: 10px 0 10px 0;
 }
 .privileges_reputation {
     color: green;
@@ -191,14 +207,15 @@
 }
 .reputation_row_grid {
     display: grid;
-    grid-template-columns: 90px 40px auto 60px;
-    padding-right: 20px;
+    grid-template-columns: 10% 10% 70% 10%;
+    padding: 20px;
+    margin: 10px 0 10px 0;
 }
 .reputation_back {
-    border: 0.5px solid lightgrey;
+    border: 0.5px solid rgba(211, 211, 211, 0.41);
 }
 .reputation_txt {
-    font-size: 13px;
+    font-size: 15px;
 }
 .reputation_width {
     width: 100px;
@@ -212,7 +229,7 @@
     border-left: 1.5px solid lightgrey;
     border-right: 1.5px solid lightgrey;
     border-radius: 15px;
-    margin-right: 20px;
+    margin-right: 10px;
     margin-top: 15px;
     box-shadow: rgba(33, 35, 38, 0.1) 0 13px 21px -3px;
 }
@@ -251,4 +268,10 @@
 }
 .text_tag {
     font-size: 15px;
+}
+.post_type {
+    margin: 10px 0 20px 0;
+}
+.post_title {
+    margin: 0 0 20px 0;
 }

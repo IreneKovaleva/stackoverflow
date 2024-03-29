@@ -2,15 +2,17 @@
     display: flex;
     flex-flow: row;
     width: 100%;
-    padding: 20px 0 20px 0;
-
+    padding: 20px 5px 20px 5px;
+}
+.pagination {
+    margin: 0 auto;
 }
 .pagination_element {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     color: rgba(35, 37, 43, 0.8);
     float: left;
     font-size: 18px;
-    width: 36px;
+    width: 33px;
     text-align: center;
     height: 35px;
     padding: 6px;
@@ -27,7 +29,7 @@
 }
 
 .first_element {
-    border-top-left-radius: 5px;
+    border-top-left-radius: 6px;
     border-bottom-left-radius: 5px;
 }
 

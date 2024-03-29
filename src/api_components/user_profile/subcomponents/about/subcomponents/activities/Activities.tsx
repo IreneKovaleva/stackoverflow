@@ -16,11 +16,11 @@ const Activities:React.FC  = () => {
 
 
     useEffect( () => {
-        let endpoint
-        if (content === 'posts' || 'answers'){
+        let endpoint;
+        if (content === 'answers'){
             endpoint = `${stackExchangeApiUrl}/2.3/users/${user_id}/${content}?order=${order}&sort=${sort}&site=stackoverflow&${filter}`;
         }else {
-            endpoint = `${stackExchangeApiUrl}/2.3/users/${user_id}/${content}?order=${order}&sort=${sort}&site=stackoverflow&`;
+            endpoint = `${stackExchangeApiUrl}/2.3/users/${user_id}/${content}?order=${order}&sort=${sort}&site=stackoverflow`;
         }
         fetch(endpoint)
             .then(res => res.json())
@@ -36,7 +36,7 @@ const Activities:React.FC  = () => {
                     setError(error.message);
                 }
             )
-    }, [user_id, content, order, sort]);
+    }, [user_id, content, order, sort, filter]);
 
     if (error) {
         return <div>Error: {error}</div>;
@@ -51,7 +51,7 @@ const Activities:React.FC  = () => {
                 <div className='activity_elements_score size_text'>
                     <div className='txt'>{element.score}</div>
                 </div>
-                <div className='profile_elements_title size_text'>{parse(element.title)}</div>
+                <div className='profile_elements_title size_text'>{parse("" + element.title)}</div>
                 <div className='profile_elements_date size_text'>{creationDate(element.creation_date)}</div>
             </div>
         )}</div>

@@ -10,9 +10,10 @@ import {useActions} from "../../../../store/hooks/useActions";
 
 const AboutUser = () => {
     const { user_id, about_user} = useTypedSelector(state => state.api_user_profile);
-    const {content, order, comments_order} = useTypedSelector(state => state.user_about)
+    const {content, order, comments_order} = useTypedSelector(state => state.user_about);
     const {setUserAboutContent, setUserAboutFilter, setUserAboutOrder, setUserAboutSorting, setUserAboutCommentsOrder} = useActions();
-    const [header, setHeader] = useState('Posts');
+    const [header, setHeader] = useState<string>('Answers');
+    const [sort, setSort] = useState<string>('activity');
 
 
     useEffect(() => {
@@ -20,31 +21,32 @@ const AboutUser = () => {
     }, [about_user, order, content, comments_order, user_id])
 
     const data_type = (event: React.MouseEvent<HTMLElement>) => {
-        const filterValue = (event.target as Element).id === 'posts'? '!nOedRLaMkU' : '!6Wfm_gUdxFeTe';
+        const filterValue = (event.target as Element).id === 'answers'? 'filter=!3uW-Cfyr2M5A*vzE6' : "";
         setUserAboutFilter(filterValue)
-        setUserAboutContent((event.target as Element).id)
+        setUserAboutContent(((event.target as Element).id).toLowerCase())
         setHeader((event.target as Element).id)
     }
 
     const toggle_order = (order:string) => {
-        setUserAboutOrder(order)
+        setUserAboutOrder(order.toLowerCase())
 
     }
     const set_comments_order = (comments_order: string) => {
-        setUserAboutCommentsOrder(comments_order)
+        setUserAboutCommentsOrder(comments_order.toLowerCase())
     }
 
     const sorting = (event: React.MouseEvent<HTMLElement>) => {
-        setUserAboutSorting((event.target as Element).id);
+        let element = ((event.target as Element).id).toLowerCase()
+        setSort(element)
+        setUserAboutSorting(element);
     };
 
     return (
         <div className='profile_about'>
             <div className='profile_about_left'>
-                <div className='profile_empty'>
+                <div>
                     <div className='profile_head'>
-                        <div className='profile_user_head head_width'>Badges</div>
-                        <div className='profile_user_all'>View all badges</div>
+                        <div className='profile_user_head badges_head_width'>Badges</div>
                     </div>
                     <Badges/>
                 </div>
@@ -54,41 +56,33 @@ const AboutUser = () => {
                     <div className='profile_user_head head_width'>About</div>
                     <div className='profile_about_right_text'>{parse(''+ about_user)}</div>
                 </div>
-
-                <div className='profile_empty'>
+                <div>
                     <div className='profile_head'>
                         <div className='profile_user_head head_width'>Top Tags</div>
-                        <div className='profile_user_all'>View all tags</div>
                     </div>
                     <UserTopTags />
                 </div>
                 <div>
                     <div className="profile_top_elements">
-                        <div className='profile_user_head head_width'>Top {header}</div>
-                        <div className="profile_top_elements_view">View all <span className='links'>posts</span>, <span className='links'>answers</span>,<span className='links'>questions</span></div>
+                        <div>
+                            <div className='profile_user_head head_width'>Top {header}</div>
+                        </div>
                         <div className="profile_top_elements_buttons">
-                            <div id='content' className='profile_top_elements_elements'>
-                                <button id='posts' onClick={data_type} className={`elements_button ${content === 'posts' ? 'active_about_user' : 'inactive_about_user'}`}>Posts</button>
-                                <button id='answers' onClick={data_type} className={`elements_button ${content === 'answers' ? 'active_about_user' : 'inactive_about_user'}`}>Answers</button>
-                                <button id='questions' onClick={data_type} className={`elements_button ${content === 'questions' ? 'active_about_user' : 'inactive_about_user'}`}>Questions</button>
-                            </div>
-
-                            <div id='filter' className='profile_top_elements_filter'>
-                                <button onClick={() => toggle_order(order)} className={`elements_button ${content === 'posts' ? 'active_about_user' : 'inactive_about_user'}`}>{(order).toUpperCase()}</button>
-                                <button id='activity' onClick={sorting} className={`elements_button ${content === 'activity' ? 'active_about_user' : 'inactive_about_user'}`}>Activity</button>
-                                <button id='votes' onClick={sorting} className={`elements_button ${content === 'votes' ? 'active_about_user' : 'inactive_about_user'}`}>Votes</button>
-                                <button id='creation' onClick={sorting} className={`elements_button ${content === 'creation' ? 'active_about_user' : 'inactive_about_user'}`}>Creation</button>
-                            </div>
+                                <button id='answers' onClick={data_type} className={`elements_button ${content === 'answers' ? 'about_user_button active' : 'about_user_button not_active'}`}>Answers</button>
+                                <button id='questions' onClick={data_type} className={`elements_button ${content === 'questions' ? 'about_user_button active' : 'about_user_button not_active'}`}>Questions</button>
+                                <button onClick={() => toggle_order(order)} className='elements_button about_user_button active'>{order}</button>
+                                <button id='activity' onClick={sorting} className={`elements_button ${sort === 'activity' ? 'about_user_button active' : 'about_user_button not_active'}`}>Activity</button>
+                                <button id='votes' onClick={sorting} className={`elements_button ${sort === 'votes' ? 'about_user_button active' : 'about_user_button not_active'}`}>Votes</button>
+                                <button id='creation' onClick={sorting} className={`elements_button ${sort === 'creation' ? 'about_user_button active' : 'about_user_button not_active'}`}>Creation</button>
                         </div>
                     </div>
                     <Activities />
                 </div>
-                <div className='profile_empty'>
-                    <div className='profile_top_elements'>
+                <div>
+                    <div className='profile_top_elements_comments'>
                         <div className='profile_user_head head_width'>Comments</div>
-                        <div className='profile_top_elements_view'>View all comments</div>
-                        <div className="profile_top_elements_buttons filter_margin">
-                            <button onClick={() => set_comments_order(comments_order)} className='elements_button'>{(comments_order).toUpperCase()}</button>
+                        <div className="comments_low_block">
+                            <button onClick={() => set_comments_order(comments_order)} className='elements_button about_user_button active'>{comments_order}</button>
                         </div>
                     </div>
                     <UserTopComments  />
