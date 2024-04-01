@@ -56,8 +56,8 @@ const Questions: React.FC = () => {
 
     return (
         <div>
-            <div>{questions.map((element) =>
-                <div key={element.question_id + "questions"}>
+            <div>{questions.map((element, index) =>
+                <div key={index}>
                     <div className='question_content'>
                         <div className='block_a'>
                             <div className='answered'>

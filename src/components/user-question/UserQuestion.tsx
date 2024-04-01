@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleDown, faCircleUp} from "@fortawesome/free-solid-svg-icons";
+// import parse from 'html-react-parser';
 import "./UserQuestion.css"
 import {useTypedSelector} from "../../store/hooks/useTypedSelector";
 import {creationDate} from "../../services/date_format";
@@ -8,7 +9,6 @@ import {useActions} from "../../store/hooks/useActions";
 import Comments from "../../api_components/comments/Comments"
 import Answers from "../../api_components/answers/Answers";
 import parse from "html-react-parser";
-import {numberFormat} from "../../services/number_format";
 
 
 const UserQuestions: React.FC = () => {
@@ -33,9 +33,9 @@ const UserQuestions: React.FC = () => {
     const tags_elements = (tag:string[] | null) => {
         if (tag !== null && tag !== undefined) {
             return(
-                <div className='user_question_tags'>{tag.map((element, index) =>
-                    <div className='tags' key={index}>
-                        <div>{" #" + element}</div>
+                <div className='questions_ct_tags'>{tag.map((element, index) =>
+                    <div className='question_tags margin' key={index}>
+                        <div>{element}</div>
                     </div>
                 )}</div>
             )
@@ -45,7 +45,9 @@ const UserQuestions: React.FC = () => {
     const item_comment_elements = () => {
         const endpoint = `/2.3/questions/${question_id}/comments?order=desc&sort=creation&site=stackoverflow&filter=!bEvCQhrKga-zTC`;
         return(
-            <Comments endpoint={endpoint}/>
+            <div className='comment_block'>
+                    <Comments endpoint={endpoint}/>
+            </div>
         )
     }
 
@@ -58,29 +60,41 @@ const UserQuestions: React.FC = () => {
 
     return (
         <div className="first_block_user_question">
-            <div className='questions_description_title'>{parse(title)}</div>
-            <div className='questions_description_score'>
-                <div className='score margin'>Score <span className='span_user_question'>{numberFormat(score)}</span></div>
-                <div className='date margin'>Date  <span className='span_user_question'>{creationDate(creation_date)}</span></div>
-            </div>
-            <div className='questions_content'>
-                <div className='questions_content_body'>
-                    <div  className='questions_content_votes'>
-                        <FontAwesomeIcon className='arrowIcon iconUp' icon={faCircleUp} onClick={() => voteUp(1)}></FontAwesomeIcon>
-                        <div>{score}</div>
-                        <FontAwesomeIcon className='arrowIcon iconDown' icon={faCircleDown} onClick={() => voteDown(1)}></FontAwesomeIcon>
+            <div className="rows_user_question">
+                <div className='questions_content'>
+                    <div className='questions_description'>
+                        <div className='questions_description_title'>{parse(title)}</div>
+                        <div className='questions_description_score'>
+                            <div className='score margin'>Score <span className='span_user_question'>{score}</span></div>
+                            <div className='date margin'>Date  <span className='span_user_question'>{creationDate(creation_date)}</span></div>
+                        </div>
                     </div>
-                    <div className='questions_body'>
-                        <div>{parse(body)}</div>
+                    <div className='questions_content_body'>
+                        <div  className='questions_content_votes'>
+                            <FontAwesomeIcon className='arrowIcon iconUp' icon={faCircleUp} onClick={() => voteUp(1)}></FontAwesomeIcon>
+                            <div>{score}</div>
+                            <FontAwesomeIcon className='arrowIcon iconDown' icon={faCircleDown} onClick={() => voteDown(1)}></FontAwesomeIcon>
+                        </div>
+                        <div className='questions_body'>
+                            <div>{parse(body)}</div>
+                        </div>
                     </div>
-                </div>
-                <div className='questions_tags'>
-                    <div className='score margin' >Quantity of answers: <span className='span_user_question'>{answer_count}</span></div>
-                    <div>{tags_elements(tags)}</div>
-                </div>
-                <div className='comment_block'>{item_comment_elements()}</div>
-                <div className="answers_block">
-                    <Answers />
+                    <div>
+                        <div className='questions_tags'>
+                            <div className='score margin' >Answers <span className='span_user_question'>{answer_count}</span></div>
+                            <div>{tags_elements(tags)}</div>
+                        </div>
+                    </div>
+                    <div className='comments_user_question'>
+                        <div className='comment_block'>{item_comment_elements()}</div>
+                    </div>
+
+                    <div className='answers_user_question'>
+                        <h2>Answers</h2>
+                        <div className='answers_block'>
+                                <Answers />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

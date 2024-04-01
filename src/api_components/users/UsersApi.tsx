@@ -42,8 +42,8 @@ const UsersApi = () => {
 
     return (
         <div>
-            <div>{users.map((element) =>
-                <div key={element.user_id} className='users_description'>
+            <div>{users.map((element,index) =>
+                <div key={index} className='users_description'>
                     <div className='portfolio'>
                         <div className='portfolio_default_img' onClick={() => {transfer(element.user_id); navigate('/profile');}}  >
                             <img alt="Profile image" className='portfolio_image' src={element.profile_image}></img>
