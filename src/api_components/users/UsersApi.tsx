@@ -45,7 +45,7 @@ const UsersApi = () => {
             <div>{users.map((element,index) =>
                 <div key={index} className='users_description'>
                     <div className='portfolio'>
-                        <div className='portfolio_default_img' onClick={() => {transfer(element.user_id); navigate('/profile');}}  >
+                        <div className='portfolio_default_img' onClick={() => {transfer(element.user_id); navigate(`/profile/${element.user_id}`);}}  >
                             <img alt="Profile image" className='portfolio_image' src={element.profile_image}></img>
                         </div>
                         <div className="portfolio_likes">
@@ -54,7 +54,7 @@ const UsersApi = () => {
                         </div>
                     </div>
                     <div className='user_content'>
-                        <div className='user_content_name' onClick={() => {transfer(element.user_id); navigate('/profile');}} >{element.display_name}</div>
+                        <div className='user_content_name' onClick={() => {transfer(element.user_id); navigate(`/profile/${element.user_id}`);}} >{element.display_name}</div>
                         <div className="user_content_about">
                             {element.about_me ? (
                                 element.about_me.length > 300

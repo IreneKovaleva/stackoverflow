@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import "./UserTopTags.css"
-import {useTypedSelector} from "../../../../../../store/hooks/useTypedSelector";
 import {numberFormat} from "../../../../../../services/number_format"
 import {useRedirectTags} from "../../../../../../custom_hooks/useRedirectTags";
+import {useParams} from "react-router-dom";
 
 const TopTags = () => {
-    const { user_id } = useTypedSelector(state => state.api_user_profile);
+    const {id} = useParams();
     const [error, setError] = useState<string | null>(null);
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [topItems, setItems] = useState<any[]>([]);
@@ -14,7 +14,7 @@ const TopTags = () => {
 
 
     useEffect( () => {
-        let endpoint = `${stackExchangeApiUrl}/2.3/users/${user_id}/top-tags?site=stackoverflow&filter=!nOedRLhSc)`;
+        let endpoint = `${stackExchangeApiUrl}/2.3/users/${id}/top-tags?site=stackoverflow&filter=!nOedRLhSc)`;
         fetch(endpoint)
             .then(res => res.json())
             .then(
@@ -31,7 +31,7 @@ const TopTags = () => {
                     setError(error.message);
                 }
             )
-    }, [user_id]);
+    }, [id]);
 
     if (error) {
         return <div>Error: {error}</div>;

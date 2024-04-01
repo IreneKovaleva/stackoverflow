@@ -4,11 +4,11 @@ import "../../../../../users/UsersApi.css"
 import "../../../../UserProfile.css"
 import {faAward} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {useTypedSelector} from "../../../../../../store/hooks/useTypedSelector";
+import {useParams} from "react-router-dom";
 
 
 const Badges = () => {
-    const { user_id } = useTypedSelector(state => state.api_user_profile);
+    const {id} = useParams();
     const [error, setError] = useState<string | null>(null);
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [badgesType, setTypes] = useState<{bronze: number; silver: number; gold: number;}>({bronze: 0, silver: 0, gold: 0});
@@ -16,7 +16,7 @@ const Badges = () => {
 
 
     useEffect( () => {
-        let endpoint = `${stackExchangeApiUrl}/2.3/users/${user_id}/badges?order=desc&sort=awarded&site=stackoverflow&filter=!)qCoq7Jla4CyV3(bezUB`;
+        let endpoint = `${stackExchangeApiUrl}/2.3/users/${id}/badges?order=desc&sort=awarded&site=stackoverflow&filter=!)qCoq7Jla4CyV3(bezUB`;
         fetch(endpoint)
             .then(res => res.json())
             .then(
@@ -31,7 +31,7 @@ const Badges = () => {
                     setError(error.message);
                 }
             )
-    }, [user_id]);
+    }, [id]);
 
     if (error) {
         return <div>Error: {error}</div>;

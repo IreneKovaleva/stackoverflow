@@ -44,13 +44,11 @@ function App() {
                   <Route path="/user_question" element={<UserQuestion/>}></Route>
                   <Route path="/users" element={<Users/>}></Route>
                   <Route path="/tags" element={<Tags />}></Route>
-                  <Route path="/profile/*" element={<Profile />}></Route>
+                  <Route path="/profile/:id/*" element={<Profile />}></Route>
                   <Route path="/search-results" element={<SearchResultsPage />}></Route>
                 </Routes>
               </div>
-              <div className="other">
-
-              </div>
+              <div className="other"></div>
             </div>
           </div>
         </div>

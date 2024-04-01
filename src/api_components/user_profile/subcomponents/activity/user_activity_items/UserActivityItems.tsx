@@ -6,6 +6,7 @@ import {numberFormat} from "../../../../../services/number_format";
 import {userActivityType} from "../../../../../services/user_activity_type";
 import "../../../../../App.css"
 import {setUpdateStatus} from "../../../../../store/action-creators/api/user_profile/user_profile_action";
+import {useParams} from "react-router-dom";
 
 interface settings {
     type: string;
@@ -17,7 +18,8 @@ interface settings {
 }
 
 const UserActivityItems:React.FC<settings> = ({type,filter, name, sort_parameters, sort_state, order}) => {
-    const {user_id, update} = useTypedSelector(state => state.api_user_profile);
+    const {id} = useParams();
+    const {update} = useTypedSelector(state => state.api_user_profile);
     const {setTotalPages, setUpdateStatus} = useActions()
     const {page} = useTypedSelector(state => state.pages)
     const ComponentToRender = userActivityType(type);
@@ -31,12 +33,12 @@ const UserActivityItems:React.FC<settings> = ({type,filter, name, sort_parameter
 
 
     useEffect( () => {
-        if (!user_id || !page || !sort_state) return;
+        if (!id || !page || !sort_state) return;
         if (update) {
             setSorting(sort_state !== "" ? `&sort=${sort_state}` : '')
         }
         let order_parameter = order !== "" ? `&order=${order}` : '';
-        let endpoint = `${stackExchangeApiUrl}/2.3/users/${user_id}/${type}?page=${page}${order_parameter}${sort}&site=stackoverflow&${filter}`;
+        let endpoint = `${stackExchangeApiUrl}/2.3/users/${id}/${type}?page=${page}${order_parameter}${sort}&site=stackoverflow&${filter}`;
         fetch(endpoint)
             .then(res => res.json())
             .then(
@@ -53,7 +55,7 @@ const UserActivityItems:React.FC<settings> = ({type,filter, name, sort_parameter
                     setIsLoaded(true);
                     setError(error.message);
                 })
-    }, [user_id, page, type,filter, filter, sort, sort_state]);
+    }, [id, page, type,filter, filter, sort, sort_state]);
 
     const structure = {
         items: items

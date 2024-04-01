@@ -4,20 +4,22 @@ import "./UserTopComments.css"
 import {useTypedSelector} from "../../../../../../store/hooks/useTypedSelector";
 import {creationDate} from "../../../../../../services/date_format";
 import {useRedirectComments} from "../../../../../../custom_hooks/useRedirectComments";
+import {useParams} from "react-router-dom";
 
 
 const UserTopComments = () => {
     const [error, setError] = useState<string | null>(null);
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [topItems, setItems] = useState<any[]>([]);
-    const { user_id } = useTypedSelector(state => state.api_user_profile);
+    const {id} = useParams();
     const {comments_order} = useTypedSelector(state => state.user_about)
     const redirect = useRedirectComments();
 
     const stackExchangeApiUrl = "https://api.stackexchange.com";
 
     useEffect( () => {
-        let comments =`${stackExchangeApiUrl}/2.3/users/${user_id}/comments?order=${comments_order}&sort=creation&site=stackoverflow&filter=!6WPIompAT2Hvd`;
+        let newOrder = comments_order.toLowerCase()
+        let comments =`${stackExchangeApiUrl}/2.3/users/${id}/comments?order=${newOrder}&sort=creation&site=stackoverflow&filter=!6WPIompAT2Hvd`;
         fetch(comments)
             .then(res => res.json())
             .then(
@@ -32,7 +34,7 @@ const UserTopComments = () => {
                     setError(error.message);
                 }
             )
-    }, [user_id, comments_order]);
+    }, [id, comments_order]);
 
     if (error) {
         return <div>Error: {error}</div>;

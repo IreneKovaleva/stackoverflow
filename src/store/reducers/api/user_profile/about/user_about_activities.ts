@@ -3,9 +3,9 @@ import {UserAboutApiState, UserAboutApiActionTypes, UserAboutAction} from "../..
 const initialState: UserAboutApiState = {
     content: 'answers',
     filter: 'filter=!3uW-Cfyr2M5A*vzE6',
-    order: 'desc',
+    order: 'Asc',
     sort: 'activity',
-    comments_order: 'asc'
+    comments_order: 'Asc'
 }
 
 export const userAboutReducer = (state: UserAboutApiState = initialState, action: UserAboutAction): UserAboutApiState => {

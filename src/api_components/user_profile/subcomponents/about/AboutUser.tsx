@@ -7,9 +7,11 @@ import Badges from "./subcomponents/badges/Badges";
 import UserTopTags from "./subcomponents/top_tags/UserTopTags";
 import UserTopComments from "./subcomponents/top_user_comments/UserTopComments";
 import {useActions} from "../../../../store/hooks/useActions";
+import {useParams} from "react-router-dom";
 
 const AboutUser = () => {
-    const { user_id, about_user} = useTypedSelector(state => state.api_user_profile);
+    const {id} = useParams();
+    const {about_user} = useTypedSelector(state => state.api_user_profile);
     const {content, order, comments_order} = useTypedSelector(state => state.user_about);
     const {setUserAboutContent, setUserAboutFilter, setUserAboutOrder, setUserAboutSorting, setUserAboutCommentsOrder} = useActions();
     const [header, setHeader] = useState<string>('Answers');
@@ -18,7 +20,7 @@ const AboutUser = () => {
 
     useEffect(() => {
 
-    }, [about_user, order, content, comments_order, user_id])
+    }, [about_user, order, content, comments_order, id])
 
     const data_type = (event: React.MouseEvent<HTMLElement>) => {
         const filterValue = (event.target as Element).id === 'answers'? 'filter=!3uW-Cfyr2M5A*vzE6' : "";
@@ -28,11 +30,11 @@ const AboutUser = () => {
     }
 
     const toggle_order = (order:string) => {
-        setUserAboutOrder(order.toLowerCase())
+        setUserAboutOrder(order)
 
     }
     const set_comments_order = (comments_order: string) => {
-        setUserAboutCommentsOrder(comments_order.toLowerCase())
+        setUserAboutCommentsOrder(comments_order)
     }
 
     const sorting = (event: React.MouseEvent<HTMLElement>) => {
@@ -88,7 +90,6 @@ const AboutUser = () => {
                     <UserTopComments  />
                 </div>
             </div>
-
         </div>
     )
 }
