@@ -5,20 +5,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {useActions} from "../../../store/hooks/useActions";
 import Questions from "../../../api_components/questions/Questions";
 
-
 const Main = () => {
     const {setOrder, setSorting} = useActions();
     const [activeSort, setActiveSort] = useState('votes');
     const [activeOrder, setActiveOrder] = useState('desc');
 
     const new_order = (event: React.MouseEvent<HTMLElement>) => {
-        setOrder((event.target as Element).id);
-        setActiveOrder((event.target as Element).id);
+        if (event && event.target) {
+            setOrder((event.target as Element).id);
+            setActiveOrder((event.target as Element).id);
+        }
     }
 
     const new_sorting = (event: React.MouseEvent<HTMLElement>) => {
-        setSorting((event.target as Element).id);
-        setActiveSort((event.target as Element).id);
+        if (event && event.target) {
+            setSorting((event.target as Element).id);
+            setActiveSort((event.target as Element).id);
+        }
     }
 
     return (
@@ -39,19 +42,18 @@ const Main = () => {
             </div>
             <div className="buttons_block">
                 <div id='general' className='buttons margin'>
-                    <button className={activeSort === 'creation' ? 'button active' : 'button not_active'} id="creation" onClick={new_sorting}>CREATION</button>
-                    <button className={activeSort === 'activity' ? 'button active' : 'button not_active'} id="activity" onClick={new_sorting}>ACTIVITY</button>
-                    <button className={activeSort === 'votes' ? 'button active' : 'button not_active'} id="votes" onClick={new_sorting}>VOTES</button>
+                    <button className={activeSort === 'creation' ? 'button active' : 'button not_active'} id="creation" data-testid="creation-button" onClick={new_sorting}>CREATION</button>
+                    <button className={activeSort === 'activity' ? 'button active' : 'button not_active'} id="activity" onClick={new_sorting} data-testid="activity-button">ACTIVITY</button>
+                    <button className={activeSort === 'votes' ? 'button active' : 'button not_active'} id="votes" onClick={new_sorting} data-testid="votes-button">VOTES</button>
                 </div>
                 <div id= 'order' className='order margin'>
-                    <button className={activeOrder === 'desc' ? 'button active' : 'button not_active'} id="desc" onClick={new_order}>DESC</button>
-                    <button className={activeOrder === 'asc' ? 'button active' : 'button not_active'} id="asc" onClick={new_order}>ASC</button>
+                    <button className={activeOrder === 'desc' ? 'button active' : 'button not_active'} id="desc" data-testid="desc-button" onClick={new_order}>DESC</button>
+                    <button className={activeOrder === 'asc' ? 'button active' : 'button not_active'} id="asc" data-testid="asc-button" onClick={new_order}>ASC</button>
                 </div>
             </div>
             <div className="rows">
                 <Questions />
             </div>
-
         </div>
     )
 }

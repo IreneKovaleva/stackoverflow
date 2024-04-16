@@ -34,8 +34,8 @@ function App() {
           <div className="content_block">
             <div className="panel">
               <Search />
-              <button className="button_advanced_search active" onClick={ModalWindow}>Advanced Search</button>
-              <div>{is_modal && <AdvancedSearch/>}</div>
+              <button className="button_advanced_search active" onClick={ModalWindow} data-testid="advanced_search-button">Advanced Search</button>
+              <div data-testid="modal-window">{is_modal && <AdvancedSearch/>}</div>
             </div>
             <div className="content">
               <div className="routes">

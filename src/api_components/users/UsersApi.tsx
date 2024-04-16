@@ -5,7 +5,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faAward, faThumbsUp} from "@fortawesome/free-solid-svg-icons";
 import {useActions} from "../../store/hooks/useActions";
 import {useTypedSelector} from "../../store/hooks/useTypedSelector";
-import {numberFormat} from "../../services/number_format";
+import {numberFormat} from "../../services/numberFormat";
 import {NavigateFunction, useNavigate} from "react-router-dom";
 import Pagination from "../../components/pagination/Pagination";
 import parse from "html-react-parser";

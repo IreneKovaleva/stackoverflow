@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import parse from "html-react-parser";
 import "./Activities.css"
-import {creationDate} from "../../../../../../services/date_format";
+import {creationDate} from "../../../../../../services/creationDate";
 import {useTypedSelector} from "../../../../../../store/hooks/useTypedSelector";
 import {useParams} from "react-router-dom";
 

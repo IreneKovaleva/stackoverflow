@@ -1,6 +1,6 @@
 import React from "react";
 import "../../UserActivityItems.css";
-import {numberFormat} from "../../../../../../../services/number_format";
+import {numberFormat} from "../../../../../../../services/numberFormat";
 import {Structure} from "../../../../../../../store/types/api/user_profile/subcomponents/activity/activity_items";
 import {useRedirectTags} from "../../../../../../../custom_hooks/useRedirectTags";
 

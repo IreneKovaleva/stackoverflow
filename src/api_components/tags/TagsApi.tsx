@@ -7,7 +7,7 @@ import {useActions} from "../../store/hooks/useActions";
 import TagsWiki from "./subcomponents/TagsWiki";
 import Pagination from "../../components/pagination/Pagination";
 import {NavigateFunction, useNavigate} from "react-router-dom";
-import {numberFormat} from "../../services/number_format";
+import {numberFormat} from "../../services/numberFormat";
 
 
 const TagsApi = () => {

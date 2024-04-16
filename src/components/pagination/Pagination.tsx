@@ -1,14 +1,14 @@
 import React from "react";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Pagination.css"
-import {pages_range} from "../../services/pages_range";
+import {pagesRange} from "../../services/pagesRange";
 import {useTypedSelector} from "../../store/hooks/useTypedSelector";
 import {useActions} from "../../store/hooks/useActions";
 
 const Pagination = () => {
     const {setPageNumber} = useActions()
     const {total_pages, page, limit, siblings, page_in_line} = useTypedSelector(state => state.pages)
-    let array = pages_range(total_pages, page, limit, siblings, page_in_line);
+    let array = pagesRange(total_pages, page, limit, siblings, page_in_line);
 
     const pageNumber = (el: string | number) => {
         if (el === '&laquo;' || el === '...') {
@@ -33,14 +33,14 @@ const Pagination = () => {
             <div className='pagination'>
                 <div className="pagination_element first_element" onClick={() => pageNumber('&laquo;')}>&laquo;</div>
                 <div className="pagination_element" onClick={() => pageNumber('&lsaquo;')}>&lsaquo;</div>
-                {array.map((value: string | number, index: number) => {
+                {array.map((value: string | number) => {
                     if (value === page) {
                         return (
-                            <div className="pagination_element active_page_pagination" onClick={() => pageNumber(value)}>{value}</div>
+                            <div className="pagination_element active_page_pagination" onClick={() => pageNumber(value)} key={`page${value}`}>{value}</div>
                         )
                     } else {
                         return (
-                           <div className="pagination_element not_active_page_pagination" onClick={() => pageNumber(value)}>{value}</div>
+                           <div className="pagination_element not_active_page_pagination" onClick={() => pageNumber(value)} key={`page${value}`}>{value}</div>
                         )}
                 })}
                 <div className="pagination_element" onClick={() => pageNumber('&rsaquo;')}>&rsaquo;</div>

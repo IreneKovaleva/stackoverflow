@@ -1,6 +1,6 @@
 import React from "react";
 import "../../UserActivityItems.css"
-import {creationDate} from "../../../../../../../services/date_format";
+import {creationDate} from "../../../../../../../services/creationDate";
 import {Structure} from "../../../../../../../store/types/api/user_profile/subcomponents/activity/activity_items";
 import {useActions} from "../../../../../../../store/hooks/useActions";
 import {NavigateFunction, useNavigate} from "react-router-dom";
@@ -30,7 +30,7 @@ const UserAnswers:React.FC<Structure> = ({items}) => {
 
     return (
         <div>
-            <div>{items.map((element, index) =>
+            <div>{items.map((element) =>
                 <div key={element.answer_id} className='user_items_block'>
                     <div className='block-1'>
                         <div>{element.score} <span>votes</span></div>

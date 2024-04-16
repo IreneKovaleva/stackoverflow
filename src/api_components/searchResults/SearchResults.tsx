@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {creationDate} from "../../services/date_format";
+import {creationDate} from "../../services/creationDate";
 import "./SearchResults.css"
 import {NavigateFunction, useNavigate} from "react-router-dom";
 import {useActions} from "../../store/hooks/useActions";

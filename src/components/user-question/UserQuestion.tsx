@@ -4,7 +4,7 @@ import {faCircleDown, faCircleUp} from "@fortawesome/free-solid-svg-icons";
 // import parse from 'html-react-parser';
 import "./UserQuestion.css"
 import {useTypedSelector} from "../../store/hooks/useTypedSelector";
-import {creationDate} from "../../services/date_format";
+import {creationDate} from "../../services/creationDate";
 import {useActions} from "../../store/hooks/useActions";
 import Comments from "../../api_components/comments/Comments"
 import Answers from "../../api_components/answers/Answers";

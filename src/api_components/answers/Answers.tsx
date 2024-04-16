@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 import parse from 'html-react-parser';
-import {creationDate} from "../../services/date_format";
+import {creationDate} from "../../services/creationDate";
 import {useTypedSelector} from "../../store/hooks/useTypedSelector";
 import {faCaretDown, faCaretUp, faCheck, faCircleDown, faCircleUp} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

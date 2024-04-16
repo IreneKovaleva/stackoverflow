@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import parse from 'html-react-parser';
 import "./UserTopComments.css"
 import {useTypedSelector} from "../../../../../../store/hooks/useTypedSelector";
-import {creationDate} from "../../../../../../services/date_format";
+import {creationDate} from "../../../../../../services/creationDate";
 import {useRedirectComments} from "../../../../../../custom_hooks/useRedirectComments";
 import {useParams} from "react-router-dom";
 

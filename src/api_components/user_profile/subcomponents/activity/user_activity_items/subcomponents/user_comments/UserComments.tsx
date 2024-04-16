@@ -1,9 +1,8 @@
 import React from "react";
 import "../../UserActivityItems.css"
-import {creationDate} from "../../../../../../../services/date_format";
+import {creationDate} from "../../../../../../../services/creationDate";
 import parse from "html-react-parser";
 import {Structure} from "../../../../../../../store/types/api/user_profile/subcomponents/activity/activity_items";
-import {useActions} from "../../../../../../../store/hooks/useActions";
 import {useRedirectComments} from "../../../../../../../custom_hooks/useRedirectComments";
 
 const UserComments: React.FC<Structure> = ({items}) => {

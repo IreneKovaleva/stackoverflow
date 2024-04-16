@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import './Comments.css';
 import parse from 'html-react-parser';
-import { creationDate } from '../../services/date_format';
+import { creationDate } from '../../services/creationDate';
 import { useTypedSelector } from '../../store/hooks/useTypedSelector';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown, faCaretUp} from "@fortawesome/free-solid-svg-icons";
