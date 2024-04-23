@@ -36,3 +36,12 @@
     margin-top: 5px;
     padding: 10px;
 }
+@media only screen and (min-width: 430px) and (max-width: 932px) {
+    .tags_content {
+        align-items: center;
+        padding: 0;
+    }
+    .tags_content_tags {
+        width: 250px;
+    }
+}

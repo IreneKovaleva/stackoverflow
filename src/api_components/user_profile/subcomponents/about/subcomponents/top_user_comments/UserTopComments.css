@@ -42,3 +42,21 @@
     padding: 5px;
     font-size: 12px;
 }
+
+@media only screen and (min-width: 430px) and (max-width: 932px) {
+    .top_user_comments_block {
+        width: 65.5%;
+        margin-right: 0;
+        align-items: center;
+    }
+    .top_user_comments_elements_top {
+        grid-template-columns: 15% 68% auto;
+        padding: 5px ;
+        margin-left: 2px;
+        margin-right: 2px;
+    }
+    .user_comments_size_text{
+        padding: 10px;
+        font-size: 10px;
+    }
+}

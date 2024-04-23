@@ -54,13 +54,6 @@
     text-decoration: none;
     height: 20%;
 }
-/*.user_content_tags {*/
-/*    height: 50%;*/
-/*}*/
-/*.user_content_tags:hover {*/
-/*    color: #4680ff;*/
-/*}*/
-
 .user_badges {
     display: grid;
     grid-template-columns: 55% 15% 15% 15%;
@@ -117,10 +110,51 @@
 .user_content_about {
     display: block;
     font-size: 13px;
-
 }
 .portfolio_likes {
     margin: 0 auto;
     align-items: center;
+}
+
+@media only screen and (min-width: 430px) and (max-width: 932px) {
+    .users_description {
+        display: grid;
+        grid-template-rows: 30% 55% 15%;
+        width: 250px;
+        align-items: center;
+        height: 350px;
+    }
+    .portfolio {
+        width: 100%;
+        align-items: center;
+        border-right: none;
+    }
+    .user_content {
+        margin-top: 30px;
+        width: 200px;
+        align-items: center;
+        align-content: center;
+    }
+    .portfolio_image {
+        height: 100px;
+        width: 100px;
+    }
+    .portfolio_default_img {
+        height: 100px;
+        width: 100px;
+    }
+    .user_content_name {
+        font-size: 12px;
+    }
+    .user_content_about {
+        font-size: 10px;
+        width: 200px;
+    }
+    .user_location {
+        font-size: 12px;
+        margin: 0 auto;
+        border-left: none;
+    }
+
 
 }

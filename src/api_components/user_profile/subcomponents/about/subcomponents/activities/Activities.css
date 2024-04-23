@@ -18,6 +18,13 @@
     margin-left: 10px;
     margin-right: 10px;
 }
+.activities_block > .activity_elements_top:first-child {
+    border-top: none;
+}
+
+.activities_block > .activity_elements_top:last-child {
+    border-bottom: none;
+}
 .rows_elements {
     grid-auto-rows: 40px;
 }
@@ -36,4 +43,25 @@
     position: relative;
     margin-top: 20%;
     font-weight: bold;
+}
+
+@media only screen and (min-width: 430px) and (max-width: 932px) {
+    .activities_block {
+        width: 65.5%;
+        margin-right: 0;
+        align-items: center;
+    }
+    .activity_elements_top {
+        padding: 10px;
+        margin-left: 0;
+        margin-right: 0;
+        grid-template-columns: 15% 70% auto;
+    }
+    .size_text{
+        font-size: 10px;
+    }
+    .profile_elements_title {
+        padding: 2px;
+    }
+
 }

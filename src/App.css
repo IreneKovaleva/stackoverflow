@@ -130,3 +130,22 @@ body {
   box-shadow: 0 0 0 1px white, 0 0 0 2px #4680ff;
 }
 
+
+@media only screen and (min-width: 430px) and (max-width: 932px) {
+  .logo {
+    font-size: 12px;
+  }
+  .panel {
+    grid-template-columns: 60% 10%;
+  }
+  .button_advanced_search{
+    width: 120px;
+  }
+  .button{
+    margin-bottom: 5px;
+  }
+}
+
+
+
+

@@ -58,3 +58,29 @@
     font-size: 12px;
     margin: 5px;
 }
+
+@media only screen and (min-width: 430px) and (max-width: 932px) {
+    .profile_user {
+        align-items: center;
+        margin: 0;
+    }
+    .profile_user_details {
+        flex-direction: column;
+        align-items: center;
+        width: 250px;
+    }
+    .profile_user_name {
+        margin: 0;
+    }
+    .profile_user_name_name {
+        text-align: center;
+    }
+    .profile_user_location_block {
+        width: 80%;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .profile_user_location {
+        text-align: center;
+    }
+}

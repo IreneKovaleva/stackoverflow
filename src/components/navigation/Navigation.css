@@ -32,3 +32,9 @@
     width: 10%;
     float: left;
 }
+
+@media only screen and (min-width: 430px) and (max-width: 932px) {
+    .section_opened {
+        font-size: 14px;
+    }
+}

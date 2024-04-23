@@ -1,4 +1,3 @@
-
 .badges_block {
     margin-top: 15px;
     display: flex;
@@ -29,12 +28,10 @@
     border-radius: 50%;
     margin-right: 5px;
 }
-/*.color_gold {*/
-/*    background: gold;*/
-/*}*/
-/*.color_silver {*/
-/*    background: silver;*/
-/*}*/
-/*.color_bronze {*/
-/*    background: #967444;*/
-/*}*/
+@media only screen and (min-width: 430px) and (max-width: 932px) {
+    .badges_block {
+        width: 105%;
+        margin-right: 0;
+        align-items: center;
+    }
+}

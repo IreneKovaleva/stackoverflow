@@ -275,3 +275,33 @@
 .post_title {
     margin: 0 0 20px 0;
 }
+
+@media only screen and (min-width: 430px) and (max-width: 932px) {
+    .head_box {
+        display: grid;
+        grid-template-rows: 30% 70%;
+        grid-template-columns: 170px;
+
+
+        /*margin: 20px 20px 20px 20px;*/
+        height: 100%;
+        align-items: center;
+    }
+    .total {
+        font-size: 12px;
+        text-align: center;
+        width: 170px;
+        /*font-weight: bold;*/
+        /*width: 435px;*/
+        /*margin: auto 0;*/
+    }
+    .filters {
+        /*width: 100%;*/
+        /*display: flex;*/
+        flex-flow: column;
+        /*align-items: flex-end;*/
+        align-items: center;
+    }
+
+}
+
