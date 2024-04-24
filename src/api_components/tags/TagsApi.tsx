@@ -42,7 +42,7 @@ const TagsApi = () => {
     return (
         <div>
             <div className='tags_content'>{tags.map(element =>
-                <div className='tags_content_tags' key={element.count} onClick={() => handleClick(element.name)} >
+                <div className='tags_content_tags' key={element.count+"tags"} onClick={() => handleClick(element.name)} >
                     <div className='tags_content_tag'>
                         <div className='tags_tag'>
                             <div className='tags_tag_name_block'>

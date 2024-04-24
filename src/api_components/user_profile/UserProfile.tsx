@@ -4,25 +4,18 @@ import { faCakeCandles, faLocationDot} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {useTypedSelector} from "../../store/hooks/useTypedSelector";
 import {useActions} from "../../store/hooks/useActions";
-import {dateMonths} from '../../services/dateMonths'
-import {useParams} from "react-router-dom";
+import {date_months} from '../../services/date_months'
 
 
 
 const UserProfile = () => {
-    const {id} = useParams()
-    const {user_items, loading, error, user_id} = useTypedSelector(state => state.api_user_profile);
+    const {user_items, user_id, loading, error} = useTypedSelector(state => state.api_user_profile);
     const { fetchUserProfileApiEndpoint } = useActions()
 
 
     useEffect( () => {
-        if (id) {
-            fetchUserProfileApiEndpoint(id)
-        }else {
-            fetchUserProfileApiEndpoint(user_id)
-        }
-
-    }, [id, user_id]);
+        fetchUserProfileApiEndpoint(user_id)
+    }, [user_id]);
 
 
     if (loading) {
@@ -42,7 +35,7 @@ const UserProfile = () => {
                             <div className='profile_user_name_name'>{element.display_name}</div>
                             <div className='profile_user_date'>
                                 <FontAwesomeIcon icon={faCakeCandles}></FontAwesomeIcon>
-                                <div className='profile_user_date_margin'>Member for{dateMonths(element.creation_date)}</div>
+                                <div className='profile_user_date_margin'>Member for{date_months(element.creation_date)}</div>
                             </div>
                         </div>
                         <div className='profile_user_location_block'>

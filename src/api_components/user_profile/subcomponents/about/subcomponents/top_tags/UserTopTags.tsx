@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./UserTopTags.css"
-import {numberFormat} from "../../../../../../services/numberFormat"
+import {numberFormat} from "../../../../../../services/number_format"
 import {useRedirectTags} from "../../../../../../custom_hooks/useRedirectTags";
 import {useParams} from "react-router-dom";
 

@@ -7,7 +7,6 @@ import { faCheck, faXmark} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {creationDate} from "../../services/creationDate";
 import Pagination from "../../components/pagination/Pagination";
-import {numberFormat} from "../../services/numberFormat";
 
 
 const Questions: React.FC = () => {
@@ -41,7 +40,10 @@ const Questions: React.FC = () => {
         let txt = new DOMParser().parseFromString(str, "text/html");
         return txt.documentElement.textContent;
     }
-    const transfer = (question: { question_id: number | string }) => {
+    const rounding = (reputation: number) => {
+        return Math.round(reputation / 1000) + 'k'
+    };
+    const transfer = (question:any) => {
         UserQuestionActionCreatorQuestionId((question.question_id).toString())
     };
 
@@ -55,7 +57,7 @@ const Questions: React.FC = () => {
     return (
         <div>
             <div>{questions.map((element) =>
-                <div key={`question${element.question_id}`}>
+                <div key={element.question_id + "questions"}>
                     <div className='question_content'>
                         <div className='block_a'>
                             <div className='answered'>
@@ -69,16 +71,16 @@ const Questions: React.FC = () => {
                                 <div className='rate'><span
                                     className='bold'>Answers:</span>{element.answer_count}</div>
                             </div>
-                            <div className='titles margins' onClick={() => {transfer(element); navigate('/user_question');}} data-testid='transfer-question-id'>{decode(element.title)}</div>
+                            <div className='titles margins' onClick={() => {transfer(element); navigate('/user_question');} }>{decode(element.title)}</div>
                             <div className='margins'>{(element.tags).map((element: string, index: number) =>
                                 <div className='tags' key={index}>
-                                    <div onClick={() => redirect(element)} data-testid="redirect-tag">{" #" + element}</div>
+                                    <div onClick={() => redirect(element)}>{" #" + element}</div>
                                 </div>
                             )}</div>
                         </div>
                         <div className='block_b'>
                             <div className='owner'>
-                                <div className='owner_element'>{numberFormat(element.owner.reputation)}</div>
+                                <div className='owner_element'>{rounding(element.owner.reputation)}</div>
                                 <div className='owner_element'>{element.owner.display_name}</div>
                                 <img alt='Profile image' src={element.owner.profile_image} className='image'></img>
                             </div>
@@ -91,7 +93,7 @@ const Questions: React.FC = () => {
                 </div>
             )}
             </div>
-            <div data-testid="pagination">{total && total > 1 && <Pagination />}</div>
+            <div>{total && total > 1 && <Pagination />}</div>
         </div>
     )
 }
