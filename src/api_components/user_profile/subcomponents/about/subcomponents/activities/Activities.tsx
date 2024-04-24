@@ -3,26 +3,24 @@ import parse from "html-react-parser";
 import "./Activities.css"
 import {creationDate} from "../../../../../../services/creationDate";
 import {useTypedSelector} from "../../../../../../store/hooks/useTypedSelector";
-import {useParams} from "react-router-dom";
 
 
 
 const Activities:React.FC  = () => {
-    const {id} = useParams();
     const [error, setError] = useState<string | null>(null);
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const [topItems, setItems] = useState<any[]>([]);
     const stackExchangeApiUrl = "https://api.stackexchange.com";
+    const { user_id } = useTypedSelector(state => state.api_user_profile);
     const {content, filter, order, sort} = useTypedSelector(state => state.user_about)
 
 
     useEffect( () => {
         let endpoint;
-        let newOrder = order.toLowerCase()
         if (content === 'answers'){
-            endpoint = `${stackExchangeApiUrl}/2.3/users/${id}/${content}?order=${newOrder}&sort=${sort}&site=stackoverflow&${filter}`;
+            endpoint = `${stackExchangeApiUrl}/2.3/users/${user_id}/${content}?order=${order}&sort=${sort}&site=stackoverflow&${filter}`;
         }else {
-            endpoint = `${stackExchangeApiUrl}/2.3/users/${id}/${content}?order=${newOrder}&sort=${sort}&site=stackoverflow`;
+            endpoint = `${stackExchangeApiUrl}/2.3/users/${user_id}/${content}?order=${order}&sort=${sort}&site=stackoverflow`;
         }
         fetch(endpoint)
             .then(res => res.json())
@@ -38,7 +36,7 @@ const Activities:React.FC  = () => {
                     setError(error.message);
                 }
             )
-    }, [id, content, order, sort, filter]);
+    }, [user_id, content, order, sort, filter]);
 
     if (error) {
         return <div>Error: {error}</div>;

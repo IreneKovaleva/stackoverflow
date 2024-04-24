@@ -5,17 +5,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {useTypedSelector} from "../../store/hooks/useTypedSelector";
 import {useActions} from "../../store/hooks/useActions";
 import {date_months} from '../../services/date_months'
+import {useParams} from "react-router-dom";
 
 
 
 const UserProfile = () => {
-    const {user_items, user_id, loading, error} = useTypedSelector(state => state.api_user_profile);
+    const {id} = useParams()
+    const {user_items, loading, error, user_id} = useTypedSelector(state => state.api_user_profile);
     const { fetchUserProfileApiEndpoint } = useActions()
 
 
     useEffect( () => {
-        fetchUserProfileApiEndpoint(user_id)
-    }, [user_id]);
+        if (id) {
+            fetchUserProfileApiEndpoint(id)
+        }else {
+            fetchUserProfileApiEndpoint(user_id)
+        }
+
+    }, [id, user_id]);
 
 
     if (loading) {
