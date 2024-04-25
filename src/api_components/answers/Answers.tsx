@@ -6,7 +6,7 @@ import {faCheck, faCircleDown, faCircleUp} from "@fortawesome/free-solid-svg-ico
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Answers.css"
 import Comments from "../comments/Comments";
-import {numberFormat} from "../../services/number_format";
+import {numberFormat} from "../../services/numberFormat";
 
 
 const Answers: React.FC = () =>{

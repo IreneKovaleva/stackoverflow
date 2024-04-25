@@ -8,7 +8,7 @@ import {useActions} from "../../store/hooks/useActions";
 import Comments from "../../api_components/comments/Comments"
 import Answers from "../../api_components/answers/Answers";
 import parse from "html-react-parser";
-import {numberFormat} from "../../services/number_format";
+import {numberFormat} from "../../services/numberFormat";
 
 
 const UserQuestions: React.FC = () => {

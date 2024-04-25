@@ -5,7 +5,7 @@ import { creationDate } from '../../services/creationDate';
 import { useTypedSelector } from '../../store/hooks/useTypedSelector';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown, faCaretUp} from "@fortawesome/free-solid-svg-icons";
-import {numberFormat} from "../../services/number_format";
+import {numberFormat} from "../../services/numberFormat";
 
 interface apiEndpointLink {
     endpoint: string

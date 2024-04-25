@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
-// import "../../../Profile.css";
 import { faCakeCandles, faLocationDot} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {useTypedSelector} from "../../store/hooks/useTypedSelector";
 import {useActions} from "../../store/hooks/useActions";
-import {date_months} from '../../services/date_months'
+import {dateMonths} from '../../services/dateMonths'
 import {useParams} from "react-router-dom";
 
 
@@ -42,7 +41,7 @@ const UserProfile = () => {
                             <div className='profile_user_name_name'>{element.display_name}</div>
                             <div className='profile_user_date'>
                                 <FontAwesomeIcon icon={faCakeCandles}></FontAwesomeIcon>
-                                <div className='profile_user_date_margin'>Member for{date_months(element.creation_date)}</div>
+                                <div className='profile_user_date_margin'>Member for{dateMonths(element.creation_date)}</div>
                             </div>
                         </div>
                         <div className='profile_user_location_block'>
