@@ -36,7 +36,7 @@ const UserAnswers:React.FC<Structure> = ({items}) => {
                         <div>{element.score} <span>votes</span></div>
                         <div>{isAccepted(element.is_accepted)}</div>
                     </div>
-                    <div onClick={() => redirect(element.question_id, element.answer_id)}>{element.title}</div>
+                    <div onClick={() => redirect(element.question_id, element.answer_id)} className="user_title_answer">{element.title}</div>
                     <div className='low-block'>
                         <div className='block-3'>{element.tags.map((el:string,index:number) =>
                             <div key={index + "user_tags"}>

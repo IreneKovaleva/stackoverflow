@@ -17,7 +17,7 @@
 }
 .element_list {
     height: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-size: 20px;
     color: #393b40;
 }
@@ -31,10 +31,18 @@
 @media only screen and (min-width: 430px) and (max-width: 932px) {
     .activity_page {
         display: grid;
-        grid-template-columns: 25% 75%;
+        grid-template-columns: 30% 70%;
+        width: 265px;
+    }
+    .activity_page_elements {
+        padding:  30% 2% 0 2%;
+    }
+    .list_of_elements {
+        margin: 0 0 10px 0;
     }
     .element_list {
-        font-size: 12px;
+        font-size: 15px;
+        margin: 0;
     }
 
 }
