@@ -49,7 +49,7 @@ const UserQuestions: React.FC<Structure> = ({items}) => {
                     <div className='low-box'>
                         <div className='block-3'>{element.tags.map((el: string ,index: number) =>
                             <div key={index}>
-                                <div className='tags'>{"#" + el}</div>
+                                <div className='tags tags_width'>{"#" + el}</div>
                             </div>
                         )}
                         </div>

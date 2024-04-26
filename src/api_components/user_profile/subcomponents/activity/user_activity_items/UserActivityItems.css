@@ -356,7 +356,6 @@
         padding: 5px;
     }
     .profile_tags {
-        /*width: 50%;*/
         font-size: 12px;
         width: 90px;
         overflow-wrap: break-word;
@@ -372,7 +371,6 @@
         grid-template-rows: 15% 15% 55% 15%;
         grid-template-columns: 100%;
         padding: 5px;
-        /*margin: 10px 0 10px 0;*/
     }
     .reputation_title {
         word-wrap: break-word;
@@ -380,7 +378,9 @@
     .reputation_back {
         min-height: 200px;
     }
-
-
+    .tags_width {
+        width: 170px;
+        overflow-wrap: break-word;
+    }
 }
 
