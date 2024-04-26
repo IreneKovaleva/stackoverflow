@@ -302,12 +302,25 @@
     }
     .block-3 {
         flex-flow: column;
+        width: 100%;
+        word-wrap: break-word;
+    }
+    .tags {
+        text-align: left;
     }
     .user_items_date {
         text-align: right;
     }
     .user_title_answer {
         word-wrap: break-word;
+    }
+    .block-1 {
+        margin: 10px 2px 10px 2px;
+        align-items: center;
+
+    }
+    .user_items_block {
+        font-size: 14px;
     }
 
 
