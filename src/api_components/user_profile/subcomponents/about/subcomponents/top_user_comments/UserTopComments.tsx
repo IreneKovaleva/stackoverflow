@@ -48,7 +48,7 @@ const UserTopComments = () => {
                 <div className='top_user_comments_elements_score user_comments_size_text'>
                     <div className='txt'>{element.score}</div>
                 </div>
-                <div className='user_comments_size_text'>{parse(element.body)}</div>
+                <div className='user_comments_size_text user_body_elem'>{parse(element.body)}</div>
                 <div className='profile_elements_date user_comments_size_text'>{creationDate(element.creation_date)}</div>
             </div>
         )}</div>

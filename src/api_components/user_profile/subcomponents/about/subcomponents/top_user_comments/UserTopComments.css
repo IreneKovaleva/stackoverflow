@@ -50,13 +50,19 @@
         align-items: center;
     }
     .top_user_comments_elements_top {
-        grid-template-columns: 15% 68% auto;
-        padding: 5px ;
+        grid-template-columns: 15% 70% auto;
+        padding: 5px 0 5px 0;
         margin-left: 2px;
         margin-right: 2px;
+        align-items: center;
     }
     .user_comments_size_text{
-        padding: 10px;
         font-size: 10px;
+    }
+    .user_body_elem {
+        height: 75px;
+        word-wrap: break-word;
+        overflow: hidden;
+        margin: 0 auto;
     }
 }
