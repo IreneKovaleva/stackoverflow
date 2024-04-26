@@ -1,7 +1,7 @@
 .users_description {
     display: flex;
     margin-top: 20px;
-    height: 250px;
+    height: 300px;
     border-bottom: 1px solid #ece9e9;
     border-top: 1px solid #ece9e9;
     margin-bottom: 10px;
@@ -55,13 +55,23 @@
     height: 20%;
 }
 .user_badges {
-    display: grid;
-    grid-template-columns: 55% 15% 15% 15%;
-    text-align: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end
+    /*display: grid;*/
+    /*grid-template-columns: 55% 15% 15% 15%;*/
+    /*text-align: right;*/
+}
+.user_badges_element {
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    margin-left: 10px;
 }
 .user_badges_element_medal {
-    width: 25px;
-    height: 25px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
 }
 .bronze {
     color: #967444;
@@ -105,16 +115,20 @@
     margin: 5px;
 }
 .user_badges_count {
-    font-size: 12px;
+    font-size: 14px;
+    text-align: center;
+
 }
 .user_content_about {
     display: block;
     font-size: 13px;
+    overflow-y: scroll;
 }
 .portfolio_likes {
     margin: 0 auto;
     align-items: center;
 }
+
 
 @media only screen and (min-width: 430px) and (max-width: 932px) {
     .users_description {
