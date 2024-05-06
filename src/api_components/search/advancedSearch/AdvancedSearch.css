@@ -87,3 +87,21 @@
     box-shadow: 0 0 0 1px white, 0 0 0 2px #4680ff;
 }
 
+@media only screen and (min-width: 430px) and (max-width: 932px) {
+    .advanced_search_block {
+        width: 270px;
+        left: 5%;
+    }
+    .option-search-block {
+        grid-template-columns: 25% 70%;
+        padding: 5px;
+        width: 270px;
+    }
+    .advanced_search_element {
+        width: 190px;
+    }
+    .advanced_search_header_options {
+        width: 250px;
+    }
+}
+
