@@ -71,7 +71,7 @@ const Questions: React.FC = () => {
                             </div>
                             <div className='titles margins' onClick={() => {transfer(element); navigate('/user_question');}} data-testid='transfer-question-id'>{decode(element.title)}</div>
                             <div className='margins'>{(element.tags).map((element: string, index: number) =>
-                                <div className='tags' key={index}>
+                                <div className='tags tags_for_phone' key={index}>
                                     <div onClick={() => redirect(element)} data-testid="redirect-tag">{" #" + element}</div>
                                 </div>
                             )}</div>

@@ -34,7 +34,7 @@ const UserQuestions: React.FC = () => {
         if (tag !== null && tag !== undefined) {
             return(
                 <div className='user_question_tags'>{tag.map((element, index) =>
-                    <div className='tags' key={index}>
+                    <div className='tags tags_user_question_phone_size' key={index}>
                         <div>{" #" + element}</div>
                     </div>
                 )}</div>

@@ -50,9 +50,6 @@
     display: grid;
     grid-template-columns: 15% 85%;
     width: 90%;
-    /*min-width: 780px;*/
-    /*display: flex;*/
-    /*flex-direction: row;*/
 }
 .answers_creation_date {
     color: rgba(35, 37, 43, 0.8);
@@ -72,13 +69,6 @@
 .answers_comment_block {
     float: right;
 }
-/*.position {*/
-/*    position: relative;*/
-/*    float: right;*/
-/*    min-width: 780px;*/
-/*    padding: 5px;*/
-/*    margin-top: 15px;*/
-/*}*/
 .no_answers {
     font-size: 16px;
     font-weight: bold;
@@ -117,7 +107,6 @@
 .general_comments_answers {
     position: relative;
     float: right;
-    /*width: 780px;*/
     padding: 5px;
     margin-top: 15px;
 }
@@ -138,4 +127,38 @@
     overflow-x: hidden;
     align-items: center;
     margin: 0 auto;
+}
+@media only screen and (min-width: 430px) and (max-width: 932px) {
+    .answers_scroll {
+        /*height: 900px;*/
+        /*width: 100%;*/
+        overflow-y: unset;
+        overflow-x: unset;
+        /*align-items: center;*/
+        /*margin: 0 auto;*/
+    }
+    .answers_details {
+        grid-template-rows: 15% 55% 30%;
+        padding: 5px;
+        overflow: unset;
+    }
+    .answers_top_description {
+        grid-template-rows: 65% 35%;
+        width: 270px;
+    }
+    .answers_description {
+        width: 270px;
+    }
+    .answers_creation_date {
+        margin-top: 10px;
+        float: left;
+    }
+    .comments_answers_user_page {
+        width: 270px;
+    }
+    .answers_comment_block {
+        float: left;
+        width: 270px;
+    }
+
 }

@@ -94,11 +94,11 @@
 .score_position {
     width: 150px;
 }
-.reply_position {
-    text-align: right;
-    float: right;
-    width: 250px;
-}
+/*.reply_position {*/
+/*    text-align: right;*/
+/*    float: right;*/
+/*    width: 250px;*/
+/*}*/
 .reply {
     color: #5a8de1;
 }
@@ -124,4 +124,29 @@
     text-align: right;
     float: right;
     width: 250px;
+}
+@media only screen and (min-width: 430px) and (max-width: 932px) {
+    .comment_content_block {
+        grid-template-columns: 25% 75%;
+    }
+    .comment_body {
+        padding: 5px;
+    }
+    .comment_created_by_data {
+        flex-flow: column;
+        padding: 5px;
+    }
+    .date_position {
+        width: 190px;
+    }
+    .score_position {
+        width: 190px;
+    }
+    .reply_position {
+        width: 190px;
+        overflow-wrap: break-word;
+        text-align: left;
+        padding: 2px;
+    }
+
 }
