@@ -39,6 +39,9 @@ const TopTags = () => {
     if (!isLoaded) {
         return <div>loading...</div>;
     }
+    if (!topItems) {
+        return <h2>Please connect to the VPN and reload the page. If you are already using it - change the IP</h2>
+    }
 
     return (
         <div className='user_top_tags_block'>{topItems.map((element, index) =>

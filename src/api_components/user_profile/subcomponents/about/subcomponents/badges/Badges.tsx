@@ -39,6 +39,9 @@ const Badges = () => {
     if (!isLoaded) {
         return <div>loading...</div>;
     }
+    if (!badgesType) {
+        return <h2>Please connect to the VPN and reload the page. If you are already using it - change the IP</h2>
+    }
 
     return (
         <div className="badges_block"> {Object.keys(badgesType).map((key: string) =>

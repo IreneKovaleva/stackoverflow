@@ -73,6 +73,9 @@ const UserActivityItems:React.FC<settings> = ({type,filter, name, sort_parameter
     if (!isLoaded) {
         return <div>loading...</div>;
     }
+    if (!items) {
+        return <h2>Please connect to the VPN and reload the page. If you are already using it - change the IP</h2>
+    }
 
     return (
         <div>

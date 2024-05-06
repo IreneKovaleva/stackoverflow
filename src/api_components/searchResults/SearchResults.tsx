@@ -44,6 +44,10 @@ const SearchResults = () => {
     if (error) {
         return <h1>{error}</h1>
     }
+    if (!search_items) {
+        return <h2>Please connect to the VPN and reload the page. If you are already using it - change the IP</h2>
+    }
+
     return(
         <div>
             <div>{search_items.map((element) =>

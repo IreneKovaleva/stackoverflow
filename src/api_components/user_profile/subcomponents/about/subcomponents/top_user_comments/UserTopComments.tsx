@@ -42,6 +42,9 @@ const UserTopComments = () => {
     if (!isLoaded) {
         return <div>loading...</div>;
     }
+    if (!topItems) {
+        return <h2>Please connect to the VPN and reload the page. If you are already using it - change the IP</h2>
+    }
     return (
         <div className='top_user_comments_block'>{topItems.map((element, index) =>
             <div key={index} className='top_user_comments_elements_top rows_comments' onClick={() => redirect(element.post_id, element.post_type, element.comment_id)}>

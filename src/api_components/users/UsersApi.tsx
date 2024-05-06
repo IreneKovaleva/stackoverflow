@@ -39,6 +39,9 @@ const UsersApi = () => {
     if (error) {
         return <h1>{error}</h1>
     }
+    if (!users) {
+        return <h2>Please connect to the VPN and reload the page. If you are already using it - change the IP</h2>
+    }
 
     return (
         <div>
