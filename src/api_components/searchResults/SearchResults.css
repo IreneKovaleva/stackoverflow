@@ -9,7 +9,6 @@
     padding: 10px;
     margin-bottom: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
 }
 .search_result_flex_block{
     display: flex;
@@ -43,4 +42,23 @@
 .search_result_title:hover {
     color: #5a8de1;
     font-size: 18px;
+}
+@media only screen and (min-width: 430px) and (max-width: 932px) {
+    .search_result_block {
+        margin-top: 20px;
+        width: 250px;
+        grid-template-rows: auto;
+        min-height: 300px;
+        padding: 15px;
+        margin-bottom: 0;
+    }
+    .search_results_first_block {
+        padding: 0;
+        grid-template-rows: 60px 240px auto;
+    }
+    .search_result_flex_block{
+        flex-flow: column;
+        align-items: flex-start;
+    }
+
 }

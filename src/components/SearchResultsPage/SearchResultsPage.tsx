@@ -18,7 +18,7 @@ const SearchResultsPage = () => {
     }
 
     return (
-        <div className="first_block">
+        <div className="first_block search_results_first_block">
             <div className="name">
                 <div className="header">Search Results</div>
             </div>
